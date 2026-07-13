@@ -13,18 +13,18 @@ Ya existen `customers`, `contacts`, `pipelines`, `pipeline_stages` y `deals`.
 
 ## lead_conversions
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identifica conversión. |
-| organization_id | uuid | no | — | FK organizations.id | Refuerza tenant. |
-| idempotency_key | varchar(100) | no | — | unique por organization | Identifica el intento del cliente. |
-| request_fingerprint | char(64) | no | — | SHA-256 hex unique por organization | Detecta la misma intención con otra key. |
-| lead_id | uuid | no | — | FK leads.id, unique | Impide convertir dos veces. |
-| customer_id | uuid | no | — | FK customers.id | Resultado obligatorio. |
-| contact_id | uuid | sí | null | FK contacts.id | Resultado opcional. |
-| deal_id | uuid | sí | null | FK deals.id | Resultado comercial opcional. |
-| converted_by_member_id | uuid | sí | null | FK organization_members.id | Actor de negocio. |
-| created_at | timestamptz | no | now | — | Evidencia temporal. |
+| Campo                  | Tipo         | Null | Default  | Regla                               | Motivo                                   |
+| ---------------------- | ------------ | ---: | -------- | ----------------------------------- | ---------------------------------------- |
+| id                     | uuid         |   no | generado | PK                                  | Identifica conversión.                   |
+| organization_id        | uuid         |   no | —        | FK organizations.id                 | Refuerza tenant.                         |
+| idempotency_key        | varchar(100) |   no | —        | unique por organization             | Identifica el intento del cliente.       |
+| request_fingerprint    | char(64)     |   no | —        | SHA-256 hex unique por organization | Detecta la misma intención con otra key. |
+| lead_id                | uuid         |   no | —        | FK leads.id, unique                 | Impide convertir dos veces.              |
+| customer_id            | uuid         |   no | —        | FK customers.id                     | Resultado obligatorio.                   |
+| contact_id             | uuid         |   sí | null     | FK contacts.id                      | Resultado opcional.                      |
+| deal_id                | uuid         |   sí | null     | FK deals.id                         | Resultado comercial opcional.            |
+| converted_by_member_id | uuid         |   sí | null     | FK organization_members.id          | Actor de negocio.                        |
+| created_at             | timestamptz  |   no | now      | —                                   | Evidencia temporal.                      |
 
 Un lead es lado **uno** y tiene cero o una conversión; `UQ_lead_conversions_lead_id` y la FK compuesta `(organization_id, lead_id)` con `onDelete: RESTRICT` implementan el 1:1. Customer es lado **uno** y puede aparecer en **muchas** conversiones; la FK compuesta `(organization_id, customer_id)` con `RESTRICT` implementa el 1:N. Contact y deal también son lados uno respecto a conversiones y usan FKs compuestas nullable con `RESTRICT`. Actor usa `(organization_id, converted_by_member_id)` y `SET NULL (converted_by_member_id)`.
 

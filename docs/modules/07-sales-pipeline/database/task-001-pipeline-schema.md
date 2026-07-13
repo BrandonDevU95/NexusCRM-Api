@@ -9,18 +9,18 @@
 
 ## pipelines
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identidad estable. |
-| organization_id | uuid | no | — | FK organizations.id | Aísla tenant. |
-| code | varchar(60) | no | — | unique por organization | Referencia estable para seed. |
-| name | varchar(120) | no | — | no vacío | Nombre visible. |
-| description | varchar(255) | sí | null | — | Contexto administrativo. |
-| is_default | boolean | no | false | máximo uno activo por organization | Conversión necesita destino predeterminado. |
-| is_active | boolean | no | true | — | Desactiva sin borrar. |
-| created_by_member_id | uuid | sí | null | FK membership | Conserva actor. |
-| created_at / updated_at | timestamptz | no | now | — | Trazabilidad. |
-| archived_at | timestamptz | sí | null | posterior a created_at | Preserva uso histórico. |
+| Campo                   | Tipo         | Null | Default  | Regla                              | Motivo                                      |
+| ----------------------- | ------------ | ---: | -------- | ---------------------------------- | ------------------------------------------- |
+| id                      | uuid         |   no | generado | PK                                 | Identidad estable.                          |
+| organization_id         | uuid         |   no | —        | FK organizations.id                | Aísla tenant.                               |
+| code                    | varchar(60)  |   no | —        | unique por organization            | Referencia estable para seed.               |
+| name                    | varchar(120) |   no | —        | no vacío                           | Nombre visible.                             |
+| description             | varchar(255) |   sí | null     | —                                  | Contexto administrativo.                    |
+| is_default              | boolean      |   no | false    | máximo uno activo por organization | Conversión necesita destino predeterminado. |
+| is_active               | boolean      |   no | true     | —                                  | Desactiva sin borrar.                       |
+| created_by_member_id    | uuid         |   sí | null     | FK membership                      | Conserva actor.                             |
+| created_at / updated_at | timestamptz  |   no | now      | —                                  | Trazabilidad.                               |
+| archived_at             | timestamptz  |   sí | null     | posterior a created_at             | Preserva uso histórico.                     |
 
 Organization es lado **uno** y pipelines lado **muchos**. FK `organization_id`, `onDelete: RESTRICT`: deals históricos impedirán eliminar configuración. Membership lado uno y muchos pipelines creados; FK compuesta nullable `(organization_id, created_by_member_id)` usa `SET NULL (created_by_member_id)` para conservar el tenant.
 
@@ -28,21 +28,21 @@ Constraints/índices: `UQ_pipelines_organization_id_id`; unique `(organization_i
 
 ## pipeline_stages
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identidad de etapa. |
-| organization_id | uuid | no | — | FK organizations.id | Defensa tenant. |
-| pipeline_id | uuid | no | — | FK pipelines.id | Ubica etapa. |
-| code | varchar(60) | no | — | unique por pipeline | Referencia estable. |
-| name | varchar(120) | no | — | no vacío | Etiqueta kanban. |
-| description | varchar(255) | sí | null | — | Criterio de avance. |
-| sort_order | integer | no | — | mayor o igual a cero | Orden visual. |
-| probability | numeric(5,2) | no | 0 | entre 0 y 100 | Forecast base en porcentaje. |
-| stage_type | varchar(20) | no | OPEN | OPEN, WON o LOST | Define terminalidad. |
-| stale_after_days | smallint | sí | null | mayor que cero | Detecta oportunidades vencidas. |
-| is_active | boolean | no | true | — | Archivo lógico funcional. |
-| created_at / updated_at | timestamptz | no | now | — | Trazabilidad. |
-| archived_at | timestamptz | sí | null | — | Conserva historial. |
+| Campo                   | Tipo         | Null | Default  | Regla                | Motivo                          |
+| ----------------------- | ------------ | ---: | -------- | -------------------- | ------------------------------- |
+| id                      | uuid         |   no | generado | PK                   | Identidad de etapa.             |
+| organization_id         | uuid         |   no | —        | FK organizations.id  | Defensa tenant.                 |
+| pipeline_id             | uuid         |   no | —        | FK pipelines.id      | Ubica etapa.                    |
+| code                    | varchar(60)  |   no | —        | unique por pipeline  | Referencia estable.             |
+| name                    | varchar(120) |   no | —        | no vacío             | Etiqueta kanban.                |
+| description             | varchar(255) |   sí | null     | —                    | Criterio de avance.             |
+| sort_order              | integer      |   no | —        | mayor o igual a cero | Orden visual.                   |
+| probability             | numeric(5,2) |   no | 0        | entre 0 y 100        | Forecast base en porcentaje.    |
+| stage_type              | varchar(20)  |   no | OPEN     | OPEN, WON o LOST     | Define terminalidad.            |
+| stale_after_days        | smallint     |   sí | null     | mayor que cero       | Detecta oportunidades vencidas. |
+| is_active               | boolean      |   no | true     | —                    | Archivo lógico funcional.       |
+| created_at / updated_at | timestamptz  |   no | now      | —                    | Trazabilidad.                   |
+| archived_at             | timestamptz  |   sí | null     | —                    | Conserva historial.             |
 
 Pipeline es lado **uno** y stages lado **muchos**. La FK compuesta `(organization_id, pipeline_id)` referencia `pipelines(organization_id, id)`, no es nullable y usa `onDelete: RESTRICT`; la base impide stages cross-tenant.
 

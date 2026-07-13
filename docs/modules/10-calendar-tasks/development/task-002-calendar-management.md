@@ -19,16 +19,16 @@ tenant.
 
 ## Endpoints
 
-| Endpoint | Permiso | Notas |
-|---|---|---|
-| `POST /calendar/events` | `calendar:manage` | Evento y attendees atómicos. |
-| `GET /calendar/events` | `calendar:read` | Rango obligatorio y acotado. |
-| `GET /calendar/events/:id` | `calendar:read` | Tenant scoped. |
-| `PATCH /calendar/events/:id` | `calendar:manage` | Organizer o policy superior. |
-| `POST /calendar/events/:id/cancel` | `calendar:manage` | Cancela reminders pendientes. |
-| `POST /calendar/events/:id/attendees` | `calendar:manage` | Members activos. |
-| `POST /calendar/events/:id/respond` | `calendar:manage` | Policy limita la respuesta al attendee propio. |
-| `POST /calendar/events/:id/reminders` | `calendar:manage` | Recipient autorizado. |
+| Endpoint                              | Permiso           | Notas                                          |
+| ------------------------------------- | ----------------- | ---------------------------------------------- |
+| `POST /calendar/events`               | `calendar:manage` | Evento y attendees atómicos.                   |
+| `GET /calendar/events`                | `calendar:read`   | Rango obligatorio y acotado.                   |
+| `GET /calendar/events/:id`            | `calendar:read`   | Tenant scoped.                                 |
+| `PATCH /calendar/events/:id`          | `calendar:manage` | Organizer o policy superior.                   |
+| `POST /calendar/events/:id/cancel`    | `calendar:manage` | Cancela reminders pendientes.                  |
+| `POST /calendar/events/:id/attendees` | `calendar:manage` | Members activos.                               |
+| `POST /calendar/events/:id/respond`   | `calendar:manage` | Policy limita la respuesta al attendee propio. |
+| `POST /calendar/events/:id/reminders` | `calendar:manage` | Recipient autorizado.                          |
 
 DTOs separan timed y all-day mediante validación condicional. Timezone debe ser
 IANA; no aceptes offsets como sustituto. El rango de consulta tiene máximo

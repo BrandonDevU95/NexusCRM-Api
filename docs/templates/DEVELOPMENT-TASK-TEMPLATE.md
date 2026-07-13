@@ -7,12 +7,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `DEV-{{MODULE}}-{{task_number}}` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint {{entry_checkpoint}} |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint {{return_checkpoint}} |
-| Rama esperada | `sdd/{{exact_branch}}` |
+| Dato          | Valor                                                   |
+| ------------- | ------------------------------------------------------- |
+| Código        | `DEV-{{MODULE}}-{{task_number}}`                        |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint {{entry_checkpoint}}  |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint {{return_checkpoint}} |
+| Rama esperada | `sdd/{{exact_branch}}`                                  |
 
 No continúes hasta que {{observable_exit_condition}}.
 
@@ -59,9 +59,9 @@ Incluye happy path, conflictos, estados, límites y efectos secundarios.
 
 ### `{{DtoName}}`
 
-| Campo | Tipo | Requerido | Validación | Normalización | Motivo |
-| --- | --- | --- | --- | --- | --- |
-| {{field}} | {{type}} | {{yes_no}} | {{rule}} | {{normalization}} | {{reason}} |
+| Campo     | Tipo     | Requerido  | Validación | Normalización     | Motivo     |
+| --------- | -------- | ---------- | ---------- | ----------------- | ---------- |
+| {{field}} | {{type}} | {{yes_no}} | {{rule}}   | {{normalization}} | {{reason}} |
 
 Joi valida environment variables; `class-validator` valida DTOs. No mezclar sus
 responsabilidades.
@@ -81,9 +81,9 @@ El controller no consulta repositories directamente.
 
 ## Contrato HTTP
 
-| Método | Path | Permission | Request | Success | Errores esperados |
-| --- | --- | --- | --- | --- | --- |
-| {{method}} | `{{path}}` | `{{permission_code}}` | `{{DtoName}}` | {{status_and_shape}} | {{errors}} |
+| Método     | Path       | Permission            | Request       | Success              | Errores esperados |
+| ---------- | ---------- | --------------------- | ------------- | -------------------- | ----------------- |
+| {{method}} | `{{path}}` | `{{permission_code}}` | `{{DtoName}}` | {{status_and_shape}} | {{errors}}        |
 
 Describe response fields y paginación; no entregues controller code.
 

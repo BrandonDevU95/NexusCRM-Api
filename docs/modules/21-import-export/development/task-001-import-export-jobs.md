@@ -78,18 +78,18 @@ Todos requieren header. Import usa `imports:create` para crear/confirmar y
 `imports:read` para consultar. Export usa `exports:create` y `exports:read`;
 además se aplica la policy de filas/campos del resource propietario.
 
-| Método/path | Permission | Uso |
-| --- | --- | --- |
-| `POST /api/v1/import-jobs` | `imports:create` | Multipart y resource type |
-| `PUT /api/v1/import-jobs/:id/mapping` | `imports:create` | Mapping antes de preview |
-| `POST /api/v1/import-jobs/:id/preview` | `imports:create` | Parsear/validar |
-| `POST /api/v1/import-jobs/:id/confirm` | `imports:create` | Confirmar una vez |
-| `GET /api/v1/import-jobs/:id` | `imports:read` | Estado/conteos |
-| `GET /api/v1/import-jobs/:id/rows` | `imports:read` | Filtros/paginación de errors |
-| `POST /api/v1/import-jobs/:id/cancel` | `imports:create` | Solo estado permitido |
-| `POST /api/v1/export-jobs` | `exports:create` | Crear export validado |
-| `GET /api/v1/export-jobs/:id` | `exports:read` | Estado |
-| `GET /api/v1/export-jobs/:id/download` | `exports:read` | Descargar con reautorización |
+| Método/path                            | Permission       | Uso                          |
+| -------------------------------------- | ---------------- | ---------------------------- |
+| `POST /api/v1/import-jobs`             | `imports:create` | Multipart y resource type    |
+| `PUT /api/v1/import-jobs/:id/mapping`  | `imports:create` | Mapping antes de preview     |
+| `POST /api/v1/import-jobs/:id/preview` | `imports:create` | Parsear/validar              |
+| `POST /api/v1/import-jobs/:id/confirm` | `imports:create` | Confirmar una vez            |
+| `GET /api/v1/import-jobs/:id`          | `imports:read`   | Estado/conteos               |
+| `GET /api/v1/import-jobs/:id/rows`     | `imports:read`   | Filtros/paginación de errors |
+| `POST /api/v1/import-jobs/:id/cancel`  | `imports:create` | Solo estado permitido        |
+| `POST /api/v1/export-jobs`             | `exports:create` | Crear export validado        |
+| `GET /api/v1/export-jobs/:id`          | `exports:read`   | Estado                       |
+| `GET /api/v1/export-jobs/:id/download` | `exports:read`   | Descargar con reautorización |
 
 ## Audit y transacciones
 

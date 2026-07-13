@@ -2,12 +2,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `DEV-FND-002` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint `FND-002` |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint `FND-002` |
-| Rama esperada | `sdd/add-api-foundation` |
+| Dato          | Valor                                       |
+| ------------- | ------------------------------------------- |
+| Código        | `DEV-FND-002`                               |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint `FND-002` |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint `FND-002` |
+| Rama esperada | `sdd/add-api-foundation`                    |
 
 No continúes hasta que Joi detenga el arranque con configuración inválida y
 PostgreSQL alcance estado healthy usando únicamente valores del environment.
@@ -79,41 +79,41 @@ migraciones.
 
 ### Aplicación
 
-| Variable | Regla |
-| --- | --- |
-| `NODE_ENV` | `dev`, `test` o `prod`; requerida |
-| `APP_HOST` | hostname válido; requerida |
-| `APP_PORT` | integer entre 1 y 65535; requerida |
-| `API_PREFIX` | segmento sin URL completa; requerido |
+| Variable       | Regla                                         |
+| -------------- | --------------------------------------------- |
+| `NODE_ENV`     | `dev`, `test` o `prod`; requerida             |
+| `APP_HOST`     | hostname válido; requerida                    |
+| `APP_PORT`     | integer entre 1 y 65535; requerida            |
+| `API_PREFIX`   | segmento sin URL completa; requerido          |
 | `CORS_ORIGINS` | lista explícita; wildcard rechazado en `prod` |
 
 ### PostgreSQL runtime
 
-| Variable | Regla |
-| --- | --- |
-| `DATABASE_HOST` | requerida |
-| `DATABASE_PORT` | integer entre 1 y 65535 |
-| `DATABASE_NAME` | requerida, sin whitespace |
-| `DATABASE_USER` | requerida |
-| `DATABASE_PASSWORD` | requerida, sin default inseguro |
-| `DATABASE_SSL` | boolean con formatos admitidos explícitamente |
-| `DATABASE_LOGGING` | boolean; default documentado |
-| `DATABASE_POOL_SIZE` | integer positivo con máximo razonable |
-| `DATABASE_MIGRATIONS_RUN` | debe permanecer `false` en esta arquitectura |
-| `DATABASE_SYNCHRONIZE` | debe aceptar únicamente `false`; un valor true falla |
+| Variable                  | Regla                                                |
+| ------------------------- | ---------------------------------------------------- |
+| `DATABASE_HOST`           | requerida                                            |
+| `DATABASE_PORT`           | integer entre 1 y 65535                              |
+| `DATABASE_NAME`           | requerida, sin whitespace                            |
+| `DATABASE_USER`           | requerida                                            |
+| `DATABASE_PASSWORD`       | requerida, sin default inseguro                      |
+| `DATABASE_SSL`            | boolean con formatos admitidos explícitamente        |
+| `DATABASE_LOGGING`        | boolean; default documentado                         |
+| `DATABASE_POOL_SIZE`      | integer positivo con máximo razonable                |
+| `DATABASE_MIGRATIONS_RUN` | debe permanecer `false` en esta arquitectura         |
+| `DATABASE_SYNCHRONIZE`    | debe aceptar únicamente `false`; un valor true falla |
 
 ### Docker Compose
 
-| Variable | Uso |
-| --- | --- |
-| `POSTGRES_IMAGE` | tag y digest exactos |
-| `POSTGRES_CONTAINER_NAME` | nombre local del contenedor dev |
-| `POSTGRES_HOST_PORT` | puerto publicado al host |
-| `POSTGRES_CONTAINER_PORT` | puerto interno documentado |
-| `POSTGRES_DB` | database inicial de desarrollo |
-| `POSTGRES_USER` | usuario del contenedor |
-| `POSTGRES_PASSWORD` | password local no versionado |
-| `POSTGRES_VOLUME_NAME` | nombre real del volumen persistente |
+| Variable                  | Uso                                 |
+| ------------------------- | ----------------------------------- |
+| `POSTGRES_IMAGE`          | tag y digest exactos                |
+| `POSTGRES_CONTAINER_NAME` | nombre local del contenedor dev     |
+| `POSTGRES_HOST_PORT`      | puerto publicado al host            |
+| `POSTGRES_CONTAINER_PORT` | puerto interno documentado          |
+| `POSTGRES_DB`             | database inicial de desarrollo      |
+| `POSTGRES_USER`           | usuario del contenedor              |
+| `POSTGRES_PASSWORD`       | password local no versionado        |
+| `POSTGRES_VOLUME_NAME`    | nombre real del volumen persistente |
 
 ### PostgreSQL test
 

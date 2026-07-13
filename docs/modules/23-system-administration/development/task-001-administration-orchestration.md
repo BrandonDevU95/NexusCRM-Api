@@ -45,12 +45,12 @@ No crees `/admin/users` que replique validación y responses.
 
 ## Endpoints propios
 
-| Método/path | Permissions | Resultado |
-| --- | --- | --- |
-| `GET /api/v1/system-administration/overview` | `system-admin:access` + owner read permissions | Secciones permitidas, counts y health de configuración |
-| `GET /api/v1/system-administration/configuration-readiness` | `system-admin:access`, `settings:read`, `catalogs:read`, `pipelines:read`, `price-lists:read`, `notification-templates:manage` | Missing defaults sin secrets |
-| `GET /api/v1/system-administration/members/:memberId/access-review` | `system-admin:access`, `organization-members:read`, `roles:manage` | Membership, roles y permissions efectivas |
-| `POST /api/v1/system-administration/organizations/:organizationId/bootstrap` | `system-admin:access`, `settings:update`, `catalogs:manage`, `pipelines:manage`, `price-lists:manage`, `tax-rates:manage`, `notification-templates:manage` | Crear defaults faltantes idempotentemente |
+| Método/path                                                                  | Permissions                                                                                                                                                | Resultado                                              |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `GET /api/v1/system-administration/overview`                                 | `system-admin:access` + owner read permissions                                                                                                             | Secciones permitidas, counts y health de configuración |
+| `GET /api/v1/system-administration/configuration-readiness`                  | `system-admin:access`, `settings:read`, `catalogs:read`, `pipelines:read`, `price-lists:read`, `notification-templates:manage`                             | Missing defaults sin secrets                           |
+| `GET /api/v1/system-administration/members/:memberId/access-review`          | `system-admin:access`, `organization-members:read`, `roles:manage`                                                                                         | Membership, roles y permissions efectivas              |
+| `POST /api/v1/system-administration/organizations/:organizationId/bootstrap` | `system-admin:access`, `settings:update`, `catalogs:manage`, `pipelines:manage`, `price-lists:manage`, `tax-rates:manage`, `notification-templates:manage` | Crear defaults faltantes idempotentemente              |
 
 Si el actor carece de un owner read permission, overview omite esa sección y
 explica capability false; no consulta primero y filtra después.

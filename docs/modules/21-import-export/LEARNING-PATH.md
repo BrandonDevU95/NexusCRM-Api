@@ -2,12 +2,12 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
-| Alcance original | Módulo 21: Import and Export |
-| Código | `IO` |
-| Rama | `sdd/add-import-export-jobs` |
-| Hito | Parte de `v0.9.0`; Administration crea el tag |
+| Dato             | Valor                                         |
+| ---------------- | --------------------------------------------- |
+| Alcance original | Módulo 21: Import and Export                  |
+| Código           | `IO`                                          |
+| Rama             | `sdd/add-import-export-jobs`                  |
+| Hito             | Parte de `v0.9.0`; Administration crea el tag |
 
 ## Resultado esperado
 

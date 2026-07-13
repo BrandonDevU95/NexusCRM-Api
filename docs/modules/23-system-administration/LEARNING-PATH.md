@@ -2,12 +2,12 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
+| Dato             | Valor                            |
+| ---------------- | -------------------------------- |
 | Alcance original | Módulo 23: System Administration |
-| Código | `ADMIN` |
-| Rama | `sdd/add-system-administration` |
-| Hito | Cierra `v0.9.0` |
+| Código           | `ADMIN`                          |
+| Rama             | `sdd/add-system-administration`  |
+| Hito             | Cierra `v0.9.0`                  |
 
 ## Decisión principal
 
@@ -49,12 +49,12 @@ No hagas un commit `feat(database)` ni una migración vacía.
 
 - [ ] No existe entity/repository/table de Administration.
 - [ ] `system-admin:access` solo abre el área; cada operación exige owner
-  permission.
+      permission.
 - [ ] `X-Organization-Id` y membership activa nunca se omiten.
 - [ ] Overview y access review llaman read services propietarios.
 - [ ] Bootstrap es idempotente, transaccional y no sobrescribe personalización.
 - [ ] CRUD ordinario usa rutas de Users, Access Control, Platform, Pipelines,
-  Price Lists, Notifications y Audit.
+      Price Lists, Notifications y Audit.
 - [ ] Audit registra bootstrap y cambios en su owner.
 - [ ] Seed no crea admin rows ni wildcard permission.
 - [ ] Unit, Integration, E2E, migration-from-empty y build pasan.

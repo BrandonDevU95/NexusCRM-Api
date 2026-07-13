@@ -2,13 +2,13 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
-| Alcance original | Módulo 17: Knowledge Base |
-| Código | `KB` |
-| Rama core | `sdd/add-knowledge-base` |
-| Rama integración | `sdd/link-knowledge-to-tickets` |
-| Hito | Parte de `v0.7.0`; Support Tickets crea el tag |
+| Dato             | Valor                                          |
+| ---------------- | ---------------------------------------------- |
+| Alcance original | Módulo 17: Knowledge Base                      |
+| Código           | `KB`                                           |
+| Rama core        | `sdd/add-knowledge-base`                       |
+| Rama integración | `sdd/link-knowledge-to-tickets`                |
+| Hito             | Parte de `v0.7.0`; Support Tickets crea el tag |
 
 ## Resultado esperado
 

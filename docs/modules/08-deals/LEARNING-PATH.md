@@ -12,13 +12,13 @@ Representar una venta potencial real, conectarla con customer/contact, pipeline,
 
 ## Registro de avance
 
-| Checkpoint | Estado | Evidencia / commit | Fecha |
-|---|---|---|---|
-| DB-DEAL-001 schema y `up/down/up` | [ ] | — | — |
-| DEV-DEAL-001 lifecycle, productos y cierres | [ ] | — | — |
-| SEED-DEAL-001 ejecutado dos veces | [ ] | — | — |
-| TEST-DEAL-001 unit/integration/E2E | [ ] | — | — |
-| PR revisado, merge y limpieza | [ ] | — | — |
+| Checkpoint                                  | Estado | Evidencia / commit | Fecha |
+| ------------------------------------------- | ------ | ------------------ | ----- |
+| DB-DEAL-001 schema y `up/down/up`           | [ ]    | —                  | —     |
+| DEV-DEAL-001 lifecycle, productos y cierres | [ ]    | —                  | —     |
+| SEED-DEAL-001 ejecutado dos veces           | [ ]    | —                  | —     |
+| TEST-DEAL-001 unit/integration/E2E          | [ ]    | —                  | —     |
+| PR revisado, merge y limpieza               | [ ]    | —                  | —     |
 
 Marca `[x]` únicamente con evidencia reproducible.
 

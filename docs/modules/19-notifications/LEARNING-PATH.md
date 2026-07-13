@@ -2,14 +2,14 @@
 
 ## Identidad y orden real
 
-| Dato | Valor |
-| --- | --- |
-| Alcance original | Módulo 19: Notifications |
-| Código | `NOTIF` |
-| Rama | `sdd/add-notifications` |
-| Momento | Después de Calendar/Tasks, antes de Quotes, Orders y Tickets |
-| Hito inicial | Cierra Deals/Activities/Calendar/Notifications como `v0.4.0` |
-| Hito completo | Automations + outbox cierran `v0.8.0` |
+| Dato             | Valor                                                        |
+| ---------------- | ------------------------------------------------------------ |
+| Alcance original | Módulo 19: Notifications                                     |
+| Código           | `NOTIF`                                                      |
+| Rama             | `sdd/add-notifications`                                      |
+| Momento          | Después de Calendar/Tasks, antes de Quotes, Orders y Tickets |
+| Hito inicial     | Cierra Deals/Activities/Calendar/Notifications como `v0.4.0` |
+| Hito completo    | Automations + outbox cierran `v0.8.0`                        |
 
 Notifications se adelanta porque recordatorios, stock bajo y tickets críticos
 deben usar un dueño común desde su primera implementación. El número original

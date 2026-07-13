@@ -42,19 +42,19 @@ aceptes `organizationId` en body, no lo tomes de un JWT y no busques solo por `i
 
 ## Endpoints y permisos
 
-| Endpoint | DTO/entrada principal | Permiso |
-|---|---|---|
-| `POST /activities` | `CreateActivityDto` | `activities:create` |
-| `GET /activities` | `QueryActivitiesDto` | `activities:read` |
-| `GET /activities/:id` | params UUID | `activities:read` |
-| `PATCH /activities/:id` | `UpdateActivityDto` | `activities:update` |
-| `POST /activities/:id/start` | versión esperada | `activities:update` |
-| `POST /activities/:id/complete` | `CompleteActivityDto` | `activities:complete` |
-| `POST /activities/:id/cancel` | `CancelActivityDto` | `activities:update` |
-| `POST /activities/:id/comments` | `CreateActivityCommentDto` | `activities:comment` |
-| `PATCH /activities/:id/comments/:commentId` | `UpdateActivityCommentDto` | `activities:comment` y autor/policy |
-| `POST /activities/:id/attachments` | metadatos previamente validados | `activities:attach` |
-| `GET /customers/:id/timeline` | `QueryTimelineDto` | `customers:read` y `activities:read` |
+| Endpoint                                    | DTO/entrada principal           | Permiso                              |
+| ------------------------------------------- | ------------------------------- | ------------------------------------ |
+| `POST /activities`                          | `CreateActivityDto`             | `activities:create`                  |
+| `GET /activities`                           | `QueryActivitiesDto`            | `activities:read`                    |
+| `GET /activities/:id`                       | params UUID                     | `activities:read`                    |
+| `PATCH /activities/:id`                     | `UpdateActivityDto`             | `activities:update`                  |
+| `POST /activities/:id/start`                | versión esperada                | `activities:update`                  |
+| `POST /activities/:id/complete`             | `CompleteActivityDto`           | `activities:complete`                |
+| `POST /activities/:id/cancel`               | `CancelActivityDto`             | `activities:update`                  |
+| `POST /activities/:id/comments`             | `CreateActivityCommentDto`      | `activities:comment`                 |
+| `PATCH /activities/:id/comments/:commentId` | `UpdateActivityCommentDto`      | `activities:comment` y autor/policy  |
+| `POST /activities/:id/attachments`          | metadatos previamente validados | `activities:attach`                  |
+| `GET /customers/:id/timeline`               | `QueryTimelineDto`              | `customers:read` y `activities:read` |
 
 Todos los listados aceptan `page`, `limit` acotado, rango de fechas, tipo,
 estado, owner y uno de los IDs relacionados. Rechaza filtros desconocidos.

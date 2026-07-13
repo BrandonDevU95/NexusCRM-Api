@@ -155,19 +155,19 @@ la decisión.
 
 ## Matriz mínima por caso de uso
 
-| Categoría | Pregunta |
-| --- | --- |
-| Happy path | ¿Produce el resultado válido esperado? |
-| Validation | ¿Rechaza entrada incompleta, inválida o fuera de rango? |
-| Not found | ¿Distingue recurso inexistente sin filtrar información? |
-| Conflict | ¿Protege unicidad o transición de estado? |
-| Authentication | ¿Rechaza requests sin identidad válida? |
-| Authorization | ¿Rechaza al actor sin permission? |
+| Categoría           | Pregunta                                                    |
+| ------------------- | ----------------------------------------------------------- |
+| Happy path          | ¿Produce el resultado válido esperado?                      |
+| Validation          | ¿Rechaza entrada incompleta, inválida o fuera de rango?     |
+| Not found           | ¿Distingue recurso inexistente sin filtrar información?     |
+| Conflict            | ¿Protege unicidad o transición de estado?                   |
+| Authentication      | ¿Rechaza requests sin identidad válida?                     |
+| Authorization       | ¿Rechaza al actor sin permission?                           |
 | Permission registry | ¿Todo código usado por guards/decorators existe en el seed? |
-| Tenant isolation | ¿Impide usar un UUID de otra organization? |
-| Transaction | ¿Revierte todo si falla un paso? |
-| Side effects | ¿Crea audit event, movement o notification esperada? |
-| History | ¿Conserva snapshots y registros que no deben borrarse? |
+| Tenant isolation    | ¿Impide usar un UUID de otra organization?                  |
+| Transaction         | ¿Revierte todo si falla un paso?                            |
+| Side effects        | ¿Crea audit event, movement o notification esperada?        |
+| History             | ¿Conserva snapshots y registros que no deben borrarse?      |
 
 No todas las filas requieren los tres niveles. La tarea selecciona el nivel
 que demuestra mejor la regla sin duplicación innecesaria.

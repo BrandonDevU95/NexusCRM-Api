@@ -9,31 +9,31 @@
 
 ## Aggregate root: customers
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identidad estable. |
-| organization_id | uuid | no | — | FK organizations.id | Aísla tenant. |
-| owner_member_id | uuid | sí | null | FK organization_members.id | Asigna responsabilidad comercial. |
-| name | varchar(180) | no | — | no vacío | Nombre operativo. |
-| legal_name | varchar(220) | sí | null | — | Identidad legal opcional. |
-| tax_id | varchar(30) | sí | null | valor de presentación | Identificación fiscal sin facturación. |
-| normalized_tax_id | varchar(30) | sí | null | uppercase sin espacios/separadores admitidos | Unicidad fiscal consistente. |
-| email | varchar(254) | sí | null | formato válido | Contacto general. |
-| normalized_email | varchar(254) | sí | null | índice | Búsqueda y duplicados indicativos. |
-| phone | varchar(30) | sí | null | formato permitido | Contacto general. |
-| website | varchar(500) | sí | null | URL válida | Perfil comercial. |
-| industry | varchar(100) | sí | null | valor controlado | Segmentación. |
-| source | varchar(80) | sí | null | valor controlado | Atribución. |
-| status | varchar(30) | no | PROSPECT | estado permitido | Ciclo de relación. |
-| type | varchar(40) | no | COMPANY | tipo permitido | Comportamiento/clasificación. |
-| address_line_1 | varchar(180) | sí | null | — | Domicilio. |
-| address_line_2 | varchar(180) | sí | null | — | Complemento. |
-| city | varchar(100) | sí | null | — | Filtro geográfico. |
-| state | varchar(100) | sí | null | — | Filtro geográfico. |
-| country | char(2) | sí | null | ISO alpha-2 | Normaliza país. |
-| postal_code | varchar(20) | sí | null | — | Domicilio/logística futura. |
-| created_at / updated_at | timestamptz | no | now | — | Trazabilidad. |
-| archived_at | timestamptz | sí | null | posterior a created_at | Archivo sin pérdida. |
+| Campo                   | Tipo         | Null | Default  | Regla                                        | Motivo                                 |
+| ----------------------- | ------------ | ---: | -------- | -------------------------------------------- | -------------------------------------- |
+| id                      | uuid         |   no | generado | PK                                           | Identidad estable.                     |
+| organization_id         | uuid         |   no | —        | FK organizations.id                          | Aísla tenant.                          |
+| owner_member_id         | uuid         |   sí | null     | FK organization_members.id                   | Asigna responsabilidad comercial.      |
+| name                    | varchar(180) |   no | —        | no vacío                                     | Nombre operativo.                      |
+| legal_name              | varchar(220) |   sí | null     | —                                            | Identidad legal opcional.              |
+| tax_id                  | varchar(30)  |   sí | null     | valor de presentación                        | Identificación fiscal sin facturación. |
+| normalized_tax_id       | varchar(30)  |   sí | null     | uppercase sin espacios/separadores admitidos | Unicidad fiscal consistente.           |
+| email                   | varchar(254) |   sí | null     | formato válido                               | Contacto general.                      |
+| normalized_email        | varchar(254) |   sí | null     | índice                                       | Búsqueda y duplicados indicativos.     |
+| phone                   | varchar(30)  |   sí | null     | formato permitido                            | Contacto general.                      |
+| website                 | varchar(500) |   sí | null     | URL válida                                   | Perfil comercial.                      |
+| industry                | varchar(100) |   sí | null     | valor controlado                             | Segmentación.                          |
+| source                  | varchar(80)  |   sí | null     | valor controlado                             | Atribución.                            |
+| status                  | varchar(30)  |   no | PROSPECT | estado permitido                             | Ciclo de relación.                     |
+| type                    | varchar(40)  |   no | COMPANY  | tipo permitido                               | Comportamiento/clasificación.          |
+| address_line_1          | varchar(180) |   sí | null     | —                                            | Domicilio.                             |
+| address_line_2          | varchar(180) |   sí | null     | —                                            | Complemento.                           |
+| city                    | varchar(100) |   sí | null     | —                                            | Filtro geográfico.                     |
+| state                   | varchar(100) |   sí | null     | —                                            | Filtro geográfico.                     |
+| country                 | char(2)      |   sí | null     | ISO alpha-2                                  | Normaliza país.                        |
+| postal_code             | varchar(20)  |   sí | null     | —                                            | Domicilio/logística futura.            |
+| created_at / updated_at | timestamptz  |   no | now      | —                                            | Trazabilidad.                          |
+| archived_at             | timestamptz  |   sí | null     | posterior a created_at                       | Archivo sin pérdida.                   |
 
 Una organización es lado **uno** y tiene **muchos** customers. FK no nula en `customers.organization_id`, `onDelete: RESTRICT`: no se destruyen clientes al eliminar tenant. Una membresía es lado **uno** y puede ser responsable de **muchos** customers. La FK compuesta nullable `(organization_id, owner_member_id)` referencia `organization_members(organization_id, id)` con `onDelete: RESTRICT`; una membership se archiva, no se borra, y la base impide asignar owner de otro tenant.
 
@@ -71,8 +71,8 @@ Customer lado **uno**, history lado **muchos**. FK compuesta `(organization_id, 
 - No permitas `updated_at < created_at` ni `archived_at < created_at`.
 - Revisa SQL e índices, ejecuta, revierte y aplica otra vez.
 
-    pnpm migration:show
-    pnpm migration:generate src/database/migrations/CreateCustomerAggregate
-    pnpm migration:run
-    pnpm migration:revert
-    pnpm migration:run
+  pnpm migration:show
+  pnpm migration:generate src/database/migrations/CreateCustomerAggregate
+  pnpm migration:run
+  pnpm migration:revert
+  pnpm migration:run

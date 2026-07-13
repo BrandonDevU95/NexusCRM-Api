@@ -2,12 +2,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `TEST-FND-001` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint `FND-007` |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint `FND-007` |
-| Rama esperada | `sdd/add-api-foundation` |
+| Dato          | Valor                                       |
+| ------------- | ------------------------------------------- |
+| Código        | `TEST-FND-001`                              |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint `FND-007` |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint `FND-007` |
+| Rama esperada | `sdd/add-api-foundation`                    |
 
 No continúes hasta que unit, integration, migration y smoke E2E pasen por
 separado y puedas explicar qué diferencia existe entre ellas.
@@ -97,14 +97,14 @@ explícito y llama al validador.
 
 Matriz mínima:
 
-| ID | Arrange | Act | Assert | Bug que detecta |
-| --- | --- | --- | --- | --- |
-| `FND-UT-001` | Environment dev completo | Validar | Resultado normalizado | Loader que rechaza configuración válida |
-| `FND-UT-002` | Sin `DATABASE_PASSWORD` | Validar | Error nombra la variable, no valor | Default inseguro |
-| `FND-UT-003` | `APP_PORT=70000` | Validar | Error de rango | Puerto inválido aceptado |
-| `FND-UT-004` | `DATABASE_SYNCHRONIZE=true` | Validar | Error explícito | Schema modificado automáticamente |
-| `FND-UT-005` | Prod sin SSL | Validar | Error condicionado por entorno | Conexión productiva insegura |
-| `FND-UT-006` | Prod con demo seed true | Validar | Demo queda rechazado | Faker habilitado en producción |
+| ID           | Arrange                     | Act     | Assert                             | Bug que detecta                         |
+| ------------ | --------------------------- | ------- | ---------------------------------- | --------------------------------------- |
+| `FND-UT-001` | Environment dev completo    | Validar | Resultado normalizado              | Loader que rechaza configuración válida |
+| `FND-UT-002` | Sin `DATABASE_PASSWORD`     | Validar | Error nombra la variable, no valor | Default inseguro                        |
+| `FND-UT-003` | `APP_PORT=70000`            | Validar | Error de rango                     | Puerto inválido aceptado                |
+| `FND-UT-004` | `DATABASE_SYNCHRONIZE=true` | Validar | Error explícito                    | Schema modificado automáticamente       |
+| `FND-UT-005` | Prod sin SSL                | Validar | Error condicionado por entorno     | Conexión productiva insegura            |
+| `FND-UT-006` | Prod con demo seed true     | Validar | Demo queda rechazado               | Faker habilitado en producción          |
 
 En cada test distingue Arrange, Act y Assert. No reutilices y mutés el mismo
 objeto entre casos; crea una copia limpia.
@@ -128,12 +128,12 @@ assert.
 
 Matriz mínima:
 
-| ID | Arrange | Act | Assert | Bug que detecta |
-| --- | --- | --- | --- | --- |
-| `FND-IT-001` | PostgreSQL test healthy | Inicializar DataSource | Conecta a test y no dev | Environment equivocado |
-| `FND-IT-002` | DataSource inicializado | Consultar estado | `synchronize` y auto migrations están desactivados | Configuración peligrosa |
-| `FND-IT-003` | Password temporal inválido | Inicializar | Falla sin filtrar password | Error inseguro |
-| `FND-IT-004` | Conexión válida | Inicializar y destruir | Proceso termina sin handles abiertos | Cleanup faltante |
+| ID           | Arrange                    | Act                    | Assert                                             | Bug que detecta         |
+| ------------ | -------------------------- | ---------------------- | -------------------------------------------------- | ----------------------- |
+| `FND-IT-001` | PostgreSQL test healthy    | Inicializar DataSource | Conecta a test y no dev                            | Environment equivocado  |
+| `FND-IT-002` | DataSource inicializado    | Consultar estado       | `synchronize` y auto migrations están desactivados | Configuración peligrosa |
+| `FND-IT-003` | Password temporal inválido | Inicializar            | Falla sin filtrar password                         | Error inseguro          |
+| `FND-IT-004` | Conexión válida            | Inicializar y destruir | Proceso termina sin handles abiertos               | Cleanup faltante        |
 
 Ejecuta:
 
@@ -182,13 +182,13 @@ terminal. Usa `.env.test` y migrations ya aplicadas.
 
 Matriz mínima:
 
-| ID | Arrange | Act | Assert | Bug que detecta |
-| --- | --- | --- | --- | --- |
-| `FND-E2E-001` | App con env test válido | Inicializar | App arranca sin socket externo | Wiring roto |
-| `FND-E2E-002` | App inicializada | `GET /api/v1/health` | Status, response y estado database esperados | Prefix, route o readiness roto |
-| `FND-E2E-003` | App inicializada | Request con correlation ID válido | Mismo ID aparece en header y response | Trazabilidad rota |
-| `FND-E2E-004` | App inicializada | Request inválido o route inexistente | Error envelope sin stack ni secrets | Filtro global roto |
-| `FND-E2E-005` | App inicializada | Cerrar app | No quedan conexiones abiertas | Lifecycle incompleto |
+| ID            | Arrange                 | Act                                  | Assert                                       | Bug que detecta                |
+| ------------- | ----------------------- | ------------------------------------ | -------------------------------------------- | ------------------------------ |
+| `FND-E2E-001` | App con env test válido | Inicializar                          | App arranca sin socket externo               | Wiring roto                    |
+| `FND-E2E-002` | App inicializada        | `GET /api/v1/health`                 | Status, response y estado database esperados | Prefix, route o readiness roto |
+| `FND-E2E-003` | App inicializada        | Request con correlation ID válido    | Mismo ID aparece en header y response        | Trazabilidad rota              |
+| `FND-E2E-004` | App inicializada        | Request inválido o route inexistente | Error envelope sin stack ni secrets          | Filtro global roto             |
+| `FND-E2E-005` | App inicializada        | Cerrar app                           | No quedan conexiones abiertas                | Lifecycle incompleto           |
 
 El endpoint del starter ya no forma parte del contrato. La suite usa el health
 endpoint permanente creado en `FND-005`.

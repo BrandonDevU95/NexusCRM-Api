@@ -28,15 +28,15 @@ idempotency key; evita ejecutar una preview vieja accidentalmente.
 
 ## Endpoints
 
-| Método/path | Resultado |
-| --- | --- |
-| `GET /api/v1/audit-logs` | Lista redactada tenant-safe |
-| `GET /api/v1/audit-logs/:id` | Detail según permission |
-| `GET /api/v1/audit-logs/entities/:entityType/:entityId` | Timeline de entity |
-| `GET /api/v1/security-logs` | Lista sensible tenant-safe |
-| `POST /api/v1/audit-logs/export` | Export Job, no file síncrono |
-| `POST /api/v1/audit-retention/preview` | Cutoff/conteos sin borrar |
-| `POST /api/v1/audit-retention/execute` | Purge batch autorizado |
+| Método/path                                             | Resultado                    |
+| ------------------------------------------------------- | ---------------------------- |
+| `GET /api/v1/audit-logs`                                | Lista redactada tenant-safe  |
+| `GET /api/v1/audit-logs/:id`                            | Detail según permission      |
+| `GET /api/v1/audit-logs/entities/:entityType/:entityId` | Timeline de entity           |
+| `GET /api/v1/security-logs`                             | Lista sensible tenant-safe   |
+| `POST /api/v1/audit-logs/export`                        | Export Job, no file síncrono |
+| `POST /api/v1/audit-retention/preview`                  | Cutoff/conteos sin borrar    |
+| `POST /api/v1/audit-retention/execute`                  | Purge batch autorizado       |
 
 No existen update/delete by ID. EntityType/action/filter son allowlists, no
 table names. Cursor usa occurred_at + id y pertenece al tenant/query; no aceptar

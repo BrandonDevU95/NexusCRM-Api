@@ -7,12 +7,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `DB-{{MODULE}}-{{task_number}}` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint {{entry_checkpoint}} |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint {{return_checkpoint}} |
-| Rama esperada | `sdd/{{exact_branch}}` |
+| Dato          | Valor                                                   |
+| ------------- | ------------------------------------------------------- |
+| Código        | `DB-{{MODULE}}-{{task_number}}`                         |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint {{entry_checkpoint}}  |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint {{return_checkpoint}} |
+| Rama esperada | `sdd/{{exact_branch}}`                                  |
 
 No continúes hasta que {{observable_exit_condition}}.
 
@@ -39,10 +39,10 @@ una organization.
 
 ### `{{table_name}}`
 
-| Columna | Tipo PostgreSQL | Nullable | Default | Restricción | Motivo |
-| --- | --- | --- | --- | --- | --- |
-| `id` | `uuid` | No | generado por PostgreSQL | `PK_...` | {{reason}} |
-| {{column}} | {{type}} | {{yes_no}} | {{default_or_none}} | {{constraint}} | {{reason}} |
+| Columna    | Tipo PostgreSQL | Nullable   | Default                 | Restricción    | Motivo     |
+| ---------- | --------------- | ---------- | ----------------------- | -------------- | ---------- |
+| `id`       | `uuid`          | No         | generado por PostgreSQL | `PK_...`       | {{reason}} |
+| {{column}} | {{type}}        | {{yes_no}} | {{default_or_none}}     | {{constraint}} | {{reason}} |
 
 Agrega ejemplos válidos e inválidos cuando ayuden a entender una regla.
 
@@ -63,9 +63,9 @@ one-to-many y cualquier metadata de asignación.
 
 ## Constraints e índices
 
-| Nombre exacto | Tipo | Columnas | Regla o consulta que protege |
-| --- | --- | --- | --- |
-| `{{constraint_name}}` | {{type}} | {{columns}} | {{reason}} |
+| Nombre exacto         | Tipo     | Columnas    | Regla o consulta que protege |
+| --------------------- | -------- | ----------- | ---------------------------- |
+| `{{constraint_name}}` | {{type}} | {{columns}} | {{reason}}                   |
 
 No agregar índices sin una consulta concreta.
 
@@ -120,7 +120,7 @@ run`. Una compilación correcta no sustituye inspeccionar PostgreSQL.
 
 - [ ] El schema coincide con el diccionario de tablas.
 - [ ] Cada relación tiene lados, foreign key, nulabilidad y `onDelete`
-  explicados.
+      explicados.
 - [ ] `synchronize` permanece en `false`.
 - [ ] Se completó `run -> revert -> run`.
 - [ ] La migración funciona desde el estado previo esperado.

@@ -15,13 +15,13 @@ Actualiza este registro durante tu implementación. Marca `[x]` únicamente cuan
 tengas evidencia real; escribe el nombre de migración, commit o resultado, no
 solo “listo”.
 
-| Checkpoint | Estado | Evidencia / commit | Fecha |
-|---|---|---|---|
-| DB-CUST-001 schema y `up/down/up` | [ ] | — | — |
-| DEV-CUST-001 endpoints, permisos y auditoría | [ ] | — | — |
-| SEED-CUST-001 dos ejecuciones idempotentes | [ ] | — | — |
-| TEST-CUST-001 unit/integration/E2E | [ ] | — | — |
-| PR revisado, merge y limpieza de rama | [ ] | — | — |
+| Checkpoint                                   | Estado | Evidencia / commit | Fecha |
+| -------------------------------------------- | ------ | ------------------ | ----- |
+| DB-CUST-001 schema y `up/down/up`            | [ ]    | —                  | —     |
+| DEV-CUST-001 endpoints, permisos y auditoría | [ ]    | —                  | —     |
+| SEED-CUST-001 dos ejecuciones idempotentes   | [ ]    | —                  | —     |
+| TEST-CUST-001 unit/integration/E2E           | [ ]    | —                  | —     |
+| PR revisado, merge y limpieza de rama        | [ ]    | —                  | —     |
 
 ## Rama exacta
 

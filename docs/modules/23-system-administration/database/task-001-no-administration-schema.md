@@ -9,16 +9,16 @@
 
 ## Ownership map
 
-| Capacidad administrativa | Owner | Tablas existentes |
-| --- | --- | --- |
-| Users/sessions | Users/Auth | `users`, `auth_sessions`, refresh records |
-| Roles/permissions | Access Control | `roles`, `permissions`, `role_permissions`, member roles |
-| Organizations/members | Organizations | `organizations`, `organization_members`, settings |
-| Settings/catalogs/taxes | Platform | settings, catalogs, options, tax rates |
-| Pipelines/stages | Pipelines | pipeline tables |
-| Price lists | Price Lists | lists, items/assignments |
-| Templates | Notifications | `notification_templates` |
-| Audit | Audit | `audit_logs`, `security_logs` |
+| Capacidad administrativa | Owner          | Tablas existentes                                        |
+| ------------------------ | -------------- | -------------------------------------------------------- |
+| Users/sessions           | Users/Auth     | `users`, `auth_sessions`, refresh records                |
+| Roles/permissions        | Access Control | `roles`, `permissions`, `role_permissions`, member roles |
+| Organizations/members    | Organizations  | `organizations`, `organization_members`, settings        |
+| Settings/catalogs/taxes  | Platform       | settings, catalogs, options, tax rates                   |
+| Pipelines/stages         | Pipelines      | pipeline tables                                          |
+| Price lists              | Price Lists    | lists, items/assignments                                 |
+| Templates                | Notifications  | `notification_templates`                                 |
+| Audit                    | Audit          | `audit_logs`, `security_logs`                            |
 
 Crear una tabla Administration duplicaría ownership, validación y audit. Un
 dashboard administrativo se calcula; no necesita persistir otra copia del

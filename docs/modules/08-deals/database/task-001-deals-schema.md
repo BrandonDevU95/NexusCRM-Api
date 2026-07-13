@@ -15,28 +15,28 @@ Organization lado **uno**, loss reasons lado **muchos**; FK `RESTRICT`. Declara 
 
 ## deals
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identidad estable. |
-| organization_id | uuid | no | — | FK organizations.id | Aísla tenant. |
-| customer_id | uuid | no | — | FK customers.id | Toda oportunidad real pertenece a cuenta. |
-| contact_id | uuid | sí | null | FK contacts.id | Contacto principal de negociación opcional. |
-| owner_member_id | uuid | no | — | FK organization_members.id | Responsabilidad comercial. |
-| pipeline_id | uuid | no | — | FK pipelines.id | Define proceso. |
-| stage_id | uuid | no | — | FK pipeline_stages.id | Posición actual. |
-| title | varchar(180) | no | — | no vacío | Identificación comercial. |
-| amount | numeric(19,4) | no | 0 | mayor o igual a cero | Valor estimado sin float. |
-| amount_source | varchar(20) | no | MANUAL | MANUAL o PRODUCTS | Define quién controla amount. |
-| currency | char(3) | no | — | ISO 4217 | Interpreta amount. |
-| probability | numeric(5,2) | no | — | entre 0 y 100 | Permite override porcentual de stage. |
-| expected_close_date | date | sí | null | — | Forecast sin hora. |
-| status | varchar(20) | no | OPEN | OPEN, WON, LOST, CANCELLED, ON_HOLD | State machine. |
-| loss_reason_id | uuid | sí | null | FK deal_loss_reasons.id | Clasifica pérdidas. |
-| loss_notes | varchar(500) | sí | null | — | Explicación particular. |
-| won_at | timestamptz | sí | null | coherente con WON | Métrica temporal. |
-| lost_at | timestamptz | sí | null | coherente con LOST | Métrica temporal. |
-| created_at / updated_at | timestamptz | no | now | — | Trazabilidad. |
-| archived_at | timestamptz | sí | null | — | No borrar historial. |
+| Campo                   | Tipo          | Null | Default  | Regla                               | Motivo                                      |
+| ----------------------- | ------------- | ---: | -------- | ----------------------------------- | ------------------------------------------- |
+| id                      | uuid          |   no | generado | PK                                  | Identidad estable.                          |
+| organization_id         | uuid          |   no | —        | FK organizations.id                 | Aísla tenant.                               |
+| customer_id             | uuid          |   no | —        | FK customers.id                     | Toda oportunidad real pertenece a cuenta.   |
+| contact_id              | uuid          |   sí | null     | FK contacts.id                      | Contacto principal de negociación opcional. |
+| owner_member_id         | uuid          |   no | —        | FK organization_members.id          | Responsabilidad comercial.                  |
+| pipeline_id             | uuid          |   no | —        | FK pipelines.id                     | Define proceso.                             |
+| stage_id                | uuid          |   no | —        | FK pipeline_stages.id               | Posición actual.                            |
+| title                   | varchar(180)  |   no | —        | no vacío                            | Identificación comercial.                   |
+| amount                  | numeric(19,4) |   no | 0        | mayor o igual a cero                | Valor estimado sin float.                   |
+| amount_source           | varchar(20)   |   no | MANUAL   | MANUAL o PRODUCTS                   | Define quién controla amount.               |
+| currency                | char(3)       |   no | —        | ISO 4217                            | Interpreta amount.                          |
+| probability             | numeric(5,2)  |   no | —        | entre 0 y 100                       | Permite override porcentual de stage.       |
+| expected_close_date     | date          |   sí | null     | —                                   | Forecast sin hora.                          |
+| status                  | varchar(20)   |   no | OPEN     | OPEN, WON, LOST, CANCELLED, ON_HOLD | State machine.                              |
+| loss_reason_id          | uuid          |   sí | null     | FK deal_loss_reasons.id             | Clasifica pérdidas.                         |
+| loss_notes              | varchar(500)  |   sí | null     | —                                   | Explicación particular.                     |
+| won_at                  | timestamptz   |   sí | null     | coherente con WON                   | Métrica temporal.                           |
+| lost_at                 | timestamptz   |   sí | null     | coherente con LOST                  | Métrica temporal.                           |
+| created_at / updated_at | timestamptz   |   no | now      | —                                   | Trazabilidad.                               |
+| archived_at             | timestamptz   |   sí | null     | —                                   | No borrar historial.                        |
 
 Relaciones: organization/customer/owner/pipeline/stage/loss reason son lados **uno** y cada uno tiene **muchos** deals. Todas usan `onDelete: RESTRICT` y las referencias tenant-owned son compuestas:
 

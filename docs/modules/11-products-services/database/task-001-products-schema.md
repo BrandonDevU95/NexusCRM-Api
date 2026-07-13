@@ -9,17 +9,17 @@
 
 ### Tabla `product_categories`
 
-| Columna | Tipo | Regla | Motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Identidad. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `parent_category_id` | `uuid` | nulo | Jerarquía de un nivel lógico ilimitado, sin cycles. |
-| `code` | `varchar(60)` | no nulo | Clave estable de configuración. |
-| `name` | `varchar(120)` | no nulo | Etiqueta visible. |
-| `description` | `text` | nulo | Explicación. |
-| `status` | `varchar(20)` | `ACTIVE` | `ACTIVE`, `INACTIVE`. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
-| `archived_at` | `timestamptz` | nulo | Archivo lógico. |
+| Columna                   | Tipo           | Regla    | Motivo                                              |
+| ------------------------- | -------------- | -------- | --------------------------------------------------- |
+| `id`                      | `uuid`         | PK       | Identidad.                                          |
+| `organization_id`         | `uuid`         | no nulo  | Tenant.                                             |
+| `parent_category_id`      | `uuid`         | nulo     | Jerarquía de un nivel lógico ilimitado, sin cycles. |
+| `code`                    | `varchar(60)`  | no nulo  | Clave estable de configuración.                     |
+| `name`                    | `varchar(120)` | no nulo  | Etiqueta visible.                                   |
+| `description`             | `text`         | nulo     | Explicación.                                        |
+| `status`                  | `varchar(20)`  | `ACTIVE` | `ACTIVE`, `INACTIVE`.                               |
+| `created_at`/`updated_at` | `timestamptz`  | no nulos | Auditoría.                                          |
+| `archived_at`             | `timestamptz`  | nulo     | Archivo lógico.                                     |
 
 Unique `UQ_product_categories_organization_code` sobre `(organization_id, code)`;
 unique `UQ_product_categories_organization_id_id` sobre `(organization_id,id)`;
@@ -40,25 +40,25 @@ status permitido, nombres no vacíos y
 
 ### Tabla `products`
 
-| Columna | Tipo | Regla | Motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Identidad. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `sku` | `varchar(80)` | no nulo | Identificador comercial por tenant. |
-| `name` | `varchar(180)` | no nulo | Nombre vendible. |
-| `description` | `text` | nulo | Descripción comercial. |
-| `product_type` | `varchar(20)` | no nulo | `PRODUCT`, `SERVICE`. |
-| `category_id` | `uuid` | nulo | Clasificación administrable. |
-| `unit_id` | `uuid` | no nulo | Unidad de medida. |
-| `default_tax_rate_id` | `uuid` | nulo | Tasa sugerida; cotización guarda snapshot. |
-| `base_price` | `numeric(19,4)` | no nulo | Fallback de precio vigente. |
-| `cost` | `numeric(19,4)` | no nulo default `0` | Costo interno, sujeto a permiso. |
-| `currency` | `char(3)` | no nulo | ISO 4217, normalmente moneda base. |
-| `tracks_inventory` | `boolean` | `false` | Habilita Inventory. |
-| `status` | `varchar(20)` | `ACTIVE` | `ACTIVE`, `INACTIVE`. |
-| `version` | `integer` | `1` | Concurrencia optimista. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
-| `archived_at` | `timestamptz` | nulo | Retiro lógico. |
+| Columna                   | Tipo            | Regla               | Motivo                                     |
+| ------------------------- | --------------- | ------------------- | ------------------------------------------ |
+| `id`                      | `uuid`          | PK                  | Identidad.                                 |
+| `organization_id`         | `uuid`          | no nulo             | Tenant.                                    |
+| `sku`                     | `varchar(80)`   | no nulo             | Identificador comercial por tenant.        |
+| `name`                    | `varchar(180)`  | no nulo             | Nombre vendible.                           |
+| `description`             | `text`          | nulo                | Descripción comercial.                     |
+| `product_type`            | `varchar(20)`   | no nulo             | `PRODUCT`, `SERVICE`.                      |
+| `category_id`             | `uuid`          | nulo                | Clasificación administrable.               |
+| `unit_id`                 | `uuid`          | no nulo             | Unidad de medida.                          |
+| `default_tax_rate_id`     | `uuid`          | nulo                | Tasa sugerida; cotización guarda snapshot. |
+| `base_price`              | `numeric(19,4)` | no nulo             | Fallback de precio vigente.                |
+| `cost`                    | `numeric(19,4)` | no nulo default `0` | Costo interno, sujeto a permiso.           |
+| `currency`                | `char(3)`       | no nulo             | ISO 4217, normalmente moneda base.         |
+| `tracks_inventory`        | `boolean`       | `false`             | Habilita Inventory.                        |
+| `status`                  | `varchar(20)`   | `ACTIVE`            | `ACTIVE`, `INACTIVE`.                      |
+| `version`                 | `integer`       | `1`                 | Concurrencia optimista.                    |
+| `created_at`/`updated_at` | `timestamptz`   | no nulos            | Auditoría.                                 |
+| `archived_at`             | `timestamptz`   | nulo                | Retiro lógico.                             |
 
 Constraints:
 
@@ -79,20 +79,20 @@ consultas de Inventory. No expongas `cost` a quien solo tenga `products:read`.
 Esta tabla conserva el historial del precio base; las listas especiales viven en
 el módulo 12.
 
-| Columna | Tipo | Regla | Motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Identidad. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `product_id` | `uuid` | no nulo | Producto padre. |
-| `amount` | `numeric(19,4)` | no nulo, `>=0` | Precio base de la vigencia. |
-| `currency` | `char(3)` | no nulo | Moneda del precio. |
-| `valid_from` | `timestamptz` | no nulo | Inicio. |
-| `valid_to` | `timestamptz` | nulo | Fin; nulo es precio actual. |
-| `reason` | `varchar(300)` | nulo | Motivo del cambio. |
-| `created_by_member_id` | `uuid` | no nulo | Membership que creó el periodo. |
-| `idempotency_key` | `varchar(150)` | no nulo | Cambio de precio persistido. |
-| `request_fingerprint` | `char(64)` | no nulo | Hash product/amount/currency/reason. |
-| `created_at` | `timestamptz` | no nulo | Inmutabilidad temporal. |
+| Columna                | Tipo            | Regla          | Motivo                               |
+| ---------------------- | --------------- | -------------- | ------------------------------------ |
+| `id`                   | `uuid`          | PK             | Identidad.                           |
+| `organization_id`      | `uuid`          | no nulo        | Tenant.                              |
+| `product_id`           | `uuid`          | no nulo        | Producto padre.                      |
+| `amount`               | `numeric(19,4)` | no nulo, `>=0` | Precio base de la vigencia.          |
+| `currency`             | `char(3)`       | no nulo        | Moneda del precio.                   |
+| `valid_from`           | `timestamptz`   | no nulo        | Inicio.                              |
+| `valid_to`             | `timestamptz`   | nulo           | Fin; nulo es precio actual.          |
+| `reason`               | `varchar(300)`  | nulo           | Motivo del cambio.                   |
+| `created_by_member_id` | `uuid`          | no nulo        | Membership que creó el periodo.      |
+| `idempotency_key`      | `varchar(150)`  | no nulo        | Cambio de precio persistido.         |
+| `request_fingerprint`  | `char(64)`      | no nulo        | Hash product/amount/currency/reason. |
+| `created_at`           | `timestamptz`   | no nulo        | Inmutabilidad temporal.              |
 
 Unique parcial `UQ_product_prices_current_product_currency` en
 `(product_id, currency)` donde `valid_to is null`; check `valid_to > valid_from`;

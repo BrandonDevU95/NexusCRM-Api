@@ -75,15 +75,15 @@ la misma rule para la misma causation chain. Registra run FAILED con
 
 Todos requieren `X-Organization-Id`.
 
-| Método/path | Permission | Uso |
-| --- | --- | --- |
-| CRUD `/api/v1/automation-rules` | `automations:manage` | Draft y edición |
-| `POST /api/v1/automation-rules/:id/validate` | `automations:manage` | Errores sin ejecutar |
-| `POST /api/v1/automation-rules/:id/activate` | `automations:manage` | Congelar version activa |
-| `POST /api/v1/automation-rules/:id/deactivate` | `automations:manage` | Detener nuevos matches |
-| `POST /api/v1/automation-rules/:id/simulate` | `automations:execute` | Evaluar snapshot sin side effects |
-| `GET /api/v1/automation-runs` | `automations:read` | Filtros/paginación |
-| `GET /api/v1/automation-runs/:id` | `automations:read` | Explicación redactada |
+| Método/path                                    | Permission            | Uso                               |
+| ---------------------------------------------- | --------------------- | --------------------------------- |
+| CRUD `/api/v1/automation-rules`                | `automations:manage`  | Draft y edición                   |
+| `POST /api/v1/automation-rules/:id/validate`   | `automations:manage`  | Errores sin ejecutar              |
+| `POST /api/v1/automation-rules/:id/activate`   | `automations:manage`  | Congelar version activa           |
+| `POST /api/v1/automation-rules/:id/deactivate` | `automations:manage`  | Detener nuevos matches            |
+| `POST /api/v1/automation-rules/:id/simulate`   | `automations:execute` | Evaluar snapshot sin side effects |
+| `GET /api/v1/automation-runs`                  | `automations:read`    | Filtros/paginación                |
+| `GET /api/v1/automation-runs/:id`              | `automations:read`    | Explicación redactada             |
 
 DTOs separan rule metadata, triggers, condition groups, ordered actions, query y
 simulation input. IDs y references se validan contra tenant y owner service.

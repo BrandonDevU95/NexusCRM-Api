@@ -11,54 +11,54 @@
 
 ### users
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identidad global estable. |
-| email | varchar(254) | no | — | formato válido | Conserva presentación. |
-| normalized_email | varchar(254) | no | — | unique global | Login sin diferencias de casing. |
-| password_hash | varchar(255) | no | — | solo Argon2id | Nunca persiste password. |
-| first_name | varchar(100) | no | — | no vacío | Perfil. |
-| last_name | varchar(100) | no | — | no vacío | Perfil. |
-| status | varchar(30) | no | PENDING_VERIFICATION | valor permitido | Controla acceso. |
-| failed_login_attempts | smallint | no | 0 | mayor o igual a cero | Política de bloqueo. |
-| locked_until | timestamptz | sí | null | — | Bloqueo temporal. |
-| email_verified_at | timestamptz | sí | null | — | Evidencia de verificación. |
-| password_changed_at | timestamptz | no | now | — | Invalida credenciales anteriores. |
-| last_login_at | timestamptz | sí | null | — | Operación y seguridad. |
-| created_at | timestamptz | no | now | — | Trazabilidad. |
-| updated_at | timestamptz | no | now | — | Control de cambios. |
-| archived_at | timestamptz | sí | null | posterior a created_at | Conserva identidad histórica. |
+| Campo                 | Tipo         | Null | Default              | Regla                  | Motivo                            |
+| --------------------- | ------------ | ---: | -------------------- | ---------------------- | --------------------------------- |
+| id                    | uuid         |   no | generado             | PK                     | Identidad global estable.         |
+| email                 | varchar(254) |   no | —                    | formato válido         | Conserva presentación.            |
+| normalized_email      | varchar(254) |   no | —                    | unique global          | Login sin diferencias de casing.  |
+| password_hash         | varchar(255) |   no | —                    | solo Argon2id          | Nunca persiste password.          |
+| first_name            | varchar(100) |   no | —                    | no vacío               | Perfil.                           |
+| last_name             | varchar(100) |   no | —                    | no vacío               | Perfil.                           |
+| status                | varchar(30)  |   no | PENDING_VERIFICATION | valor permitido        | Controla acceso.                  |
+| failed_login_attempts | smallint     |   no | 0                    | mayor o igual a cero   | Política de bloqueo.              |
+| locked_until          | timestamptz  |   sí | null                 | —                      | Bloqueo temporal.                 |
+| email_verified_at     | timestamptz  |   sí | null                 | —                      | Evidencia de verificación.        |
+| password_changed_at   | timestamptz  |   no | now                  | —                      | Invalida credenciales anteriores. |
+| last_login_at         | timestamptz  |   sí | null                 | —                      | Operación y seguridad.            |
+| created_at            | timestamptz  |   no | now                  | —                      | Trazabilidad.                     |
+| updated_at            | timestamptz  |   no | now                  | —                      | Control de cambios.               |
+| archived_at           | timestamptz  |   sí | null                 | posterior a created_at | Conserva identidad histórica.     |
 
 `users` no tiene `organization_id`: la identidad es global y la membresía define acceso a tenants.
 
 ### user_sessions
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identifica dispositivo/sesión. |
-| user_id | uuid | no | — | FK users.id | Dueño de sesión. |
-| user_agent | varchar(512) | sí | null | — | Ayuda al usuario a reconocerla. |
-| ip_address | inet | sí | null | — | Evidencia de seguridad. |
-| last_used_at | timestamptz | no | now | — | Actividad reciente. |
-| expires_at | timestamptz | no | — | posterior a creación | Límite absoluto. |
-| revoked_at | timestamptz | sí | null | — | Invalidación explícita. |
-| revoke_reason | varchar(120) | sí | null | requerido al revocar | Diagnóstico/auditoría. |
-| created_at | timestamptz | no | now | — | Trazabilidad. |
+| Campo         | Tipo         | Null | Default  | Regla                | Motivo                          |
+| ------------- | ------------ | ---: | -------- | -------------------- | ------------------------------- |
+| id            | uuid         |   no | generado | PK                   | Identifica dispositivo/sesión.  |
+| user_id       | uuid         |   no | —        | FK users.id          | Dueño de sesión.                |
+| user_agent    | varchar(512) |   sí | null     | —                    | Ayuda al usuario a reconocerla. |
+| ip_address    | inet         |   sí | null     | —                    | Evidencia de seguridad.         |
+| last_used_at  | timestamptz  |   no | now      | —                    | Actividad reciente.             |
+| expires_at    | timestamptz  |   no | —        | posterior a creación | Límite absoluto.                |
+| revoked_at    | timestamptz  |   sí | null     | —                    | Invalidación explícita.         |
+| revoke_reason | varchar(120) |   sí | null     | requerido al revocar | Diagnóstico/auditoría.          |
+| created_at    | timestamptz  |   no | now      | —                    | Trazabilidad.                   |
 
 Relación: `users` es lado **uno** y `user_sessions` lado **muchos**. FK `user_sessions.user_id`, no nula, `onDelete: RESTRICT`. Se archiva el usuario y se revocan sesiones; borrar ocultaría evidencia de acceso.
 
 ### refresh_tokens
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identificador interno no secreto. |
-| session_id | uuid | no | — | FK user_sessions.id | Agrupa token en sesión. |
-| token_hash | varchar(255) | no | — | unique; nunca token claro | Verifica sin guardar secreto. |
-| parent_token_id | uuid | sí | null | FK self y unique | Cada token puede producir como máximo un sucesor. |
-| expires_at | timestamptz | no | — | posterior a created_at | Límite de uso. |
-| used_at | timestamptz | sí | null | un uso máximo | Garantiza rotación. |
-| revoked_at | timestamptz | sí | null | — | Invalidación individual. |
-| created_at | timestamptz | no | now | — | Trazabilidad. |
+| Campo           | Tipo         | Null | Default  | Regla                     | Motivo                                            |
+| --------------- | ------------ | ---: | -------- | ------------------------- | ------------------------------------------------- |
+| id              | uuid         |   no | generado | PK                        | Identificador interno no secreto.                 |
+| session_id      | uuid         |   no | —        | FK user_sessions.id       | Agrupa token en sesión.                           |
+| token_hash      | varchar(255) |   no | —        | unique; nunca token claro | Verifica sin guardar secreto.                     |
+| parent_token_id | uuid         |   sí | null     | FK self y unique          | Cada token puede producir como máximo un sucesor. |
+| expires_at      | timestamptz  |   no | —        | posterior a created_at    | Límite de uso.                                    |
+| used_at         | timestamptz  |   sí | null     | un uso máximo             | Garantiza rotación.                               |
+| revoked_at      | timestamptz  |   sí | null     | —                         | Invalidación individual.                          |
+| created_at      | timestamptz  |   no | now      | —                         | Trazabilidad.                                     |
 
 Relación: una sesión es lado **uno** y tiene **muchos** refresh tokens
 históricos. La FK no nula `refresh_tokens.session_id` usa

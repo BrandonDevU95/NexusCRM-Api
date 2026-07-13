@@ -90,16 +90,16 @@ git commit -m "test(users): cover user account management"
 
 Tipos más frecuentes:
 
-| Tipo | Uso |
-| --- | --- |
-| `feat` | comportamiento nuevo |
-| `fix` | defecto corregido |
-| `test` | pruebas |
-| `docs` | explicación o guía |
+| Tipo       | Uso                                   |
+| ---------- | ------------------------------------- |
+| `feat`     | comportamiento nuevo                  |
+| `fix`      | defecto corregido                     |
+| `test`     | pruebas                               |
+| `docs`     | explicación o guía                    |
 | `refactor` | estructura sin cambiar comportamiento |
-| `build` | dependencias o compilación |
-| `chore` | mantenimiento |
-| `ci` | automatización del repositorio |
+| `build`    | dependencias o compilación            |
+| `chore`    | mantenimiento                         |
+| `ci`       | automatización del repositorio        |
 
 El scope describe el área: `database`, `auth`, `users`, `seed`, `customers`.
 No agregues `Co-Authored-By` ni atribuciones de IA.
@@ -164,18 +164,18 @@ Si el merge se realiza desde GitHub, primero actualiza `main` local con
 
 Un tag se crea solo después de integrar y verificar el hito:
 
-| Tag | Significado |
-| --- | --- |
-| `v0.1.0` | Foundation ejecutable |
-| `v0.2.0` | Plataforma, seguridad, organizaciones, auditoría y outbox base |
-| `v0.3.0` | CRM core, catálogos requeridos y lifecycle de leads |
+| Tag      | Significado                                                          |
+| -------- | -------------------------------------------------------------------- |
+| `v0.1.0` | Foundation ejecutable                                                |
+| `v0.2.0` | Plataforma, seguridad, organizaciones, auditoría y outbox base       |
+| `v0.3.0` | CRM core, catálogos requeridos y lifecycle de leads                  |
 | `v0.4.0` | Deals, conversión de leads, actividades, calendario y notificaciones |
-| `v0.5.0` | Quotes, Inventory A y Orders base |
-| `v0.6.0` | Inventario y reservas funcionales |
-| `v0.7.0` | Soporte y base de conocimiento |
-| `v0.8.0` | Automatizaciones y notificaciones completas |
-| `v0.9.0` | Reportes, import/export, auditoría final y administración |
-| `v1.0.0` | Flujo integral estable |
+| `v0.5.0` | Quotes, Inventory A y Orders base                                    |
+| `v0.6.0` | Inventario y reservas funcionales                                    |
+| `v0.7.0` | Soporte y base de conocimiento                                       |
+| `v0.8.0` | Automatizaciones y notificaciones completas                          |
+| `v0.9.0` | Reportes, import/export, auditoría final y administración            |
+| `v1.0.0` | Flujo integral estable                                               |
 
 ```powershell
 git switch main

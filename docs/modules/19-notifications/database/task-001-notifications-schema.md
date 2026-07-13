@@ -9,19 +9,19 @@
 
 ## `notification_templates`
 
-| Campo | Tipo | Regla |
-| --- | --- | --- |
-| `id` | uuid PK | PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `code` | varchar(100) | requerido, estable |
-| `channel` | varchar(20) | `IN_APP`, `EMAIL` |
-| `locale` | varchar(20) | requerido |
-| `subject_template` | varchar(250) | nullable para in-app |
-| `body_template` | text | requerido |
-| `allowed_variables` | jsonb | array validado de nombres |
-| `version` | integer | positivo |
-| `is_active` | boolean | default true |
-| timestamps | timestamptz | requeridos |
+| Campo               | Tipo         | Regla                     |
+| ------------------- | ------------ | ------------------------- |
+| `id`                | uuid PK      | PostgreSQL                |
+| `organization_id`   | uuid FK      | requerido                 |
+| `code`              | varchar(100) | requerido, estable        |
+| `channel`           | varchar(20)  | `IN_APP`, `EMAIL`         |
+| `locale`            | varchar(20)  | requerido                 |
+| `subject_template`  | varchar(250) | nullable para in-app      |
+| `body_template`     | text         | requerido                 |
+| `allowed_variables` | jsonb        | array validado de nombres |
+| `version`           | integer      | positivo                  |
+| `is_active`         | boolean      | default true              |
+| timestamps          | timestamptz  | requeridos                |
 
 Unique `organization_id, code, channel, locale, version`; índice parcial para
 la versión activa. Organization es lado uno, templates lado muchos; FK
@@ -39,25 +39,25 @@ lado muchos; FKs `RESTRICT`. Valida que membership sea del mismo tenant.
 
 ## `notifications`
 
-| Campo | Tipo | Regla |
-| --- | --- | --- |
-| `id` | uuid PK | PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `recipient_member_id` | uuid FK | requerido |
-| `template_id` | uuid FK | nullable para mensaje transaccional controlado |
-| `event_type` | varchar(100) | requerido |
-| `channel` | varchar(20) | requerido |
-| `title_snapshot` | varchar(250) | requerido para in-app/email subject |
-| `body_snapshot` | text | requerido |
-| `recipient_address` | varchar(320) | nullable; requerido para email y oculto en response |
-| `payload` | jsonb | no secretos, default vacío |
-| `source_entity_type` | varchar(80) | nullable |
-| `source_entity_id` | uuid | nullable, relación polimórfica sin FK |
-| `delivery_status` | varchar(20) | `PENDING`, `SENDING`, `SENT`, `FAILED`, `SUPPRESSED` |
-| `idempotency_key` | varchar(180) | requerido |
-| `scheduled_at`, `sent_at`, `failed_at`, `read_at` | timestamptz | nullable según estado |
-| `correlation_id` | varchar(128) | requerido |
-| `created_at` | timestamptz | requerido; no updated_at para snapshot |
+| Campo                                             | Tipo         | Regla                                                |
+| ------------------------------------------------- | ------------ | ---------------------------------------------------- |
+| `id`                                              | uuid PK      | PostgreSQL                                           |
+| `organization_id`                                 | uuid FK      | requerido                                            |
+| `recipient_member_id`                             | uuid FK      | requerido                                            |
+| `template_id`                                     | uuid FK      | nullable para mensaje transaccional controlado       |
+| `event_type`                                      | varchar(100) | requerido                                            |
+| `channel`                                         | varchar(20)  | requerido                                            |
+| `title_snapshot`                                  | varchar(250) | requerido para in-app/email subject                  |
+| `body_snapshot`                                   | text         | requerido                                            |
+| `recipient_address`                               | varchar(320) | nullable; requerido para email y oculto en response  |
+| `payload`                                         | jsonb        | no secretos, default vacío                           |
+| `source_entity_type`                              | varchar(80)  | nullable                                             |
+| `source_entity_id`                                | uuid         | nullable, relación polimórfica sin FK                |
+| `delivery_status`                                 | varchar(20)  | `PENDING`, `SENDING`, `SENT`, `FAILED`, `SUPPRESSED` |
+| `idempotency_key`                                 | varchar(180) | requerido                                            |
+| `scheduled_at`, `sent_at`, `failed_at`, `read_at` | timestamptz  | nullable según estado                                |
+| `correlation_id`                                  | varchar(128) | requerido                                            |
+| `created_at`                                      | timestamptz  | requerido; no updated_at para snapshot               |
 
 Unique `organization_id, recipient_member_id, channel, idempotency_key`.
 Índices por recipient/read_at/created_at, status/scheduled_at y source entity.

@@ -66,13 +66,13 @@ global `permission_id` referencia `permissions.id`; ambas usan
 
 Campos:
 
-| Campo | Null | Motivo |
-| --- | ---: | --- |
-| `organization_id uuid` | no | Incluye tenant en PK y FKs. |
-| `organization_member_id uuid` | no | Miembro que recibe el rol. |
-| `role_id uuid` | no | Rol asignado. |
-| `assigned_by_member_id uuid` | sí | Miembro actor; null solo para bootstrap controlado del sistema. |
-| `created_at timestamptz` | no | Trazabilidad. |
+| Campo                         | Null | Motivo                                                          |
+| ----------------------------- | ---: | --------------------------------------------------------------- |
+| `organization_id uuid`        |   no | Incluye tenant en PK y FKs.                                     |
+| `organization_member_id uuid` |   no | Miembro que recibe el rol.                                      |
+| `role_id uuid`                |   no | Rol asignado.                                                   |
+| `assigned_by_member_id uuid`  |   sí | Miembro actor; null solo para bootstrap controlado del sistema. |
+| `created_at timestamptz`      |   no | Trazabilidad.                                                   |
 
 La PK compuesta es
 `(organization_id, organization_member_id, role_id)`. Declara estas FKs:

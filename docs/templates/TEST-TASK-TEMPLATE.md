@@ -7,12 +7,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `TEST-{{MODULE}}-{{task_number}}` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint {{entry_checkpoint}} |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint {{return_checkpoint}} |
-| Rama esperada | `sdd/{{exact_branch}}` |
+| Dato          | Valor                                                   |
+| ------------- | ------------------------------------------------------- |
+| Código        | `TEST-{{MODULE}}-{{task_number}}`                       |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint {{entry_checkpoint}}  |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint {{return_checkpoint}} |
+| Rama esperada | `sdd/{{exact_branch}}`                                  |
 
 No continúes hasta que {{observable_test_gate}}.
 
@@ -38,11 +38,11 @@ esta misma tarea.
 
 ## Matriz de casos
 
-| ID | Tipo | Escenario | Arrange | Act | Assert | Regla protegida |
-| --- | --- | --- | --- | --- | --- | --- |
-| `{{MODULE}}-UT-001` | Unit | {{scenario}} | {{setup}} | {{single_action}} | {{observable_result}} | `BR-{{MODULE}}-001` |
-| `{{MODULE}}-IT-001` | Integration | {{scenario}} | {{database_setup}} | {{action}} | {{constraint_or_state}} | {{rule}} |
-| `{{MODULE}}-E2E-001` | E2E | {{scenario}} | {{actor_and_data}} | {{request}} | {{status_shape_side_effect}} | {{contract}} |
+| ID                   | Tipo        | Escenario    | Arrange            | Act               | Assert                       | Regla protegida     |
+| -------------------- | ----------- | ------------ | ------------------ | ----------------- | ---------------------------- | ------------------- |
+| `{{MODULE}}-UT-001`  | Unit        | {{scenario}} | {{setup}}          | {{single_action}} | {{observable_result}}        | `BR-{{MODULE}}-001` |
+| `{{MODULE}}-IT-001`  | Integration | {{scenario}} | {{database_setup}} | {{action}}        | {{constraint_or_state}}      | {{rule}}            |
+| `{{MODULE}}-E2E-001` | E2E         | {{scenario}} | {{actor_and_data}} | {{request}}       | {{status_shape_side_effect}} | {{contract}}        |
 
 Incluir happy path, validation, not found, conflict, permission, tenant
 isolation, transaction y side effects cuando apliquen. No duplicar el mismo

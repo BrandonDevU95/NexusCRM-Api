@@ -2,13 +2,13 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
-| Orden | `01` |
-| Código | `PLAT` |
-| Rama de etapa A | `sdd/platform-configuration` |
-| Hito | Parte de `v0.2.0` |
-| Publica tag | No; Foundation ya publicó `v0.1.0` |
+| Dato            | Valor                              |
+| --------------- | ---------------------------------- |
+| Orden           | `01`                               |
+| Código          | `PLAT`                             |
+| Rama de etapa A | `sdd/platform-configuration`       |
+| Hito            | Parte de `v0.2.0`                  |
+| Publica tag     | No; Foundation ya publicó `v0.1.0` |
 
 ## Propósito
 
@@ -38,23 +38,23 @@ Marca una casilla solo después de ejecutar la evidencia indicada. Si
 interrumpes el trabajo, este registro identifica el punto exacto de regreso.
 
 - [ ] `PLAT-001` — Preflight Foundation completado; evidencia: comandos y
-  Definition of Done de `development/task-001-environment-and-config.md`.
+      Definition of Done de `development/task-001-environment-and-config.md`.
 - [ ] `PLAT-002` — Entities y constraints diseñados; evidencia: revisión de
-  **Diseño de tablas** en `database/task-001-platform-schema.md`.
+      **Diseño de tablas** en `database/task-001-platform-schema.md`.
 - [ ] `PLAT-003` — Migración `up -> down -> up`; evidencia: schema final y
-  `migration:show` sin pendientes.
+      `migration:show` sin pendientes.
 - [ ] `PLAT-004` — Etapa A de services globales terminada; evidencia: no hay
-  endpoints administrativos desprotegidos.
+      endpoints administrativos desprotegidos.
 - [ ] `PLAT-005` — `PlatformReferenceSeeder` y contrato de
-  `PlatformOrganizationSeeder` implementados; evidencia: dos corridas de A con
-  IDs estables.
+      `PlatformOrganizationSeeder` implementados; evidencia: dos corridas de A con
+      IDs estables.
 - [ ] `PLAT-006` — Suites de etapa A pasan; evidencia: nombres de comandos y
-  resultados registrados.
+      resultados registrados.
 - [ ] `PLAT-007` — Rama A revisada, publicada y mergeada sin tag.
 - [ ] `PLAT-008` — Retorno desde Organizations: FKs, seed B, numeración, tasas
-  y aislamiento probados con dos tenants.
+      y aislamiento probados con dos tenants.
 - [ ] `PLAT-009` — Retorno desde Security B/Audit A: endpoints sensibles tienen
-  permisos explícitos y cambios críticos producen auditoría.
+      permisos explícitos y cambios críticos producen auditoría.
 
 ## Recorrido de etapa A
 

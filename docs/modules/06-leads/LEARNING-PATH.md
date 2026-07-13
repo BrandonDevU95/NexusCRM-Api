@@ -11,23 +11,23 @@ Separar el prospecto aún no formal del customer y enseñar una conversión tran
 
 ## Registro de avance: Parte A
 
-| Checkpoint | Estado | Evidencia / commit | Fecha |
-|---|---|---|---|
-| DB-LEAD-001 schema y `up/down/up` | [ ] | — | — |
-| DEV-LEAD-001 lifecycle, permisos y auditoría | [ ] | — | — |
-| SEED-LEAD-001-A ejecutado dos veces | [ ] | — | — |
-| TEST-LEAD-001 unit/integration/E2E | [ ] | — | — |
-| Merge Parte A y release `v0.3.0` | [ ] | — | — |
+| Checkpoint                                   | Estado | Evidencia / commit | Fecha |
+| -------------------------------------------- | ------ | ------------------ | ----- |
+| DB-LEAD-001 schema y `up/down/up`            | [ ]    | —                  | —     |
+| DEV-LEAD-001 lifecycle, permisos y auditoría | [ ]    | —                  | —     |
+| SEED-LEAD-001-A ejecutado dos veces          | [ ]    | —                  | —     |
+| TEST-LEAD-001 unit/integration/E2E           | [ ]    | —                  | —     |
+| Merge Parte A y release `v0.3.0`             | [ ]    | —                  | —     |
 
 ## Registro de avance: Parte B
 
-| Checkpoint | Estado | Evidencia / commit | Fecha |
-|---|---|---|---|
-| DB-LEAD-002 schema y `up/down/up` | [ ] | — | — |
-| DEV-LEAD-002 conversión atómica e idempotente | [ ] | — | — |
-| SEED-LEAD-001-B ejecutado dos veces | [ ] | — | — |
-| TEST-LEAD-002 integración y E2E | [ ] | — | — |
-| PR revisado, merge y limpieza Parte B | [ ] | — | — |
+| Checkpoint                                    | Estado | Evidencia / commit | Fecha |
+| --------------------------------------------- | ------ | ------------------ | ----- |
+| DB-LEAD-002 schema y `up/down/up`             | [ ]    | —                  | —     |
+| DEV-LEAD-002 conversión atómica e idempotente | [ ]    | —                  | —     |
+| SEED-LEAD-001-B ejecutado dos veces           | [ ]    | —                  | —     |
+| TEST-LEAD-002 integración y E2E               | [ ]    | —                  | —     |
+| PR revisado, merge y limpieza Parte B         | [ ]    | —                  | —     |
 
 Marca `[x]` solo después de registrar evidencia verificable. Los dos registros son
 independientes porque entre las partes se desarrolla Deals.
@@ -115,21 +115,21 @@ regresa a este archivo en **Parte B**. No avances todavía a Activities.
 4. Ve a `tests/task-002-lead-conversion-tests.md`, sección **Rollback e idempotencia**.
 5. Ejecuta suites de Customers, Contacts, Pipelines y Deals.
 
-    git add src/leads/entities/lead-conversion.entity.ts src/database/migrations/<timestamp>-CreateLeadConversions.ts
-    git commit -m "feat(leads): add lead conversion persistence"
-    git add src/leads/dto/convert-lead.dto.ts src/leads/events/lead-converted.event.ts src/leads/lead-conversion.service.ts src/leads/leads.controller.ts
-    git commit -m "feat(leads): convert qualified leads atomically"
-    git add src/seed/seed.registry.ts src/seed/seeders/leads.seeder.ts
-    git commit -m "feat(seed): add deterministic lead conversions"
-    git add ":(glob)src/leads/**/*.spec.ts" src/seed/seeders/leads.seeder.spec.ts test/integration/leads test/e2e/leads
-    git commit -m "test(leads): cover conversion rollback and idempotency"
-    git push -u origin sdd/lead-conversion
-    git switch main
-    git pull --ff-only origin main
-    git merge --no-ff sdd/lead-conversion
-    git push origin main
-    git branch -d sdd/lead-conversion
-    git push origin --delete sdd/lead-conversion
+   git add src/leads/entities/lead-conversion.entity.ts src/database/migrations/<timestamp>-CreateLeadConversions.ts
+   git commit -m "feat(leads): add lead conversion persistence"
+   git add src/leads/dto/convert-lead.dto.ts src/leads/events/lead-converted.event.ts src/leads/lead-conversion.service.ts src/leads/leads.controller.ts
+   git commit -m "feat(leads): convert qualified leads atomically"
+   git add src/seed/seed.registry.ts src/seed/seeders/leads.seeder.ts
+   git commit -m "feat(seed): add deterministic lead conversions"
+   git add ":(glob)src/leads/**/*.spec.ts" src/seed/seeders/leads.seeder.spec.ts test/integration/leads test/e2e/leads
+   git commit -m "test(leads): cover conversion rollback and idempotency"
+   git push -u origin sdd/lead-conversion
+   git switch main
+   git pull --ff-only origin main
+   git merge --no-ff sdd/lead-conversion
+   git push origin main
+   git branch -d sdd/lead-conversion
+   git push origin --delete sdd/lead-conversion
 
 ## Definición de terminado
 

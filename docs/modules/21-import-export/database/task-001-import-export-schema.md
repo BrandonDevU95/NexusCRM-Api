@@ -9,25 +9,25 @@
 
 ## `import_jobs`
 
-| Campo | Tipo | Regla |
-| --- | --- | --- |
-| `id` | uuid PK | PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `requested_by_member_id` | uuid FK | requerido |
-| `resource_type` | varchar(30) | `CUSTOMER`, `CONTACT`, `LEAD`, `PRODUCT` |
-| `file_format` | varchar(10) | `CSV`, `XLSX` |
-| `original_file_name` | varchar(255) | sanitizado, presentación |
-| `storage_key` | varchar(500) | requerido, no path del cliente |
-| `file_size_bytes` | bigint | positivo y limitado |
-| `checksum_sha256` | char(64) | requerido |
-| `status` | varchar(20) | `UPLOADED`, `PREVIEWED`, `CONFIRMED`, `PROCESSING`, `COMPLETED`, `PARTIAL`, `FAILED`, `CANCELED` |
-| `column_mapping`, `options` | jsonb | allowlisted |
-| `total_rows`, `valid_rows`, `invalid_rows`, `processed_rows` | integer | no negativos |
-| `idempotency_key` | varchar(180) | requerido |
-| `confirmed_at`, `started_at`, `completed_at`, `expires_at` | timestamptz | según status |
-| `error_code`, `error_summary` | varchar | nullable y seguro |
-| `correlation_id` | varchar(128) | requerido |
-| `created_at`, `updated_at` | timestamptz | requeridos |
+| Campo                                                        | Tipo         | Regla                                                                                            |
+| ------------------------------------------------------------ | ------------ | ------------------------------------------------------------------------------------------------ |
+| `id`                                                         | uuid PK      | PostgreSQL                                                                                       |
+| `organization_id`                                            | uuid FK      | requerido                                                                                        |
+| `requested_by_member_id`                                     | uuid FK      | requerido                                                                                        |
+| `resource_type`                                              | varchar(30)  | `CUSTOMER`, `CONTACT`, `LEAD`, `PRODUCT`                                                         |
+| `file_format`                                                | varchar(10)  | `CSV`, `XLSX`                                                                                    |
+| `original_file_name`                                         | varchar(255) | sanitizado, presentación                                                                         |
+| `storage_key`                                                | varchar(500) | requerido, no path del cliente                                                                   |
+| `file_size_bytes`                                            | bigint       | positivo y limitado                                                                              |
+| `checksum_sha256`                                            | char(64)     | requerido                                                                                        |
+| `status`                                                     | varchar(20)  | `UPLOADED`, `PREVIEWED`, `CONFIRMED`, `PROCESSING`, `COMPLETED`, `PARTIAL`, `FAILED`, `CANCELED` |
+| `column_mapping`, `options`                                  | jsonb        | allowlisted                                                                                      |
+| `total_rows`, `valid_rows`, `invalid_rows`, `processed_rows` | integer      | no negativos                                                                                     |
+| `idempotency_key`                                            | varchar(180) | requerido                                                                                        |
+| `confirmed_at`, `started_at`, `completed_at`, `expires_at`   | timestamptz  | según status                                                                                     |
+| `error_code`, `error_summary`                                | varchar      | nullable y seguro                                                                                |
+| `correlation_id`                                             | varchar(128) | requerido                                                                                        |
+| `created_at`, `updated_at`                                   | timestamptz  | requeridos                                                                                       |
 
 Unique `organization_id, idempotency_key`; índices status/created, requester y
 expires. Checks de conteos, size y transición/timestamps.

@@ -29,16 +29,16 @@ base. Una entity modificada sin su migración es un cambio incompleto.
 
 ### PostgreSQL
 
-| Elemento | Convención | Ejemplo |
-| --- | --- | --- |
-| Tabla | plural y `snake_case` | `customer_contacts` |
-| Columna | singular y `snake_case` | `organization_id` |
-| Primary key | `id` | `id` |
-| Foreign key | `<entidad_padre>_id` | `customer_id` |
-| Tabla puente | nombres de ambos lados | `user_roles` |
-| Timestamp de creación | `created_at` | `created_at` |
-| Timestamp de actualización | `updated_at` | `updated_at` |
-| Archivo lógico | `archived_at` | `archived_at` |
+| Elemento                   | Convención              | Ejemplo             |
+| -------------------------- | ----------------------- | ------------------- |
+| Tabla                      | plural y `snake_case`   | `customer_contacts` |
+| Columna                    | singular y `snake_case` | `organization_id`   |
+| Primary key                | `id`                    | `id`                |
+| Foreign key                | `<entidad_padre>_id`    | `customer_id`       |
+| Tabla puente               | nombres de ambos lados  | `user_roles`        |
+| Timestamp de creación      | `created_at`            | `created_at`        |
+| Timestamp de actualización | `updated_at`            | `updated_at`        |
+| Archivo lógico             | `archived_at`           | `archived_at`       |
 
 No todas las tablas necesitan soft delete. Se usa cuando el negocio debe
 ocultar un registro sin perder su identidad o referencias. Historiales,
@@ -49,13 +49,13 @@ conservan y se protegen contra eliminación ordinaria.
 
 Usar nombres explícitos facilita leer una migración y diagnosticar PostgreSQL:
 
-| Tipo | Patrón | Ejemplo |
-| --- | --- | --- |
-| Primary key | `PK_<table>_id` | `PK_users_id` |
-| Foreign key | `FK_<table>_<column>` | `FK_users_organization_id` |
-| Unique | `UQ_<table>_<columns>` | `UQ_users_organization_email` |
-| Index | `IDX_<table>_<columns>` | `IDX_users_organization_id` |
-| Check | `CK_<table>_<rule>` | `CK_quotes_total_nonnegative` |
+| Tipo        | Patrón                  | Ejemplo                       |
+| ----------- | ----------------------- | ----------------------------- |
+| Primary key | `PK_<table>_id`         | `PK_users_id`                 |
+| Foreign key | `FK_<table>_<column>`   | `FK_users_organization_id`    |
+| Unique      | `UQ_<table>_<columns>`  | `UQ_users_organization_email` |
+| Index       | `IDX_<table>_<columns>` | `IDX_users_organization_id`   |
+| Check       | `CK_<table>_<rule>`     | `CK_quotes_total_nonnegative` |
 
 Los nombres pueden acortarse cuando se acercan al límite de PostgreSQL, pero
 deben seguir siendo reconocibles y únicos.
@@ -158,11 +158,11 @@ de migraciones y backfill.
 
 ## Reglas `onDelete`
 
-| Regla | Cuándo usarla | Riesgo que evita |
-| --- | --- | --- |
-| `RESTRICT` o `NO ACTION` | El hijo conserva historial o impide borrar al padre | Pérdida silenciosa |
-| `CASCADE` | El hijo no tiene significado sin el padre y no es historial comercial | Filas huérfanas |
-| `SET NULL` | La relación es opcional y el hijo debe sobrevivir | Borrado del hijo |
+| Regla                    | Cuándo usarla                                                         | Riesgo que evita   |
+| ------------------------ | --------------------------------------------------------------------- | ------------------ |
+| `RESTRICT` o `NO ACTION` | El hijo conserva historial o impide borrar al padre                   | Pérdida silenciosa |
+| `CASCADE`                | El hijo no tiene significado sin el padre y no es historial comercial | Filas huérfanas    |
+| `SET NULL`               | La relación es opcional y el hijo debe sobrevivir                     | Borrado del hijo   |
 
 No elegir `CASCADE` para hacer que una prueba pase. Quotes, orders, inventory
 movements, ticket history y audit logs requieren una decisión especialmente

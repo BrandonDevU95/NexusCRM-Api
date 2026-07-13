@@ -2,12 +2,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `DB-FND-002` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint `FND-004` |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint `FND-004` |
-| Rama esperada | `sdd/add-api-foundation` |
+| Dato          | Valor                                       |
+| ------------- | ------------------------------------------- |
+| Código        | `DB-FND-002`                                |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint `FND-004` |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint `FND-004` |
+| Rama esperada | `sdd/add-api-foundation`                    |
 
 No continúes hasta completar `show -> run -> inspect -> revert -> inspect ->
 run` y explicar qué cambió en PostgreSQL en cada paso.
@@ -173,12 +173,12 @@ Este flujo se automatizará en `FND-007`; aquí debes comprender cada paso.
 
 ## Diferencia entre migration y seed
 
-| Migración | Seed |
-| --- | --- |
-| Cambia estructura o capacidad del schema | Inserta datos conocidos |
-| Se ejecuta en todos los entornos como parte de despliegue | Demo data solo en dev/test |
-| Tiene orden histórico y transformación `up/down` | Tiene registry, dependencias e idempotencia |
-| Habilita `pgcrypto` | Nunca habilita extensiones |
+| Migración                                                 | Seed                                        |
+| --------------------------------------------------------- | ------------------------------------------- |
+| Cambia estructura o capacidad del schema                  | Inserta datos conocidos                     |
+| Se ejecuta en todos los entornos como parte de despliegue | Demo data solo en dev/test                  |
+| Tiene orden histórico y transformación `up/down`          | Tiene registry, dependencias e idempotencia |
+| Habilita `pgcrypto`                                       | Nunca habilita extensiones                  |
 
 ## Errores frecuentes
 

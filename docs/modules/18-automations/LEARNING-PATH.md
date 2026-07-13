@@ -2,12 +2,12 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
-| Alcance original | Módulo 18: Automations |
-| Código | `AUTO` |
-| Rama | `sdd/add-automations` |
-| Hito | Cierra Notifications + Automations como `v0.8.0` |
+| Dato             | Valor                                            |
+| ---------------- | ------------------------------------------------ |
+| Alcance original | Módulo 18: Automations                           |
+| Código           | `AUTO`                                           |
+| Rama             | `sdd/add-automations`                            |
+| Hito             | Cierra Notifications + Automations como `v0.8.0` |
 
 ## Resultado esperado
 

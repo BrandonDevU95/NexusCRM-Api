@@ -9,23 +9,23 @@
 
 ## contacts
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identidad estable. |
-| organization_id | uuid | no | — | FK organizations.id | Defensa tenant. |
-| customer_id | uuid | no | — | FK customers.id | Define cuenta padre. |
-| first_name | varchar(100) | no | — | no vacío | Identidad personal. |
-| last_name | varchar(120) | no | — | no vacío | Identidad personal. |
-| email | varchar(254) | sí | null | formato válido | Canal de contacto. |
-| normalized_email | varchar(254) | sí | null | índice | Búsqueda consistente. |
-| phone | varchar(30) | sí | null | formato permitido | Canal laboral. |
-| mobile_phone | varchar(30) | sí | null | formato permitido | Canal móvil. |
-| job_title | varchar(120) | sí | null | — | Contexto comercial. |
-| department | varchar(120) | sí | null | — | Segmenta interlocutor. |
-| is_primary | boolean | no | false | máximo uno activo por customer | Define contacto preferente. |
-| notes | text | sí | null | — | Contexto interno breve. |
-| created_at / updated_at | timestamptz | no | now | — | Trazabilidad. |
-| archived_at | timestamptz | sí | null | posterior a created_at | Archivo sin pérdida. |
+| Campo                   | Tipo         | Null | Default  | Regla                          | Motivo                      |
+| ----------------------- | ------------ | ---: | -------- | ------------------------------ | --------------------------- |
+| id                      | uuid         |   no | generado | PK                             | Identidad estable.          |
+| organization_id         | uuid         |   no | —        | FK organizations.id            | Defensa tenant.             |
+| customer_id             | uuid         |   no | —        | FK customers.id                | Define cuenta padre.        |
+| first_name              | varchar(100) |   no | —        | no vacío                       | Identidad personal.         |
+| last_name               | varchar(120) |   no | —        | no vacío                       | Identidad personal.         |
+| email                   | varchar(254) |   sí | null     | formato válido                 | Canal de contacto.          |
+| normalized_email        | varchar(254) |   sí | null     | índice                         | Búsqueda consistente.       |
+| phone                   | varchar(30)  |   sí | null     | formato permitido              | Canal laboral.              |
+| mobile_phone            | varchar(30)  |   sí | null     | formato permitido              | Canal móvil.                |
+| job_title               | varchar(120) |   sí | null     | —                              | Contexto comercial.         |
+| department              | varchar(120) |   sí | null     | —                              | Segmenta interlocutor.      |
+| is_primary              | boolean      |   no | false    | máximo uno activo por customer | Define contacto preferente. |
+| notes                   | text         |   sí | null     | —                              | Contexto interno breve.     |
+| created_at / updated_at | timestamptz  |   no | now      | —                              | Trazabilidad.               |
+| archived_at             | timestamptz  |   sí | null     | posterior a created_at         | Archivo sin pérdida.        |
 
 Customer es lado **uno** y tiene **muchos** contacts. FK compuesta `(organization_id, customer_id)` referencia `customers(organization_id, id)`, no es nullable y usa `onDelete: RESTRICT`; un customer se archiva y sus contactos sobreviven para historial. Organization también es lado uno y contacts lado muchos, FK `organization_id`, `onDelete: RESTRICT`.
 

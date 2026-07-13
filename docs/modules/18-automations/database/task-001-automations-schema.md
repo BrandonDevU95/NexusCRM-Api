@@ -51,20 +51,20 @@ allowlisted.
 
 ## `automation_runs`
 
-| Campo | Tipo | Regla |
-| --- | --- | --- |
-| `id` | uuid PK | PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `automation_rule_id` | uuid FK | requerido |
-| `outbox_event_id` | uuid FK | requerido; referencia `outbox_events.id` |
-| `rule_version` | integer | snapshot requerido |
-| `status` | varchar(20) | `MATCHED`, `SKIPPED`, `SUCCEEDED`, `FAILED`, `PARTIAL` |
-| `input_snapshot` | jsonb | redactado |
-| `condition_result` | jsonb | evaluación explicable |
-| `step_results` | jsonb | acciones, duration y error codes |
-| `error_code` | varchar(100) | nullable |
-| `started_at`, `finished_at` | timestamptz | coherentes con status |
-| `correlation_id` | varchar(128) | requerido |
+| Campo                       | Tipo         | Regla                                                  |
+| --------------------------- | ------------ | ------------------------------------------------------ |
+| `id`                        | uuid PK      | PostgreSQL                                             |
+| `organization_id`           | uuid FK      | requerido                                              |
+| `automation_rule_id`        | uuid FK      | requerido                                              |
+| `outbox_event_id`           | uuid FK      | requerido; referencia `outbox_events.id`               |
+| `rule_version`              | integer      | snapshot requerido                                     |
+| `status`                    | varchar(20)  | `MATCHED`, `SKIPPED`, `SUCCEEDED`, `FAILED`, `PARTIAL` |
+| `input_snapshot`            | jsonb        | redactado                                              |
+| `condition_result`          | jsonb        | evaluación explicable                                  |
+| `step_results`              | jsonb        | acciones, duration y error codes                       |
+| `error_code`                | varchar(100) | nullable                                               |
+| `started_at`, `finished_at` | timestamptz  | coherentes con status                                  |
+| `correlation_id`            | varchar(128) | requerido                                              |
 
 Unique `automation_rule_id, outbox_event_id`. Índices por organization/status/
 started_at y rule/started_at. Rule y outbox event son lado uno; runs lado muchos.
