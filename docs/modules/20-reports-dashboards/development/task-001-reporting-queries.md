@@ -36,13 +36,13 @@ compatibilidad metric/dimension según definition. `organizationId` proviene de
 
 ## Endpoints y permisos
 
-| Método/path | Permission |
-| --- | --- |
-| `GET /api/v1/dashboard` | `reports:read` más permissions de cada dato |
-| `GET /api/v1/report-definitions` | `reports:read` |
-| `POST /api/v1/reports/:code/query` | permission de definition |
-| CRUD `/api/v1/saved-reports` | `reports:manage` y ownership |
-| CRUD `/api/v1/dashboard-widgets` | `dashboards:manage` |
+| Método/path                        | Permission                                  |
+| ---------------------------------- | ------------------------------------------- |
+| `GET /api/v1/dashboard`            | `reports:read` más permissions de cada dato |
+| `GET /api/v1/report-definitions`   | `reports:read`                              |
+| `POST /api/v1/reports/:code/query` | permission de definition                    |
+| CRUD `/api/v1/saved-reports`       | `reports:manage` y ownership                |
+| CRUD `/api/v1/dashboard-widgets`   | `dashboards:manage`                         |
 
 Response incluye `asOf`, applied filters, timezone, rows/series, pagination y
 warning si una métrica fue limitada. No expone SQL ni plan interno.

@@ -2,14 +2,14 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
-| Orden | `02A`, retorno `02B` |
-| Código | `SEC` |
-| Rama A | `sdd/security-authentication` |
-| Rama B | `sdd/security-authorization` |
-| Hito | Parte de `v0.2.0` |
-| Publica tag | No |
+| Dato        | Valor                         |
+| ----------- | ----------------------------- |
+| Orden       | `02A`, retorno `02B`          |
+| Código      | `SEC`                         |
+| Rama A      | `sdd/security-authentication` |
+| Rama B      | `sdd/security-authorization`  |
+| Hito        | Parte de `v0.2.0`             |
+| Publica tag | No                            |
 
 ## Propósito
 
@@ -39,14 +39,14 @@ permissions, CASL y decorators tenant-scoped.
 ### Parte B — authorization organizacional
 
 - [ ] `SEC-B00` — Retorno recibido desde Organizations con tenant context y
-  membership bootstrap sin role.
+      membership bootstrap sin role.
 - [ ] `SEC-B01` — Roles, permissions y FKs compuestas migrados `up -> down -> up`.
 - [ ] `SEC-B02` — Constantes tipadas, decorators, guard y CASL implementados.
 - [ ] `SEC-B03` — 121 permissions, diez roles y member role bootstrap sembrados
-  de forma idempotente.
+      de forma idempotente.
 - [ ] `SEC-B04` — Matriz, cruce de tenants, constantes y decorators probados.
 - [ ] `SEC-B05` — Regresiones de Platform/Organizations/Auth pasan y rama B se
-  mergeó sin tag.
+      mergeó sin tag.
 - [ ] `SEC-B06` — Retorno a Organizations confirmado; siguiente paso Audit A.
 
 ## Parte A: inicio y recorrido

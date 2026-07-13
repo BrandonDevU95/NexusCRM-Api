@@ -2,12 +2,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `SEED-FND-001` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint `FND-006` |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint `FND-006` |
-| Rama esperada | `sdd/add-api-foundation` |
+| Dato          | Valor                                       |
+| ------------- | ------------------------------------------- |
+| Código        | `SEED-FND-001`                              |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint `FND-006` |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint `FND-006` |
+| Rama esperada | `sdd/add-api-foundation`                    |
 
 No continúes hasta que puedas listar módulos, ejecutar un registry vacío de
 forma segura, rechazar un nombre inexistente y bloquear demo data en `prod`.
@@ -127,11 +127,11 @@ explícita de despliegue, nunca automática.
 
 Completa Joi, loader y examples:
 
-| Variable | Tipo | Regla |
-| --- | --- | --- |
-| `SEED_RANDOM_SEED` | integer | requerido para demo; rango positivo documentado |
-| `SEED_BATCH_SIZE` | integer | mínimo 1, máximo conservador |
-| `SEED_ALLOW_DEMO_DATA` | boolean | default false; siempre false efectivo en prod |
+| Variable               | Tipo    | Regla                                           |
+| ---------------------- | ------- | ----------------------------------------------- |
+| `SEED_RANDOM_SEED`     | integer | requerido para demo; rango positivo documentado |
+| `SEED_BATCH_SIZE`      | integer | mínimo 1, máximo conservador                    |
+| `SEED_ALLOW_DEMO_DATA` | boolean | default false; siempre false efectivo en prod   |
 
 No agregues todavía `SEED_USERS_COUNT` o cantidades de módulos inexistentes.
 Cada módulo incorpora sus variables cuando construye su dataset.

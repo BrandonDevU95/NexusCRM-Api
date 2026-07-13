@@ -13,11 +13,11 @@ Vincular o quitar exige `tickets:update` más `knowledge-base:read`. Listar exig
 `tickets:read` más `knowledge-base:read`. `X-Organization-Id` es obligatorio y
 no existe un permission code especial para la tabla puente.
 
-| Método y path | Acción |
-| --- | --- |
-| `POST /api/v1/tickets/:ticketId/knowledge-articles/:articleId` | Vincular con note opcional |
-| `DELETE /api/v1/tickets/:ticketId/knowledge-articles/:articleId` | Quitar vínculo, no borrar padres |
-| `GET /api/v1/tickets/:ticketId/knowledge-articles` | Listar artículos visibles vinculados |
+| Método y path                                                    | Acción                               |
+| ---------------------------------------------------------------- | ------------------------------------ |
+| `POST /api/v1/tickets/:ticketId/knowledge-articles/:articleId`   | Vincular con note opcional           |
+| `DELETE /api/v1/tickets/:ticketId/knowledge-articles/:articleId` | Quitar vínculo, no borrar padres     |
+| `GET /api/v1/tickets/:ticketId/knowledge-articles`               | Listar artículos visibles vinculados |
 
 El Knowledge service no escribe la tabla `tickets`; solicita al Tickets service
 confirmar existencia y organization. Tickets tampoco edita articles. La

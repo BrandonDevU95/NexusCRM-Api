@@ -15,27 +15,27 @@ Una organización es lado **uno** y tiene **muchas** fuentes. FK no nullable `or
 
 ## leads
 
-| Campo | Tipo | Null | Default | Regla | Motivo |
-|---|---|---:|---|---|---|
-| id | uuid | no | generado | PK | Identidad estable. |
-| organization_id | uuid | no | — | FK organizations.id | Aísla tenant. |
-| owner_member_id | uuid | sí | null | FK organization_members.id | Responsable de seguimiento. |
-| source_id | uuid | sí | null | FK lead_sources.id | Atribución. |
-| first_name | varchar(100) | no | — | no vacío | Identidad. |
-| last_name | varchar(120) | no | — | no vacío | Identidad. |
-| company_name | varchar(180) | sí | null | — | Contexto B2B. |
-| email / normalized_email | varchar(254) | sí | null | formato/índice | Contacto y búsqueda. |
-| phone | varchar(30) | sí | null | formato permitido | Contacto. |
-| status | varchar(30) | no | NEW | estado permitido | Ciclo de calificación. |
-| score | smallint | no | 0 | entre 0 y 100 | Prioridad actual. |
-| estimated_value | numeric(19,4) | sí | null | mayor o igual a cero | Potencial comercial. |
-| currency | char(3) | sí | null | requerida si hay valor | Interpreta monto. |
-| notes | text | sí | null | — | Contexto inicial. |
-| next_follow_up_at | timestamptz | sí | null | — | Próxima acción. |
-| converted_at | timestamptz | sí | null | solo CONVERTED | Métrica/evidencia. |
-| lost_reason | varchar(255) | sí | null | requerida para LOST | Análisis de pérdida. |
-| created_at / updated_at | timestamptz | no | now | — | Trazabilidad. |
-| archived_at | timestamptz | sí | null | posterior a created_at | Archivo sin pérdida. |
+| Campo                    | Tipo          | Null | Default  | Regla                      | Motivo                      |
+| ------------------------ | ------------- | ---: | -------- | -------------------------- | --------------------------- |
+| id                       | uuid          |   no | generado | PK                         | Identidad estable.          |
+| organization_id          | uuid          |   no | —        | FK organizations.id        | Aísla tenant.               |
+| owner_member_id          | uuid          |   sí | null     | FK organization_members.id | Responsable de seguimiento. |
+| source_id                | uuid          |   sí | null     | FK lead_sources.id         | Atribución.                 |
+| first_name               | varchar(100)  |   no | —        | no vacío                   | Identidad.                  |
+| last_name                | varchar(120)  |   no | —        | no vacío                   | Identidad.                  |
+| company_name             | varchar(180)  |   sí | null     | —                          | Contexto B2B.               |
+| email / normalized_email | varchar(254)  |   sí | null     | formato/índice             | Contacto y búsqueda.        |
+| phone                    | varchar(30)   |   sí | null     | formato permitido          | Contacto.                   |
+| status                   | varchar(30)   |   no | NEW      | estado permitido           | Ciclo de calificación.      |
+| score                    | smallint      |   no | 0        | entre 0 y 100              | Prioridad actual.           |
+| estimated_value          | numeric(19,4) |   sí | null     | mayor o igual a cero       | Potencial comercial.        |
+| currency                 | char(3)       |   sí | null     | requerida si hay valor     | Interpreta monto.           |
+| notes                    | text          |   sí | null     | —                          | Contexto inicial.           |
+| next_follow_up_at        | timestamptz   |   sí | null     | —                          | Próxima acción.             |
+| converted_at             | timestamptz   |   sí | null     | solo CONVERTED             | Métrica/evidencia.          |
+| lost_reason              | varchar(255)  |   sí | null     | requerida para LOST        | Análisis de pérdida.        |
+| created_at / updated_at  | timestamptz   |   no | now      | —                          | Trazabilidad.               |
+| archived_at              | timestamptz   |   sí | null     | posterior a created_at     | Archivo sin pérdida.        |
 
 Organization es lado uno y leads lado muchos, `onDelete: RESTRICT`. Membership es lado uno y muchos leads asignados; FK compuesta nullable `(organization_id, owner_member_id)` usa `onDelete: RESTRICT`. Source es lado uno y muchos leads; FK compuesta nullable `(organization_id, source_id)` usa `onDelete: RESTRICT`. Ambas referencias quedan tenant-safe en la base.
 

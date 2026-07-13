@@ -13,37 +13,37 @@ movements **muchos** (`TRANSFER_OUT` y `TRANSFER_IN`), no movements enlazados en
 
 ## Tabla `warehouses`
 
-| Columna | Tipo | Null/default | FK/check/onDelete y motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Identidad. |
-| `organization_id` | `uuid` | no nulo | FK organization, `RESTRICT`. |
-| `code` | `varchar(40)` | no nulo | Clave tenant. |
-| `name` | `varchar(140)` | no nulo | Nombre. |
-| `description` | `text` | nulo | Detalle. |
-| `status` | `varchar(20)` | `ACTIVE` | `ACTIVE`, `INACTIVE`. |
-| `is_default` | `boolean` | `false` | Default por tenant. |
-| `address` | `jsonb` | nulo | Estructura validada. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
-| `archived_at` | `timestamptz` | nulo | Archivo. |
+| Columna                   | Tipo           | Null/default | FK/check/onDelete y motivo   |
+| ------------------------- | -------------- | ------------ | ---------------------------- |
+| `id`                      | `uuid`         | PK           | Identidad.                   |
+| `organization_id`         | `uuid`         | no nulo      | FK organization, `RESTRICT`. |
+| `code`                    | `varchar(40)`  | no nulo      | Clave tenant.                |
+| `name`                    | `varchar(140)` | no nulo      | Nombre.                      |
+| `description`             | `text`         | nulo         | Detalle.                     |
+| `status`                  | `varchar(20)`  | `ACTIVE`     | `ACTIVE`, `INACTIVE`.        |
+| `is_default`              | `boolean`      | `false`      | Default por tenant.          |
+| `address`                 | `jsonb`        | nulo         | Estructura validada.         |
+| `created_at`/`updated_at` | `timestamptz`  | no nulos     | Auditoría.                   |
+| `archived_at`             | `timestamptz`  | nulo         | Archivo.                     |
 
 Unique `(organization_id,code)`, default ACTIVE parcial y
 `UQ_warehouses_organization_id_id`. Índice tenant+status+name.
 
 ## Tabla `warehouse_locations`
 
-| Columna | Tipo | Null/default | FK/check/onDelete y motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Identidad. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `warehouse_id` | `uuid` | no nulo | FK compuesta warehouse, `RESTRICT`. |
-| `code` | `varchar(50)` | no nulo | Clave dentro del warehouse. |
-| `name` | `varchar(120)` | no nulo | Nombre. |
-| `location_type` | `varchar(20)` | no nulo | `SELLABLE`, `RECEIVING`, `SHIPPING`, `DAMAGED`, `QUARANTINE`. |
-| `is_sellable` | `boolean` | `false` | Solo SELLABLE puede ser true. |
-| `status` | `varchar(20)` | `ACTIVE` | `ACTIVE`, `INACTIVE`. |
-| `is_default` | `boolean` | `false` | Default dentro del warehouse. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
-| `archived_at` | `timestamptz` | nulo | Archivo. |
+| Columna                   | Tipo           | Null/default | FK/check/onDelete y motivo                                    |
+| ------------------------- | -------------- | ------------ | ------------------------------------------------------------- |
+| `id`                      | `uuid`         | PK           | Identidad.                                                    |
+| `organization_id`         | `uuid`         | no nulo      | Tenant.                                                       |
+| `warehouse_id`            | `uuid`         | no nulo      | FK compuesta warehouse, `RESTRICT`.                           |
+| `code`                    | `varchar(50)`  | no nulo      | Clave dentro del warehouse.                                   |
+| `name`                    | `varchar(120)` | no nulo      | Nombre.                                                       |
+| `location_type`           | `varchar(20)`  | no nulo      | `SELLABLE`, `RECEIVING`, `SHIPPING`, `DAMAGED`, `QUARANTINE`. |
+| `is_sellable`             | `boolean`      | `false`      | Solo SELLABLE puede ser true.                                 |
+| `status`                  | `varchar(20)`  | `ACTIVE`     | `ACTIVE`, `INACTIVE`.                                         |
+| `is_default`              | `boolean`      | `false`      | Default dentro del warehouse.                                 |
+| `created_at`/`updated_at` | `timestamptz`  | no nulos     | Auditoría.                                                    |
+| `archived_at`             | `timestamptz`  | nulo         | Archivo.                                                      |
 
 Checks: `SELLABLE ↔ is_sellable=true`; los otros tipos exigen false. Unique
 `(organization_id,warehouse_id,code)`, default parcial por warehouse y
@@ -52,19 +52,19 @@ contribuyen a available ni aceptan reservations.
 
 ## Tabla `inventory_stocks`
 
-| Columna | Tipo | Null/default | FK/check/onDelete y motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Lock target. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `warehouse_id` | `uuid` | no nulo | FK compuesta warehouse, `RESTRICT`. |
-| `location_id` | `uuid` | no nulo | FK compuesta location, `RESTRICT`. |
-| `product_id` | `uuid` | no nulo | FK compuesta tracked product, `RESTRICT`. |
-| `quantity_on_hand` | `numeric(19,4)` | `0` | >=0. |
-| `quantity_reserved` | `numeric(19,4)` | `0` | >=0 y <= on hand. |
-| `minimum_quantity` | `numeric(19,4)` | `0` | >=0. |
-| `reorder_quantity` | `numeric(19,4)` | `0` | >=0. |
-| `version` | `integer` | `1` | >0. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
+| Columna                   | Tipo            | Null/default | FK/check/onDelete y motivo                |
+| ------------------------- | --------------- | ------------ | ----------------------------------------- |
+| `id`                      | `uuid`          | PK           | Lock target.                              |
+| `organization_id`         | `uuid`          | no nulo      | Tenant.                                   |
+| `warehouse_id`            | `uuid`          | no nulo      | FK compuesta warehouse, `RESTRICT`.       |
+| `location_id`             | `uuid`          | no nulo      | FK compuesta location, `RESTRICT`.        |
+| `product_id`              | `uuid`          | no nulo      | FK compuesta tracked product, `RESTRICT`. |
+| `quantity_on_hand`        | `numeric(19,4)` | `0`          | >=0.                                      |
+| `quantity_reserved`       | `numeric(19,4)` | `0`          | >=0 y <= on hand.                         |
+| `minimum_quantity`        | `numeric(19,4)` | `0`          | >=0.                                      |
+| `reorder_quantity`        | `numeric(19,4)` | `0`          | >=0.                                      |
+| `version`                 | `integer`       | `1`          | >0.                                       |
+| `created_at`/`updated_at` | `timestamptz`   | no nulos     | Auditoría.                                |
 
 Unique `(organization_id,location_id,product_id)` y
 `UQ_inventory_stocks_organization_id_id`. `reservable_quantity` es
@@ -73,20 +73,20 @@ cero. No guardes available. Índices tenant+product+warehouse/location.
 
 ## Tabla `inventory_transfers`
 
-| Columna | Tipo | Null/default | FK/check/onDelete y motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Parent de dos movements. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `product_id` | `uuid` | no nulo | FK compuesta product, `RESTRICT`. |
-| `from_warehouse_id`/`from_location_id` | `uuid` | no nulos | FKs compuestas origen, `RESTRICT`. |
-| `to_warehouse_id`/`to_location_id` | `uuid` | no nulos | FKs compuestas destino, `RESTRICT`. |
-| `quantity` | `numeric(19,4)` | no nulo | >0. |
-| `status` | `varchar(20)` | `POSTED` | `POSTED`; una corrección usa transferencia compensatoria. |
-| `reason` | `varchar(500)` | no nulo | Explicación. |
-| `created_by_member_id` | `uuid` | no nulo | FK compuesta membership, `RESTRICT`. |
-| `idempotency_key` | `varchar(150)` | no nulo | Identidad del comando. |
-| `request_fingerprint` | `char(64)` | no nulo | Hash hexadecimal. |
-| `posted_at`/`created_at` | `timestamptz` | no nulos | Negocio/auditoría. |
+| Columna                                | Tipo            | Null/default | FK/check/onDelete y motivo                                |
+| -------------------------------------- | --------------- | ------------ | --------------------------------------------------------- |
+| `id`                                   | `uuid`          | PK           | Parent de dos movements.                                  |
+| `organization_id`                      | `uuid`          | no nulo      | Tenant.                                                   |
+| `product_id`                           | `uuid`          | no nulo      | FK compuesta product, `RESTRICT`.                         |
+| `from_warehouse_id`/`from_location_id` | `uuid`          | no nulos     | FKs compuestas origen, `RESTRICT`.                        |
+| `to_warehouse_id`/`to_location_id`     | `uuid`          | no nulos     | FKs compuestas destino, `RESTRICT`.                       |
+| `quantity`                             | `numeric(19,4)` | no nulo      | >0.                                                       |
+| `status`                               | `varchar(20)`   | `POSTED`     | `POSTED`; una corrección usa transferencia compensatoria. |
+| `reason`                               | `varchar(500)`  | no nulo      | Explicación.                                              |
+| `created_by_member_id`                 | `uuid`          | no nulo      | FK compuesta membership, `RESTRICT`.                      |
+| `idempotency_key`                      | `varchar(150)`  | no nulo      | Identidad del comando.                                    |
+| `request_fingerprint`                  | `char(64)`      | no nulo      | Hash hexadecimal.                                         |
+| `posted_at`/`created_at`               | `timestamptz`   | no nulos     | Negocio/auditoría.                                        |
 
 Unique `(organization_id,idempotency_key)`,
 `UQ_inventory_transfers_organization_id_id`; checks locations diferentes,
@@ -94,24 +94,24 @@ quantity/fingerprint/status. Same key+fingerprint retorna transfer; otro hash `4
 
 ## Tabla `inventory_movements`
 
-| Columna | Tipo | Null/default | FK/check/onDelete y motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Evidencia. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `warehouse_id`/`location_id`/`product_id` | `uuid` | no nulos | FKs compuestas, `RESTRICT`. |
-| `transfer_id` | `uuid` | nulo | FK compuesta inventory_transfers, `RESTRICT`. |
-| `movement_type` | `varchar(30)` | no nulo | A: `RECEIPT`, `ISSUE`, `ADJUSTMENT_POSITIVE`, `ADJUSTMENT_NEGATIVE`, `TRANSFER_IN`, `TRANSFER_OUT`; B amplía. |
-| `quantity` | `numeric(19,4)` | >0 | Magnitud positiva. |
-| `on_hand_delta`/`reserved_delta` | `numeric(19,4)` | no nulos | Deltas derivados, no DTO. |
-| `balance_on_hand_after`/`balance_reserved_after` | `numeric(19,4)` | no nulos | >=0 y reserved<=onHand. |
-| `source_type` | `varchar(40)` | no nulo | Allowlist. |
-| `source_id` | `uuid` | nulo | Referencia externa controlada. |
-| `reason` | `varchar(500)` | no nulo | Motivo. |
-| `idempotency_key` | `varchar(150)` | no nulo | Unique por tenant. |
-| `request_fingerprint` | `char(64)` | no nulo | Hash del command. |
-| `created_by_member_id` | `uuid` | no nulo | FK compuesta membership, `RESTRICT`. |
-| `occurred_at`/`created_at` | `timestamptz` | no nulos | Negocio/técnico. |
-| `metadata` | `jsonb` | `{}` | Allowlist. |
+| Columna                                          | Tipo            | Null/default | FK/check/onDelete y motivo                                                                                    |
+| ------------------------------------------------ | --------------- | ------------ | ------------------------------------------------------------------------------------------------------------- |
+| `id`                                             | `uuid`          | PK           | Evidencia.                                                                                                    |
+| `organization_id`                                | `uuid`          | no nulo      | Tenant.                                                                                                       |
+| `warehouse_id`/`location_id`/`product_id`        | `uuid`          | no nulos     | FKs compuestas, `RESTRICT`.                                                                                   |
+| `transfer_id`                                    | `uuid`          | nulo         | FK compuesta inventory_transfers, `RESTRICT`.                                                                 |
+| `movement_type`                                  | `varchar(30)`   | no nulo      | A: `RECEIPT`, `ISSUE`, `ADJUSTMENT_POSITIVE`, `ADJUSTMENT_NEGATIVE`, `TRANSFER_IN`, `TRANSFER_OUT`; B amplía. |
+| `quantity`                                       | `numeric(19,4)` | >0           | Magnitud positiva.                                                                                            |
+| `on_hand_delta`/`reserved_delta`                 | `numeric(19,4)` | no nulos     | Deltas derivados, no DTO.                                                                                     |
+| `balance_on_hand_after`/`balance_reserved_after` | `numeric(19,4)` | no nulos     | >=0 y reserved<=onHand.                                                                                       |
+| `source_type`                                    | `varchar(40)`   | no nulo      | Allowlist.                                                                                                    |
+| `source_id`                                      | `uuid`          | nulo         | Referencia externa controlada.                                                                                |
+| `reason`                                         | `varchar(500)`  | no nulo      | Motivo.                                                                                                       |
+| `idempotency_key`                                | `varchar(150)`  | no nulo      | Unique por tenant.                                                                                            |
+| `request_fingerprint`                            | `char(64)`      | no nulo      | Hash del command.                                                                                             |
+| `created_by_member_id`                           | `uuid`          | no nulo      | FK compuesta membership, `RESTRICT`.                                                                          |
+| `occurred_at`/`created_at`                       | `timestamptz`   | no nulos     | Negocio/técnico.                                                                                              |
+| `metadata`                                       | `jsonb`         | `{}`         | Allowlist.                                                                                                    |
 
 Unique `(organization_id,idempotency_key)`,
 `UQ_inventory_movements_organization_id_id`; checks deltas/balances/fingerprint.

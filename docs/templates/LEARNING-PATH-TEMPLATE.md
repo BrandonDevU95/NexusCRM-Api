@@ -8,13 +8,13 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
-| Orden de implementación | {{implementation_order}} |
+| Dato                        | Valor                        |
+| --------------------------- | ---------------------------- |
+| Orden de implementación     | {{implementation_order}}     |
 | Módulo del alcance original | {{scope_module_id_and_name}} |
-| Código documental | {{module_code}} |
-| Hito | {{milestone}} |
-| Rama | `sdd/{{exact_branch_name}}` |
+| Código documental           | {{module_code}}              |
+| Hito                        | {{milestone}}                |
+| Rama                        | `sdd/{{exact_branch_name}}`  |
 
 ## Resultado esperado
 
@@ -49,9 +49,9 @@ Indica qué salida o estado confirma que se puede continuar.
 
 ## Mapa de tareas
 
-| Orden | Código | Capacidad | Database | Development | Seed | Tests |
-| --- | --- | --- | --- | --- | --- | --- |
-| 1 | `{{MODULE}}-001` | {{vertical_slice}} | `database/task-001-{{slug}}.md` | `development/task-001-{{slug}}.md` | `seeds/task-001-{{slug}}.md` | `tests/task-001-{{slug}}.md` |
+| Orden | Código           | Capacidad          | Database                        | Development                        | Seed                         | Tests                        |
+| ----- | ---------------- | ------------------ | ------------------------------- | ---------------------------------- | ---------------------------- | ---------------------------- |
+| 1     | `{{MODULE}}-001` | {{vertical_slice}} | `database/task-001-{{slug}}.md` | `development/task-001-{{slug}}.md` | `seeds/task-001-{{slug}}.md` | `tests/task-001-{{slug}}.md` |
 
 Una fila representa una vertical slice terminable. No usar una sola fila para
 un módulo que necesita varias ramas o varios flujos independientes.
@@ -143,7 +143,7 @@ Indica una de dos respuestas explícitas:
 - [ ] Los seeds son idempotentes y seguros por entorno.
 - [ ] Las suites indicadas pasan.
 - [ ] No hay secretos, `latest`, rangos de versiones ni configuración operativa
-  hardcodeada.
+      hardcodeada.
 - [ ] La rama se integró y `main` quedó limpia.
 
 ## Siguiente paso único

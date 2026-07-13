@@ -2,12 +2,12 @@
 
 ## Identidad y dos pasadas
 
-| Dato | Parte A | Parte B |
-| --- | --- | --- |
-| Momento | Después de Security/Organizations | Después de Import/Export, antes de Administration |
-| Rama | `sdd/add-audit-foundation` | `sdd/add-audit-query-retention` |
-| Resultado | Escritura inmutable y redacción | Consulta, índices, export y retención |
-| Hito | Cierra `v0.2.0` | Parte de `v0.9.0` |
+| Dato      | Parte A                           | Parte B                                           |
+| --------- | --------------------------------- | ------------------------------------------------- |
+| Momento   | Después de Security/Organizations | Después de Import/Export, antes de Administration |
+| Rama      | `sdd/add-audit-foundation`        | `sdd/add-audit-query-retention`                   |
+| Resultado | Escritura inmutable y redacción   | Consulta, índices, export y retención             |
+| Hito      | Cierra `v0.2.0`                   | Parte de `v0.9.0`                                 |
 
 Audit se inicia temprano para que Customers, Deals, Quotes, Orders, Inventory y
 Tickets no tengan que reconstruirse al final. La Parte B espera a conocer

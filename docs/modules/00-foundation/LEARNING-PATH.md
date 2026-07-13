@@ -2,13 +2,13 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
-| Orden de implementación | `00` |
+| Dato                        | Valor                    |
+| --------------------------- | ------------------------ |
+| Orden de implementación     | `00`                     |
 | Módulo del alcance original | Base técnica transversal |
-| Código documental | `FND` |
-| Rama | `sdd/add-api-foundation` |
-| Tag | `v0.1.0` |
+| Código documental           | `FND`                    |
+| Rama                        | `sdd/add-api-foundation` |
+| Tag                         | `v0.1.0`                 |
 
 ## Resultado esperado
 
@@ -44,13 +44,13 @@ No necesitas leerlos completos ahora: cada tarea te envía a la sección que usa
 
 - [ ] El repositorio contiene `README.md`, `AGENTS.md`, `.gitignore` y `docs/`.
 - [ ] No existen todavía `src/`, `test/`, `package.json` o `pnpm-lock.yaml` en
-  la raíz.
+      la raíz.
 - [ ] `git status --short --branch` no muestra cambios ajenos.
 - [ ] Node informa `v24.17.0`.
 - [ ] pnpm informa `11.12.0`.
 - [ ] Docker Desktop está disponible y `docker version` responde.
 - [ ] `gh --version` responde y `gh auth status` confirma la cuenta correcta, o
-  se decidió usar la interfaz web para PRs/releases.
+      se decidió usar la interfaz web para PRs/releases.
 
 Si ya existe alguno de los archivos de aplicación, no lo sobrescribas. Revisa
 por qué existe y ajusta el paso de copia con una allowlist.
@@ -71,15 +71,15 @@ en `sdd/add-api-foundation`; compruébalo otra vez con `git status`.
 
 ## Mapa de checkpoints
 
-| Checkpoint | Archivo | Resultado |
-| --- | --- | --- |
-| `FND-001` | `development/task-001-safe-nest-scaffold.md` | Starter NestJS integrado sin sobrescribir documentación |
-| `FND-002` | `development/task-002-environment-joi-compose.md` | Contrato `.env`, Joi y PostgreSQL Compose |
-| `FND-003` | `database/task-001-typeorm-data-source.md` | Runtime y CLI comparten configuración TypeORM |
-| `FND-004` | `database/task-002-first-migration.md` | Primera migración ejecutada, revertida y reaplicada |
-| `FND-005` | `development/task-003-http-api-contract.md` | Prefix `/api/v1`, validation, errores, correlation, Swagger y health |
-| `FND-006` | `seeds/task-001-seed-cli-foundation.md` | SeedModule CLI modular y seguro, todavía sin datos comerciales |
-| `FND-007` | `tests/task-001-testing-foundation.md` | Unit, integration, migration y smoke E2E iniciales |
+| Checkpoint | Archivo                                           | Resultado                                                            |
+| ---------- | ------------------------------------------------- | -------------------------------------------------------------------- |
+| `FND-001`  | `development/task-001-safe-nest-scaffold.md`      | Starter NestJS integrado sin sobrescribir documentación              |
+| `FND-002`  | `development/task-002-environment-joi-compose.md` | Contrato `.env`, Joi y PostgreSQL Compose                            |
+| `FND-003`  | `database/task-001-typeorm-data-source.md`        | Runtime y CLI comparten configuración TypeORM                        |
+| `FND-004`  | `database/task-002-first-migration.md`            | Primera migración ejecutada, revertida y reaplicada                  |
+| `FND-005`  | `development/task-003-http-api-contract.md`       | Prefix `/api/v1`, validation, errores, correlation, Swagger y health |
+| `FND-006`  | `seeds/task-001-seed-cli-foundation.md`           | SeedModule CLI modular y seguro, todavía sin datos comerciales       |
+| `FND-007`  | `tests/task-001-testing-foundation.md`            | Unit, integration, migration y smoke E2E iniciales                   |
 
 ## Recorrido obligatorio
 
@@ -248,13 +248,13 @@ en esta ruta. No se convierte en un comando para ejecutar después de cada tarea
 - [ ] `pnpm-lock.yaml` está versionado.
 - [ ] `.env` y `.env.test` están ignorados.
 - [ ] Compose no contiene imágenes, credenciales, puertos ni nombres operativos
-  hardcodeados.
+      hardcodeados.
 - [ ] Joi detiene el arranque ante configuración inválida.
 - [ ] `synchronize` y `migrationsRun` son `false`.
 - [ ] Runtime y CLI usan el mismo contrato de conexión.
 - [ ] La migración se ejecutó, revirtió y reaplicó.
 - [ ] El contrato HTTP usa `/api/v1`, ValidationPipe global, error envelope,
-  correlation ID y health endpoint.
+      correlation ID y health endpoint.
 - [ ] Swagger usa la versión fijada y puede deshabilitarse por entorno.
 - [ ] El seed es manual, CLI, modular y seguro por entorno.
 - [ ] Pruebas usan PostgreSQL test, no la base de desarrollo.

@@ -13,20 +13,20 @@ y crea tenant context; service consulta por tenant desde el inicio. Rechaza
 
 ## Endpoints y permisos
 
-| Endpoint | Permiso | Caso |
-|---|---|---|
-| `POST /tickets` | `tickets:create` | Alta, folio e history inicial. |
-| `GET /tickets` | `tickets:read` | Filtros/paginación. |
-| `GET /tickets/:id` | `tickets:read` | Detalle según policy. |
-| `PATCH /tickets/:id` | `tickets:update` | Subject/category/priority bajo reglas. |
-| `POST /tickets/:id/assign` | `tickets:assign` | `assigneeMemberId` activo. |
-| `POST /tickets/:id/open` | `tickets:update` | Abre nuevo. |
-| `POST /tickets/:id/start` | `tickets:update` | Pasa en progreso. |
-| `POST /tickets/:id/wait-customer` | `tickets:update` | Espera externa. |
-| `POST /tickets/:id/wait-internal` | `tickets:update` | Espera interna. |
-| `POST /tickets/:id/resolve` | `tickets:close` | Summary requerido. |
-| `POST /tickets/:id/close` | `tickets:close` | Desde resolved. |
-| `POST /tickets/:id/reopen` | `tickets:reopen` | Razón obligatoria. |
+| Endpoint                          | Permiso          | Caso                                   |
+| --------------------------------- | ---------------- | -------------------------------------- |
+| `POST /tickets`                   | `tickets:create` | Alta, folio e history inicial.         |
+| `GET /tickets`                    | `tickets:read`   | Filtros/paginación.                    |
+| `GET /tickets/:id`                | `tickets:read`   | Detalle según policy.                  |
+| `PATCH /tickets/:id`              | `tickets:update` | Subject/category/priority bajo reglas. |
+| `POST /tickets/:id/assign`        | `tickets:assign` | `assigneeMemberId` activo.             |
+| `POST /tickets/:id/open`          | `tickets:update` | Abre nuevo.                            |
+| `POST /tickets/:id/start`         | `tickets:update` | Pasa en progreso.                      |
+| `POST /tickets/:id/wait-customer` | `tickets:update` | Espera externa.                        |
+| `POST /tickets/:id/wait-internal` | `tickets:update` | Espera interna.                        |
+| `POST /tickets/:id/resolve`       | `tickets:close`  | Summary requerido.                     |
+| `POST /tickets/:id/close`         | `tickets:close`  | Desde resolved.                        |
+| `POST /tickets/:id/reopen`        | `tickets:reopen` | Razón obligatoria.                     |
 
 DTOs validan UUID, texto, priority/status, category, assignee membership,
 idempotencyKey, filtros, versión y reason/summary. El service persiste el

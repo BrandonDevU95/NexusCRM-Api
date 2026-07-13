@@ -7,12 +7,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `SEED-{{MODULE}}-{{task_number}}` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint {{entry_checkpoint}} |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint {{return_checkpoint}} |
-| Rama esperada | `sdd/{{exact_branch}}` |
+| Dato          | Valor                                                   |
+| ------------- | ------------------------------------------------------- |
+| Código        | `SEED-{{MODULE}}-{{task_number}}`                       |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint {{entry_checkpoint}}  |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint {{return_checkpoint}} |
+| Rama esperada | `sdd/{{exact_branch}}`                                  |
 
 No continúes hasta que `migration:show` no tenga pendientes y {{endpoint_or_use_case}}
 funcione con datos creados manualmente.
@@ -24,17 +24,17 @@ poblarán todavía.
 
 ## Tipo de datos
 
-| Conjunto | Tipo | Cantidad | Identidad estable | Motivo |
-| --- | --- | --- | --- | --- |
+| Conjunto    | Tipo           | Cantidad         | Identidad estable         | Motivo     |
+| ----------- | -------------- | ---------------- | ------------------------- | ---------- |
 | {{dataset}} | reference/demo | {{count_or_env}} | {{code_or_synthetic_key}} | {{reason}} |
 
 No usar Faker para reference data.
 
 ## Configuración
 
-| Variable | Tipo Joi | Default | Mínimo/máximo | Secreto | Uso |
-| --- | --- | --- | --- | --- | --- |
-| `SEED_{{DOMAIN}}_COUNT` | integer | {{default}} | {{range}} | No | {{purpose}} |
+| Variable                | Tipo Joi | Default     | Mínimo/máximo | Secreto | Uso         |
+| ----------------------- | -------- | ----------- | ------------- | ------- | ----------- |
+| `SEED_{{DOMAIN}}_COUNT` | integer  | {{default}} | {{range}}     | No      | {{purpose}} |
 
 Indica cambios coordinados en `.env.example`, schema Joi y loader tipado.
 

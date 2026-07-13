@@ -54,16 +54,16 @@ Cuando Security B esté disponible habilita:
 
 Usa constantes tipadas y decoradores del catálogo Security:
 
-| Operación | Permiso |
-| --- | --- |
-| Leer settings administrativos | `settings:read` |
-| Actualizar settings | `settings:update` |
-| Leer catálogos | `catalogs:read` |
-| Administrar catálogos | `catalogs:manage` |
-| Leer formatos de secuencia | `number-sequences:read` |
-| Administrar formatos | `number-sequences:manage` |
-| Leer tasas | `tax-rates:read` |
-| Administrar tasas | `tax-rates:manage` |
+| Operación                     | Permiso                   |
+| ----------------------------- | ------------------------- |
+| Leer settings administrativos | `settings:read`           |
+| Actualizar settings           | `settings:update`         |
+| Leer catálogos                | `catalogs:read`           |
+| Administrar catálogos         | `catalogs:manage`         |
+| Leer formatos de secuencia    | `number-sequences:read`   |
+| Administrar formatos          | `number-sequences:manage` |
+| Leer tasas                    | `tax-rates:read`          |
+| Administrar tasas             | `tax-rates:manage`        |
 
 No escribas strings libres en controllers. Security B aplica
 `@RequirePermissions(...)` y pruebas de regresión a estos endpoints.

@@ -11,13 +11,13 @@ Construir la configuración ordenada que determina por qué etapas avanzan las o
 
 ## Registro de avance
 
-| Checkpoint | Estado | Evidencia / commit | Fecha |
-|---|---|---|---|
-| DB-PIPE-001 schema y `up/down/up` | [ ] | — | — |
-| DEV-PIPE-001 configuración y reorder | [ ] | — | — |
-| SEED-PIPE-001 ejecutado dos veces | [ ] | — | — |
-| TEST-PIPE-001 unit/integration/E2E | [ ] | — | — |
-| PR revisado, merge y limpieza | [ ] | — | — |
+| Checkpoint                           | Estado | Evidencia / commit | Fecha |
+| ------------------------------------ | ------ | ------------------ | ----- |
+| DB-PIPE-001 schema y `up/down/up`    | [ ]    | —                  | —     |
+| DEV-PIPE-001 configuración y reorder | [ ]    | —                  | —     |
+| SEED-PIPE-001 ejecutado dos veces    | [ ]    | —                  | —     |
+| TEST-PIPE-001 unit/integration/E2E   | [ ]    | —                  | —     |
+| PR revisado, merge y limpieza        | [ ]    | —                  | —     |
 
 Marca `[x]` únicamente con evidencia reproducible.
 

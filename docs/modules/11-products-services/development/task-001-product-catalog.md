@@ -13,19 +13,19 @@ y crea tenant context; service filtra por ese ID desde el query. Rechaza
 
 ## Endpoints y permisos
 
-| Endpoint | Permiso | Regla principal |
-|---|---|---|
-| `POST /product-categories` | `products:create` | Parent del tenant y sin cycle. |
-| `GET/PATCH /product-categories` | `products:read/update` | Listado administrable. |
-| `POST /product-units` | `products:create` | Code estable. |
-| `GET/PATCH /product-units` | `products:read/update` | No inactivar si rompe política. |
-| `POST /products` | `products:create` | Crea precio actual en transacción. |
-| `GET /products` | `products:read` | Search, type, category, status, inventory. |
-| `GET /products/:id` | `products:read` | Cost oculto sin `products:read-cost`. |
-| `PATCH /products/:id` | `products:update` | No cambia precio base silenciosamente. |
-| `POST /products/:id/base-price` | `products:manage-prices` | Cierra historial e inserta precio. |
-| `POST /products/:id/archive` | `products:delete` | Archivo lógico. |
-| `GET /products/:id/price-history` | `products:read` | Paginado; cost sigue protegido por `products:read-cost`. |
+| Endpoint                          | Permiso                  | Regla principal                                          |
+| --------------------------------- | ------------------------ | -------------------------------------------------------- |
+| `POST /product-categories`        | `products:create`        | Parent del tenant y sin cycle.                           |
+| `GET/PATCH /product-categories`   | `products:read/update`   | Listado administrable.                                   |
+| `POST /product-units`             | `products:create`        | Code estable.                                            |
+| `GET/PATCH /product-units`        | `products:read/update`   | No inactivar si rompe política.                          |
+| `POST /products`                  | `products:create`        | Crea precio actual en transacción.                       |
+| `GET /products`                   | `products:read`          | Search, type, category, status, inventory.               |
+| `GET /products/:id`               | `products:read`          | Cost oculto sin `products:read-cost`.                    |
+| `PATCH /products/:id`             | `products:update`        | No cambia precio base silenciosamente.                   |
+| `POST /products/:id/base-price`   | `products:manage-prices` | Cierra historial e inserta precio.                       |
+| `POST /products/:id/archive`      | `products:delete`        | Archivo lógico.                                          |
+| `GET /products/:id/price-history` | `products:read`          | Paginado; cost sigue protegido por `products:read-cost`. |
 
 DTOs validan SKU, nombres, UUID, money decimal como string/transformación segura,
 currency, type, status, límites y filtros. No aceptes floats como fuente de verdad.

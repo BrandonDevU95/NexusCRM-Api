@@ -35,20 +35,20 @@ del request context.
 
 ## Endpoints
 
-| Método y path | Permission | Resultado |
-| --- | --- | --- |
-| `POST /api/v1/knowledge/categories` | `knowledge-base:update` | Crear categoría |
-| `GET /api/v1/knowledge/categories` | `knowledge-base:read` | Árbol/lista tenant-safe |
-| `PATCH /api/v1/knowledge/categories/:id` | `knowledge-base:update` | Editar/reubicar |
-| `DELETE /api/v1/knowledge/categories/:id` | `knowledge-base:delete` | Archivar si no deja hijos inválidos |
-| `POST /api/v1/knowledge/tags` | `knowledge-base:update` | Crear tag |
-| `GET /api/v1/knowledge/tags` | `knowledge-base:read` | Buscar tags |
-| `POST /api/v1/knowledge/articles` | `knowledge-base:create` | Crear draft |
-| `GET /api/v1/knowledge/articles` | `knowledge-base:read` | Buscar y paginar |
-| `GET /api/v1/knowledge/articles/:id` | `knowledge-base:read` | Obtener article del tenant |
-| `PATCH /api/v1/knowledge/articles/:id` | `knowledge-base:update` | Editar contenido/metadata |
-| `POST /api/v1/knowledge/articles/:id/publish` | `knowledge-base:publish` | Publicar atómicamente |
-| `POST /api/v1/knowledge/articles/:id/archive` | `knowledge-base:delete` | Archivar sin hard delete |
+| Método y path                                 | Permission               | Resultado                           |
+| --------------------------------------------- | ------------------------ | ----------------------------------- |
+| `POST /api/v1/knowledge/categories`           | `knowledge-base:update`  | Crear categoría                     |
+| `GET /api/v1/knowledge/categories`            | `knowledge-base:read`    | Árbol/lista tenant-safe             |
+| `PATCH /api/v1/knowledge/categories/:id`      | `knowledge-base:update`  | Editar/reubicar                     |
+| `DELETE /api/v1/knowledge/categories/:id`     | `knowledge-base:delete`  | Archivar si no deja hijos inválidos |
+| `POST /api/v1/knowledge/tags`                 | `knowledge-base:update`  | Crear tag                           |
+| `GET /api/v1/knowledge/tags`                  | `knowledge-base:read`    | Buscar tags                         |
+| `POST /api/v1/knowledge/articles`             | `knowledge-base:create`  | Crear draft                         |
+| `GET /api/v1/knowledge/articles`              | `knowledge-base:read`    | Buscar y paginar                    |
+| `GET /api/v1/knowledge/articles/:id`          | `knowledge-base:read`    | Obtener article del tenant          |
+| `PATCH /api/v1/knowledge/articles/:id`        | `knowledge-base:update`  | Editar contenido/metadata           |
+| `POST /api/v1/knowledge/articles/:id/publish` | `knowledge-base:publish` | Publicar atómicamente               |
+| `POST /api/v1/knowledge/articles/:id/archive` | `knowledge-base:delete`  | Archivar sin hard delete            |
 
 ## Reglas y transacciones
 

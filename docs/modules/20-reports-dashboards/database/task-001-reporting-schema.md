@@ -12,22 +12,22 @@ orders o tickets ni almacenan resultados que puedan quedar obsoletos.
 
 ## `report_definitions`
 
-| Campo | Tipo | Regla |
-| --- | --- | --- |
-| `id` | uuid PK | PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `code` | varchar(100) | estable por tenant |
-| `name` | varchar(160) | requerido |
-| `description` | text | nullable |
-| `domain` | varchar(50) | `SALES`, `CRM`, `INVENTORY`, `SUPPORT` |
-| `query_key` | varchar(100) | referencia a executor registrado |
-| `definition` | jsonb | dimensions, metrics y filters allowlisted |
-| `required_permission` | varchar(120) | requerido |
-| `default_date_range_days` | integer | positivo y acotado |
-| `max_date_range_days` | integer | positivo, mayor al default |
-| `is_system` | boolean | reference definition |
-| `is_active` | boolean | default true |
-| timestamps | timestamptz | requeridos |
+| Campo                     | Tipo         | Regla                                     |
+| ------------------------- | ------------ | ----------------------------------------- |
+| `id`                      | uuid PK      | PostgreSQL                                |
+| `organization_id`         | uuid FK      | requerido                                 |
+| `code`                    | varchar(100) | estable por tenant                        |
+| `name`                    | varchar(160) | requerido                                 |
+| `description`             | text         | nullable                                  |
+| `domain`                  | varchar(50)  | `SALES`, `CRM`, `INVENTORY`, `SUPPORT`    |
+| `query_key`               | varchar(100) | referencia a executor registrado          |
+| `definition`              | jsonb        | dimensions, metrics y filters allowlisted |
+| `required_permission`     | varchar(120) | requerido                                 |
+| `default_date_range_days` | integer      | positivo y acotado                        |
+| `max_date_range_days`     | integer      | positivo, mayor al default                |
+| `is_system`               | boolean      | reference definition                      |
+| `is_active`               | boolean      | default true                              |
+| timestamps                | timestamptz  | requeridos                                |
 
 Unique `organization_id, code`; índice organization/domain/active. Check de date
 ranges. Organization es lado uno, definitions lado muchos, FK `RESTRICT`.
@@ -47,20 +47,20 @@ validan contra definition en application.
 
 ## `dashboard_widgets`
 
-| Campo | Tipo | Regla |
-| --- | --- | --- |
-| `id` | uuid PK | PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `report_definition_id` | uuid FK | requerido |
-| `owner_member_id` | uuid FK | nullable para widget organizational |
-| `scope` | varchar(20) | `PERSONAL` o `ORGANIZATION` |
-| `title` | varchar(160) | requerido |
-| `widget_type` | varchar(30) | `KPI`, `TABLE`, `BAR`, `LINE`, `FUNNEL` |
-| `configuration` | jsonb | metric/dimension/filter allowlisted |
-| `position_row`, `position_column` | integer | no negativos |
-| `width`, `height` | integer | rangos de grid |
-| `is_visible` | boolean | default true |
-| timestamps | timestamptz | requeridos |
+| Campo                             | Tipo         | Regla                                   |
+| --------------------------------- | ------------ | --------------------------------------- |
+| `id`                              | uuid PK      | PostgreSQL                              |
+| `organization_id`                 | uuid FK      | requerido                               |
+| `report_definition_id`            | uuid FK      | requerido                               |
+| `owner_member_id`                 | uuid FK      | nullable para widget organizational     |
+| `scope`                           | varchar(20)  | `PERSONAL` o `ORGANIZATION`             |
+| `title`                           | varchar(160) | requerido                               |
+| `widget_type`                     | varchar(30)  | `KPI`, `TABLE`, `BAR`, `LINE`, `FUNNEL` |
+| `configuration`                   | jsonb        | metric/dimension/filter allowlisted     |
+| `position_row`, `position_column` | integer      | no negativos                            |
+| `width`, `height`                 | integer      | rangos de grid                          |
+| `is_visible`                      | boolean      | default true                            |
+| timestamps                        | timestamptz  | requeridos                              |
 
 Checks de scope/owner y dimensiones. Organization, definition y owner son lado
 uno; widgets lado muchos. FKs `RESTRICT`. Unique de posición por dashboard scope

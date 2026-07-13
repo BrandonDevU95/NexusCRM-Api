@@ -9,26 +9,26 @@
 
 ### Tabla `calendar_events`
 
-| Columna | Tipo | Regla | Motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Identidad. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `title` | `varchar(200)` | no nulo | Nombre visible. |
-| `description` | `text` | nulo | Detalle. |
-| `event_type` | `varchar(30)` | `MEETING` | `MEETING`, `CALL`, `VISIT`, `BLOCK`, `OTHER`. |
-| `status` | `varchar(20)` | `CONFIRMED` | `TENTATIVE`, `CONFIRMED`, `CANCELLED`. |
-| `organizer_member_id` | `uuid` | no nulo | Membership responsable. |
-| `is_all_day` | `boolean` | `false` | Distingue fecha civil de instante. |
-| `starts_at` | `timestamptz` | nulo | Inicio timed. |
-| `ends_at` | `timestamptz` | nulo | Fin timed. |
-| `starts_on` | `date` | nulo | Inicio all-day. |
-| `ends_on` | `date` | nulo | Fin all-day inclusivo según contrato. |
-| `timezone` | `varchar(80)` | no nulo | Zona IANA para presentación/edición. |
-| `location` | `varchar(300)` | nulo | Lugar o enlace saneado. |
-| `customer_id`/`contact_id`/`lead_id`/`deal_id` | `uuid` | nulos | Contexto CRM. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
-| `cancelled_at` | `timestamptz` | nulo | Coherencia terminal. |
-| `archived_at` | `timestamptz` | nulo | Archivo lógico. |
+| Columna                                        | Tipo           | Regla       | Motivo                                        |
+| ---------------------------------------------- | -------------- | ----------- | --------------------------------------------- |
+| `id`                                           | `uuid`         | PK          | Identidad.                                    |
+| `organization_id`                              | `uuid`         | no nulo     | Tenant.                                       |
+| `title`                                        | `varchar(200)` | no nulo     | Nombre visible.                               |
+| `description`                                  | `text`         | nulo        | Detalle.                                      |
+| `event_type`                                   | `varchar(30)`  | `MEETING`   | `MEETING`, `CALL`, `VISIT`, `BLOCK`, `OTHER`. |
+| `status`                                       | `varchar(20)`  | `CONFIRMED` | `TENTATIVE`, `CONFIRMED`, `CANCELLED`.        |
+| `organizer_member_id`                          | `uuid`         | no nulo     | Membership responsable.                       |
+| `is_all_day`                                   | `boolean`      | `false`     | Distingue fecha civil de instante.            |
+| `starts_at`                                    | `timestamptz`  | nulo        | Inicio timed.                                 |
+| `ends_at`                                      | `timestamptz`  | nulo        | Fin timed.                                    |
+| `starts_on`                                    | `date`         | nulo        | Inicio all-day.                               |
+| `ends_on`                                      | `date`         | nulo        | Fin all-day inclusivo según contrato.         |
+| `timezone`                                     | `varchar(80)`  | no nulo     | Zona IANA para presentación/edición.          |
+| `location`                                     | `varchar(300)` | nulo        | Lugar o enlace saneado.                       |
+| `customer_id`/`contact_id`/`lead_id`/`deal_id` | `uuid`         | nulos       | Contexto CRM.                                 |
+| `created_at`/`updated_at`                      | `timestamptz`  | no nulos    | Auditoría.                                    |
+| `cancelled_at`                                 | `timestamptz`  | nulo        | Coherencia terminal.                          |
+| `archived_at`                                  | `timestamptz`  | nulo        | Archivo lógico.                               |
 
 Checks: tipo/estado; título no vacío; si `is_all_day=false`, exige `starts_at` y
 `ends_at`, prohíbe dates y exige fin posterior; si `true`, exige `starts_on` y

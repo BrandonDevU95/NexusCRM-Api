@@ -69,38 +69,38 @@ El número de carpeta conserva el número original de la propuesta. La columna
 `Paso` expresa el orden técnico. Seguridad e Inventario tienen dos pasadas para
 resolver sus dependencias, pero siguen siendo un solo módulo cada uno.
 
-| Paso | Ruta | Resultado |
-| ---: | --- | --- |
-| 0 | [Foundation](modules/00-foundation/LEARNING-PATH.md) | NestJS, entorno, Docker, TypeORM, migraciones, seed y tests base |
-| 1 | [Platform and configuration](modules/01-platform-configuration/LEARNING-PATH.md) | Settings, catálogos, impuestos y secuencias |
-| 2 | [Security A](modules/02-security-access/LEARNING-PATH.md) | Users, credenciales, login, sesiones y tokens |
-| 3 | [Organizations](modules/03-organizations/LEARNING-PATH.md) | Organizaciones, membresías y tenant context |
-| 4 | [Security B](modules/02-security-access/LEARNING-PATH.md) | Roles por organización, permisos y CASL |
-| 5 | [Audit](modules/22-audit-logs/LEARNING-PATH.md) | Auditoría transversal y security logs |
-| 6 | [Customers](modules/04-customers/LEARNING-PATH.md) | Cuentas, notas, tags e historial |
-| 7 | [Contacts](modules/05-contacts/LEARNING-PATH.md) | Contactos y preferencias |
-| 8 | [Products](modules/11-products-services/LEARNING-PATH.md) | Productos, servicios, categorías y unidades |
-| 9 | [Price lists](modules/12-price-lists/LEARNING-PATH.md) | Precios efectivos por cliente y vigencia |
-| 10 | [Pipelines](modules/07-sales-pipeline/LEARNING-PATH.md) | Pipelines y etapas configurables |
-| 11 | [Leads A](modules/06-leads/LEARNING-PATH.md) | Captura, asignación, scoring y calificación |
-| 12 | [Deals](modules/08-deals/LEARNING-PATH.md) | Oportunidades, productos e historial de etapa |
-| 13 | [Leads B](modules/06-leads/LEARNING-PATH.md) | Conversión atómica a customer/contact/deal |
-| 14 | [Activities](modules/09-activities/LEARNING-PATH.md) | Timeline, comentarios y adjuntos |
-| 15 | [Calendar and tasks](modules/10-calendar-tasks/LEARNING-PATH.md) | Tareas, asignaciones, eventos y recordatorios |
-| 16 | [Notifications](modules/19-notifications/LEARNING-PATH.md) | In-app, preferencias, plantillas y entregas |
-| 17 | [Quotes](modules/13-quotes/LEARNING-PATH.md) | Cotización, aprobación, PDF y snapshots |
-| 18 | [Inventory A](modules/15-inventory/LEARNING-PATH.md) | Almacenes, ubicaciones, stock y movimientos |
-| 19 | [Orders](modules/14-orders-sales/LEARNING-PATH.md) | Órdenes, surtidos y estados comerciales |
-| 20 | [Inventory B](modules/15-inventory/LEARNING-PATH.md) | Reservas, liberación, consumo y devolución |
-| 21 | [Knowledge base A](modules/17-knowledge-base/LEARNING-PATH.md) | Artículos, categorías, tags, publicación y búsqueda |
-| 22 | [Tickets](modules/16-support-tickets/LEARNING-PATH.md) | Soporte, conversaciones, adjuntos y reapertura |
-| 23 | [Knowledge base B](modules/17-knowledge-base/LEARNING-PATH.md) | Asociación tenant-safe entre tickets y artículos |
-| 24 | [Automations](modules/18-automations/LEARNING-PATH.md) | Triggers, condiciones, acciones y ejecuciones |
-| 25 | [Reports](modules/20-reports-dashboards/LEARNING-PATH.md) | Dashboards y reportes operativos/comerciales |
-| 26 | [Import and export](modules/21-import-export/LEARNING-PATH.md) | CSV, Excel, PDF, preview y jobs |
-| 27 | [Audit B](modules/22-audit-logs/LEARNING-PATH.md) | Consulta, retención, redacción y operación final de logs |
-| 28 | [Administration](modules/23-system-administration/LEARNING-PATH.md) | Orquestación administrativa y hardening final |
-| 29 | [v1 acceptance](release/V1-ACCEPTANCE.md) | Verificación integral, tag y primer release estable |
+| Paso | Ruta                                                                             | Resultado                                                        |
+| ---: | -------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+|    0 | [Foundation](modules/00-foundation/LEARNING-PATH.md)                             | NestJS, entorno, Docker, TypeORM, migraciones, seed y tests base |
+|    1 | [Platform and configuration](modules/01-platform-configuration/LEARNING-PATH.md) | Settings, catálogos, impuestos y secuencias                      |
+|    2 | [Security A](modules/02-security-access/LEARNING-PATH.md)                        | Users, credenciales, login, sesiones y tokens                    |
+|    3 | [Organizations](modules/03-organizations/LEARNING-PATH.md)                       | Organizaciones, membresías y tenant context                      |
+|    4 | [Security B](modules/02-security-access/LEARNING-PATH.md)                        | Roles por organización, permisos y CASL                          |
+|    5 | [Audit](modules/22-audit-logs/LEARNING-PATH.md)                                  | Auditoría transversal y security logs                            |
+|    6 | [Customers](modules/04-customers/LEARNING-PATH.md)                               | Cuentas, notas, tags e historial                                 |
+|    7 | [Contacts](modules/05-contacts/LEARNING-PATH.md)                                 | Contactos y preferencias                                         |
+|    8 | [Products](modules/11-products-services/LEARNING-PATH.md)                        | Productos, servicios, categorías y unidades                      |
+|    9 | [Price lists](modules/12-price-lists/LEARNING-PATH.md)                           | Precios efectivos por cliente y vigencia                         |
+|   10 | [Pipelines](modules/07-sales-pipeline/LEARNING-PATH.md)                          | Pipelines y etapas configurables                                 |
+|   11 | [Leads A](modules/06-leads/LEARNING-PATH.md)                                     | Captura, asignación, scoring y calificación                      |
+|   12 | [Deals](modules/08-deals/LEARNING-PATH.md)                                       | Oportunidades, productos e historial de etapa                    |
+|   13 | [Leads B](modules/06-leads/LEARNING-PATH.md)                                     | Conversión atómica a customer/contact/deal                       |
+|   14 | [Activities](modules/09-activities/LEARNING-PATH.md)                             | Timeline, comentarios y adjuntos                                 |
+|   15 | [Calendar and tasks](modules/10-calendar-tasks/LEARNING-PATH.md)                 | Tareas, asignaciones, eventos y recordatorios                    |
+|   16 | [Notifications](modules/19-notifications/LEARNING-PATH.md)                       | In-app, preferencias, plantillas y entregas                      |
+|   17 | [Quotes](modules/13-quotes/LEARNING-PATH.md)                                     | Cotización, aprobación, PDF y snapshots                          |
+|   18 | [Inventory A](modules/15-inventory/LEARNING-PATH.md)                             | Almacenes, ubicaciones, stock y movimientos                      |
+|   19 | [Orders](modules/14-orders-sales/LEARNING-PATH.md)                               | Órdenes, surtidos y estados comerciales                          |
+|   20 | [Inventory B](modules/15-inventory/LEARNING-PATH.md)                             | Reservas, liberación, consumo y devolución                       |
+|   21 | [Knowledge base A](modules/17-knowledge-base/LEARNING-PATH.md)                   | Artículos, categorías, tags, publicación y búsqueda              |
+|   22 | [Tickets](modules/16-support-tickets/LEARNING-PATH.md)                           | Soporte, conversaciones, adjuntos y reapertura                   |
+|   23 | [Knowledge base B](modules/17-knowledge-base/LEARNING-PATH.md)                   | Asociación tenant-safe entre tickets y artículos                 |
+|   24 | [Automations](modules/18-automations/LEARNING-PATH.md)                           | Triggers, condiciones, acciones y ejecuciones                    |
+|   25 | [Reports](modules/20-reports-dashboards/LEARNING-PATH.md)                        | Dashboards y reportes operativos/comerciales                     |
+|   26 | [Import and export](modules/21-import-export/LEARNING-PATH.md)                   | CSV, Excel, PDF, preview y jobs                                  |
+|   27 | [Audit B](modules/22-audit-logs/LEARNING-PATH.md)                                | Consulta, retención, redacción y operación final de logs         |
+|   28 | [Administration](modules/23-system-administration/LEARNING-PATH.md)              | Orquestación administrativa y hardening final                    |
+|   29 | [v1 acceptance](release/V1-ACCEPTANCE.md)                                        | Verificación integral, tag y primer release estable              |
 
 ## Primer paso
 

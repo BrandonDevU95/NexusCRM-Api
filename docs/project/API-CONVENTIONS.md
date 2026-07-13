@@ -46,14 +46,14 @@ o tenant-scoped.
 
 ## Métodos y status codes
 
-| Operación | Método | Éxito normal |
-| --- | --- | --- |
-| Crear recurso | `POST` | `201 Created` |
-| Listar/consultar | `GET` | `200 OK` |
-| Actualización parcial | `PATCH` | `200 OK` |
-| Reemplazar asignación | `PUT` | `200 OK` |
-| Acción sin body de respuesta | según caso | `204 No Content` |
-| Archivar mediante endpoint DELETE | `DELETE` | `204 No Content` |
+| Operación                         | Método     | Éxito normal     |
+| --------------------------------- | ---------- | ---------------- |
+| Crear recurso                     | `POST`     | `201 Created`    |
+| Listar/consultar                  | `GET`      | `200 OK`         |
+| Actualización parcial             | `PATCH`    | `200 OK`         |
+| Reemplazar asignación             | `PUT`      | `200 OK`         |
+| Acción sin body de respuesta      | según caso | `204 No Content` |
+| Archivar mediante endpoint DELETE | `DELETE`   | `204 No Content` |
 
 No uses `200` para todos los casos. Un DELETE comercial casi siempre archiva o
 cancela según el dominio; la task explica el comportamiento real.

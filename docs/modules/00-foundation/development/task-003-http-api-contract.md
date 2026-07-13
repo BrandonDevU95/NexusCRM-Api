@@ -2,12 +2,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `DEV-FND-003` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint `FND-005` |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint `FND-005` |
-| Rama esperada | `sdd/add-api-foundation` |
+| Dato          | Valor                                       |
+| ------------- | ------------------------------------------- |
+| Código        | `DEV-FND-003`                               |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint `FND-005` |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint `FND-005` |
+| Rama esperada | `sdd/add-api-foundation`                    |
 
 No continúes hasta que el health endpoint, validation, error envelope,
 correlation ID y Swagger compartan un contrato verificable bajo `/api/v1`.
@@ -206,10 +206,10 @@ de infraestructura.
 
 Agrega variables y Joi:
 
-| Variable | Regla |
-| --- | --- |
+| Variable          | Regla                                                              |
+| ----------------- | ------------------------------------------------------------------ |
 | `SWAGGER_ENABLED` | boolean; true en dev/test según example, false por default en prod |
-| `SWAGGER_PATH` | path local válido, sin URL externa ni traversal |
+| `SWAGGER_PATH`    | path local válido, sin URL externa ni traversal                    |
 
 Swagger debe definir:
 

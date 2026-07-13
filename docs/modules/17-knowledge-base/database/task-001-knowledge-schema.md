@@ -11,18 +11,18 @@
 
 ### `knowledge_categories`
 
-| Campo | Tipo | Nulabilidad y regla |
-| --- | --- | --- |
-| `id` | uuid PK | generado por PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `parent_category_id` | uuid FK self | nullable para categoría raíz |
-| `name` | varchar(120) | requerido |
-| `slug` | varchar(140) | requerido y normalizado |
-| `description` | text | nullable |
-| `sort_order` | integer | requerido, default 0, no negativo |
-| `is_active` | boolean | requerido, default true |
-| `created_at`, `updated_at` | timestamptz | requeridos |
-| `archived_at` | timestamptz | nullable |
+| Campo                      | Tipo         | Nulabilidad y regla               |
+| -------------------------- | ------------ | --------------------------------- |
+| `id`                       | uuid PK      | generado por PostgreSQL           |
+| `organization_id`          | uuid FK      | requerido                         |
+| `parent_category_id`       | uuid FK self | nullable para categoría raíz      |
+| `name`                     | varchar(120) | requerido                         |
+| `slug`                     | varchar(140) | requerido y normalizado           |
+| `description`              | text         | nullable                          |
+| `sort_order`               | integer      | requerido, default 0, no negativo |
+| `is_active`                | boolean      | requerido, default true           |
+| `created_at`, `updated_at` | timestamptz  | requeridos                        |
+| `archived_at`              | timestamptz  | nullable                          |
 
 Unique `UQ_knowledge_categories_organization_slug` por
 `organization_id, slug`. Índices por `organization_id, is_active, sort_order` y
@@ -36,22 +36,22 @@ antes de archivar/eliminar físicamente.
 
 ### `knowledge_articles`
 
-| Campo | Tipo | Nulabilidad y regla |
-| --- | --- | --- |
-| `id` | uuid PK | generado por PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `category_id` | uuid FK | requerido |
-| `author_member_id` | uuid FK | requerido |
-| `title` | varchar(200) | requerido |
-| `slug` | varchar(220) | requerido |
-| `summary` | varchar(500) | nullable |
-| `content` | text | requerido |
-| `status` | varchar(20) | `DRAFT`, `PUBLISHED`, `ARCHIVED` |
-| `visibility` | varchar(20) | `INTERNAL` o `PUBLIC` |
-| `search_vector` | tsvector | derivado de title, summary y content |
-| `published_at` | timestamptz | nullable; requerido lógicamente al publicar |
-| `archived_at` | timestamptz | nullable |
-| `created_at`, `updated_at` | timestamptz | requeridos |
+| Campo                      | Tipo         | Nulabilidad y regla                         |
+| -------------------------- | ------------ | ------------------------------------------- |
+| `id`                       | uuid PK      | generado por PostgreSQL                     |
+| `organization_id`          | uuid FK      | requerido                                   |
+| `category_id`              | uuid FK      | requerido                                   |
+| `author_member_id`         | uuid FK      | requerido                                   |
+| `title`                    | varchar(200) | requerido                                   |
+| `slug`                     | varchar(220) | requerido                                   |
+| `summary`                  | varchar(500) | nullable                                    |
+| `content`                  | text         | requerido                                   |
+| `status`                   | varchar(20)  | `DRAFT`, `PUBLISHED`, `ARCHIVED`            |
+| `visibility`               | varchar(20)  | `INTERNAL` o `PUBLIC`                       |
+| `search_vector`            | tsvector     | derivado de title, summary y content        |
+| `published_at`             | timestamptz  | nullable; requerido lógicamente al publicar |
+| `archived_at`              | timestamptz  | nullable                                    |
+| `created_at`, `updated_at` | timestamptz  | requeridos                                  |
 
 Unique `organization_id, slug`. Check de coherencia entre status y
 `published_at`. Índices por organization/status/visibility, category y author;

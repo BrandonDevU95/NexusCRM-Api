@@ -21,7 +21,7 @@ pistas y el cierre Git indicado por su orquestador.
 - [ ] Consulta y relaciones aplican tenant scope.
 - [ ] Permiso y policy están declarados.
 - [ ] Todo permission code usado por decorator/guard existe exactamente en el
-  catálogo seed; el contract test del registry no reporta códigos faltantes.
+      catálogo seed; el contract test del registry no reporta códigos faltantes.
 - [ ] Operaciones múltiples son atómicas e idempotentes cuando corresponde.
 - [ ] Errores usan status y mensajes coherentes sin filtrar secretos.
 - [ ] Listados tienen búsqueda/filtros/paginación si aplica.

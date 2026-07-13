@@ -8,30 +8,30 @@ inglés.
 
 ## TypeScript y archivos
 
-| Elemento | Convención | Ejemplo |
-| --- | --- | --- |
-| variables/functions/properties | `camelCase` | `organizationId`, `findActiveCustomer` |
-| classes/types/enums | `PascalCase` | `Customer`, `CustomerStatus` |
-| constants | `UPPER_SNAKE_CASE` | `DEFAULT_PAGE_SIZE` |
-| files/folders | `kebab-case` | `customer-status-history.entity.ts` |
-| Nest modules | plural por dominio | `CustomersModule` |
-| DTO | acción + recurso | `CreateCustomerDto` |
-| events | hecho en pasado | `CustomerCreatedEvent` |
+| Elemento                       | Convención         | Ejemplo                                |
+| ------------------------------ | ------------------ | -------------------------------------- |
+| variables/functions/properties | `camelCase`        | `organizationId`, `findActiveCustomer` |
+| classes/types/enums            | `PascalCase`       | `Customer`, `CustomerStatus`           |
+| constants                      | `UPPER_SNAKE_CASE` | `DEFAULT_PAGE_SIZE`                    |
+| files/folders                  | `kebab-case`       | `customer-status-history.entity.ts`    |
+| Nest modules                   | plural por dominio | `CustomersModule`                      |
+| DTO                            | acción + recurso   | `CreateCustomerDto`                    |
+| events                         | hecho en pasado    | `CustomerCreatedEvent`                 |
 
 No uses nombres genéricos como `data`, `item`, `manager`, `helper` o `process`
 cuando el dominio permite uno preciso.
 
 ## PostgreSQL
 
-| Elemento | Convención | Ejemplo |
-| --- | --- | --- |
-| tables | plural `snake_case` | `organization_members` |
-| columns | singular `snake_case` | `organization_id` |
-| primary key | `id` | `customers.id` |
-| foreign key column | `<parent>_id` | `customer_id` |
-| timestamps | `<event>_at` | `created_at`, `archived_at` |
-| booleans | `is_`, `has_`, `can_` | `is_primary` |
-| business codes | `code` o específico | `quote_number` |
+| Elemento           | Convención            | Ejemplo                     |
+| ------------------ | --------------------- | --------------------------- |
+| tables             | plural `snake_case`   | `organization_members`      |
+| columns            | singular `snake_case` | `organization_id`           |
+| primary key        | `id`                  | `customers.id`              |
+| foreign key column | `<parent>_id`         | `customer_id`               |
+| timestamps         | `<event>_at`          | `created_at`, `archived_at` |
+| booleans           | `is_`, `has_`, `can_` | `is_primary`                |
+| business codes     | `code` o específico   | `quote_number`              |
 
 La property TypeScript puede ser `organizationId` y mapear explícitamente a
 `organization_id`. No cambies de convención entre módulos.

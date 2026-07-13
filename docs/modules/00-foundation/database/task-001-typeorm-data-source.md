@@ -2,12 +2,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `DB-FND-001` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint `FND-003` |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint `FND-003` |
-| Rama esperada | `sdd/add-api-foundation` |
+| Dato          | Valor                                       |
+| ------------- | ------------------------------------------- |
+| Código        | `DB-FND-001`                                |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint `FND-003` |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint `FND-003` |
+| Rama esperada | `sdd/add-api-foundation`                    |
 
 No continúes hasta que NestJS y la CLI obtengan la misma configuración,
 `migration:show` conecte con PostgreSQL y ninguna tabla de dominio se cree por
@@ -80,18 +80,18 @@ No pongas lógica de negocio ni repositories de módulos en `database/`.
 
 ## Opciones obligatorias
 
-| Opción | Decisión | Motivo |
-| --- | --- | --- |
-| Type | PostgreSQL | Motor oficial del proyecto |
-| Host, port, database, user, password | Environment validado | Nada hardcodeado |
-| SSL | Environment con regla por entorno | Desarrollo y producción difieren |
-| Logging | Environment | Diagnóstico controlado |
-| Pool size | Environment validado | Evitar un default invisible |
-| `synchronize` | `false` | Schema solo por migraciones |
-| `migrationsRun` | `false` | Acción explícita |
-| Entities | Source en CLI y compiled en runtime productivo | Mismo inventario lógico |
-| Migrations | Source para CLI y compiled para runtime de despliegue | Historia única |
-| Migration table | nombre explícito y estable | Facilitar inspección |
+| Opción                               | Decisión                                              | Motivo                           |
+| ------------------------------------ | ----------------------------------------------------- | -------------------------------- |
+| Type                                 | PostgreSQL                                            | Motor oficial del proyecto       |
+| Host, port, database, user, password | Environment validado                                  | Nada hardcodeado                 |
+| SSL                                  | Environment con regla por entorno                     | Desarrollo y producción difieren |
+| Logging                              | Environment                                           | Diagnóstico controlado           |
+| Pool size                            | Environment validado                                  | Evitar un default invisible      |
+| `synchronize`                        | `false`                                               | Schema solo por migraciones      |
+| `migrationsRun`                      | `false`                                               | Acción explícita                 |
+| Entities                             | Source en CLI y compiled en runtime productivo        | Mismo inventario lógico          |
+| Migrations                           | Source para CLI y compiled para runtime de despliegue | Historia única                   |
+| Migration table                      | nombre explícito y estable                            | Facilitar inspección             |
 
 No uses `autoLoadEntities` como sustituto de pensar qué carga la CLI. Puede ser
 útil en runtime, pero el `DataSource` debe conocer las mismas entities para
@@ -113,13 +113,13 @@ primer diff generado.
 Configura wrappers que oculten solamente la repetición de `DataSource`, no el
 nombre del cambio:
 
-| Script | Responsabilidad |
-| --- | --- |
-| `migration:create` | Crear archivo vacío para cambios manuales |
-| `migration:generate` | Comparar entities contra schema actual |
-| `migration:show` | Listar aplicadas y pendientes |
-| `migration:run` | Aplicar pendientes en orden |
-| `migration:revert` | Revertir únicamente la última aplicada |
+| Script               | Responsabilidad                           |
+| -------------------- | ----------------------------------------- |
+| `migration:create`   | Crear archivo vacío para cambios manuales |
+| `migration:generate` | Comparar entities contra schema actual    |
+| `migration:show`     | Listar aplicadas y pendientes             |
+| `migration:run`      | Aplicar pendientes en orden               |
+| `migration:revert`   | Revertir únicamente la última aplicada    |
 
 El proyecto NestJS usa el formato de módulos del starter, así que el wrapper de
 CLI debe elegir el executable TypeORM compatible con ese formato y apuntar a

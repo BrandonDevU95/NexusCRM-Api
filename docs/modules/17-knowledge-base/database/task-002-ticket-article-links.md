@@ -15,15 +15,15 @@ la migración.
 
 ## `ticket_knowledge_articles`
 
-| Campo | Tipo | Regla |
-| --- | --- | --- |
-| `id` | uuid PK | generado por PostgreSQL |
-| `organization_id` | uuid FK | requerido |
-| `ticket_id` | uuid FK | requerido |
-| `article_id` | uuid FK | requerido |
-| `linked_by_member_id` | uuid FK | requerido |
-| `note` | varchar(500) | nullable |
-| `linked_at` | timestamptz | requerido |
+| Campo                 | Tipo         | Regla                   |
+| --------------------- | ------------ | ----------------------- |
+| `id`                  | uuid PK      | generado por PostgreSQL |
+| `organization_id`     | uuid FK      | requerido               |
+| `ticket_id`           | uuid FK      | requerido               |
+| `article_id`          | uuid FK      | requerido               |
+| `linked_by_member_id` | uuid FK      | requerido               |
+| `note`                | varchar(500) | nullable                |
+| `linked_at`           | timestamptz  | requerido               |
 
 Unique `UQ_ticket_knowledge_articles_ticket_article` por `ticket_id, article_id`.
 Índices por `organization_id, ticket_id` y `organization_id, article_id`.

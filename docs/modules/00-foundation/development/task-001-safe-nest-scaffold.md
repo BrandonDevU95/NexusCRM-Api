@@ -2,12 +2,12 @@
 
 ## Navegación
 
-| Dato | Valor |
-| --- | --- |
-| Código | `DEV-FND-001` |
-| Vienes de | `../LEARNING-PATH.md`, checkpoint `FND-001` |
-| Regresas a | `../LEARNING-PATH.md`, checkpoint `FND-001` |
-| Rama esperada | `sdd/add-api-foundation` |
+| Dato          | Valor                                       |
+| ------------- | ------------------------------------------- |
+| Código        | `DEV-FND-001`                               |
+| Vienes de     | `../LEARNING-PATH.md`, checkpoint `FND-001` |
+| Regresas a    | `../LEARNING-PATH.md`, checkpoint `FND-001` |
+| Rama esperada | `sdd/add-api-foundation`                    |
 
 No continúes hasta que NestJS arranque, las versiones estén fijadas y todos los
 documentos preexistentes permanezcan intactos.

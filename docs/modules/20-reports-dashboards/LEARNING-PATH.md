@@ -2,12 +2,12 @@
 
 ## Identidad
 
-| Dato | Valor |
-| --- | --- |
-| Alcance original | Módulo 20: Reports and Dashboards |
-| Código | `RPT` |
-| Rama | `sdd/add-reports-dashboards` |
-| Hito | Parte de `v0.9.0`; no crea tag por sí solo |
+| Dato             | Valor                                      |
+| ---------------- | ------------------------------------------ |
+| Alcance original | Módulo 20: Reports and Dashboards          |
+| Código           | `RPT`                                      |
+| Rama             | `sdd/add-reports-dashboards`               |
+| Hito             | Parte de `v0.9.0`; no crea tag por sí solo |
 
 ## Resultado esperado
 

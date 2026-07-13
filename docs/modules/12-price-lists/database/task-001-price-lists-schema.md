@@ -9,23 +9,23 @@
 
 ### Tabla `price_lists`
 
-| Columna | Tipo | Regla | Motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Identidad. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `code` | `varchar(60)` | no nulo | Clave estable. |
-| `name` | `varchar(140)` | no nulo | Etiqueta. |
-| `price_list_type` | `varchar(20)` | no nulo | `PUBLIC`, `DISTRIBUTOR`, `WHOLESALE`, `SPECIAL`. |
-| `currency` | `char(3)` | no nulo | Moneda única de la lista. |
-| `priority` | `integer` | `0` | Mayor número gana dentro de candidatos. |
-| `base_discount_percent` | `numeric(5,2)` | `0` | Descuento fallback de lista. |
-| `valid_from` | `timestamptz` | no nulo | Inicio inclusivo. |
-| `valid_to` | `timestamptz` | nulo | Fin exclusivo. |
-| `is_default` | `boolean` | `false` | Fallback público por moneda. |
-| `status` | `varchar(20)` | `DRAFT` | `DRAFT`, `ACTIVE`, `INACTIVE`. |
-| `created_by_member_id` | `uuid` | no nulo | Membership creadora. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
-| `archived_at` | `timestamptz` | nulo | Archivo lógico. |
+| Columna                   | Tipo           | Regla    | Motivo                                           |
+| ------------------------- | -------------- | -------- | ------------------------------------------------ |
+| `id`                      | `uuid`         | PK       | Identidad.                                       |
+| `organization_id`         | `uuid`         | no nulo  | Tenant.                                          |
+| `code`                    | `varchar(60)`  | no nulo  | Clave estable.                                   |
+| `name`                    | `varchar(140)` | no nulo  | Etiqueta.                                        |
+| `price_list_type`         | `varchar(20)`  | no nulo  | `PUBLIC`, `DISTRIBUTOR`, `WHOLESALE`, `SPECIAL`. |
+| `currency`                | `char(3)`      | no nulo  | Moneda única de la lista.                        |
+| `priority`                | `integer`      | `0`      | Mayor número gana dentro de candidatos.          |
+| `base_discount_percent`   | `numeric(5,2)` | `0`      | Descuento fallback de lista.                     |
+| `valid_from`              | `timestamptz`  | no nulo  | Inicio inclusivo.                                |
+| `valid_to`                | `timestamptz`  | nulo     | Fin exclusivo.                                   |
+| `is_default`              | `boolean`      | `false`  | Fallback público por moneda.                     |
+| `status`                  | `varchar(20)`  | `DRAFT`  | `DRAFT`, `ACTIVE`, `INACTIVE`.                   |
+| `created_by_member_id`    | `uuid`         | no nulo  | Membership creadora.                             |
+| `created_at`/`updated_at` | `timestamptz`  | no nulos | Auditoría.                                       |
+| `archived_at`             | `timestamptz`  | nulo     | Archivo lógico.                                  |
 
 Constraints: unique `(organization_id, code)`, currency mayúscula, priority
 acotada no negativa, descuento `0..100`, `valid_to > valid_from`, type/status.
@@ -35,21 +35,21 @@ Agrega `UQ_price_lists_organization_id_id(organization_id,id)`. Índices
 
 ### Tabla `price_list_items`
 
-| Columna | Tipo | Regla | Motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Identidad. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `price_list_id` | `uuid` | no nulo | Lista padre. |
-| `product_id` | `uuid` | no nulo | Producto/servicio. |
-| `minimum_quantity` | `numeric(19,4)` | `1`, >0 | Tier por volumen. |
-| `fixed_price` | `numeric(19,4)` | nulo, >=0 | Precio directo. |
-| `discount_percent` | `numeric(5,2)` | nulo, `0..100` | Descuento sobre base. |
-| `valid_from` | `timestamptz` | no nulo | Inicio de esta versión del item. |
-| `valid_to` | `timestamptz` | nulo | Override de fin. |
-| `closed_by_member_id` | `uuid` | nulo | FK compuesta membership, `RESTRICT`; actor de cierre manual. |
-| `close_idempotency_key` | `varchar(150)` | nulo | Identidad persistida del close action. |
-| `close_request_fingerprint` | `char(64)` | nulo | Hash del cierre. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
+| Columna                     | Tipo            | Regla          | Motivo                                                       |
+| --------------------------- | --------------- | -------------- | ------------------------------------------------------------ |
+| `id`                        | `uuid`          | PK             | Identidad.                                                   |
+| `organization_id`           | `uuid`          | no nulo        | Tenant.                                                      |
+| `price_list_id`             | `uuid`          | no nulo        | Lista padre.                                                 |
+| `product_id`                | `uuid`          | no nulo        | Producto/servicio.                                           |
+| `minimum_quantity`          | `numeric(19,4)` | `1`, >0        | Tier por volumen.                                            |
+| `fixed_price`               | `numeric(19,4)` | nulo, >=0      | Precio directo.                                              |
+| `discount_percent`          | `numeric(5,2)`  | nulo, `0..100` | Descuento sobre base.                                        |
+| `valid_from`                | `timestamptz`   | no nulo        | Inicio de esta versión del item.                             |
+| `valid_to`                  | `timestamptz`   | nulo           | Override de fin.                                             |
+| `closed_by_member_id`       | `uuid`          | nulo           | FK compuesta membership, `RESTRICT`; actor de cierre manual. |
+| `close_idempotency_key`     | `varchar(150)`  | nulo           | Identidad persistida del close action.                       |
+| `close_request_fingerprint` | `char(64)`      | nulo           | Hash del cierre.                                             |
+| `created_at`/`updated_at`   | `timestamptz`   | no nulos       | Auditoría.                                                   |
 
 `CK_price_list_items_one_pricing_method` exige exactamente uno de fixed/discount.
 Unique parcial `(price_list_id, product_id, minimum_quantity)` donde
@@ -60,20 +60,20 @@ campos de cierre manual son todos nulos o todos no nulos; key unique por tenant.
 
 ### Tabla `customer_price_lists`
 
-| Columna | Tipo | Regla | Motivo |
-|---|---|---|---|
-| `id` | `uuid` | PK | Permite historial. |
-| `organization_id` | `uuid` | no nulo | Tenant. |
-| `customer_id` | `uuid` | no nulo | Customer asignado. |
-| `price_list_id` | `uuid` | no nulo | Lista candidata. |
-| `priority_override` | `integer` | nulo | Excepción explícita por customer. |
-| `valid_from` | `timestamptz` | no nulo | Inicio inclusivo. |
-| `valid_to` | `timestamptz` | nulo | Fin exclusivo. |
-| `assigned_by_member_id` | `uuid` | no nulo | Membership que asignó. |
-| `idempotency_key` | `varchar(150)` | no nulo | Assign action persistida. |
-| `request_fingerprint` | `char(64)` | no nulo | Hash customer/list/vigencia. |
-| `created_at`/`updated_at` | `timestamptz` | no nulos | Auditoría. |
-| `revoked_at` | `timestamptz` | nulo | Revocación lógica. |
+| Columna                   | Tipo           | Regla    | Motivo                            |
+| ------------------------- | -------------- | -------- | --------------------------------- |
+| `id`                      | `uuid`         | PK       | Permite historial.                |
+| `organization_id`         | `uuid`         | no nulo  | Tenant.                           |
+| `customer_id`             | `uuid`         | no nulo  | Customer asignado.                |
+| `price_list_id`           | `uuid`         | no nulo  | Lista candidata.                  |
+| `priority_override`       | `integer`      | nulo     | Excepción explícita por customer. |
+| `valid_from`              | `timestamptz`  | no nulo  | Inicio inclusivo.                 |
+| `valid_to`                | `timestamptz`  | nulo     | Fin exclusivo.                    |
+| `assigned_by_member_id`   | `uuid`         | no nulo  | Membership que asignó.            |
+| `idempotency_key`         | `varchar(150)` | no nulo  | Assign action persistida.         |
+| `request_fingerprint`     | `char(64)`     | no nulo  | Hash customer/list/vigencia.      |
+| `created_at`/`updated_at` | `timestamptz`  | no nulos | Auditoría.                        |
+| `revoked_at`              | `timestamptz`  | nulo     | Revocación lógica.                |
 
 Unique parcial `(customer_id, price_list_id)` donde `revoked_at is null`;
 checks de vigencia/priority; índice de resolución en `(organization_id,

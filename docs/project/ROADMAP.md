@@ -3,18 +3,18 @@
 Este roadmap no es un MVP reducido. Los hitos son puntos de aprendizaje y
 releases intermedios; `v1.0.0` exige los 23 módulos y los flujos end-to-end.
 
-| Hito | Resultado | Módulos principales |
-| --- | --- | --- |
-| `v0.1.0` | Foundation ejecutable | Scaffold, config Joi, Compose, PostgreSQL, TypeORM, migraciones, Swagger, health, seed/test base |
-| `v0.2.0` | Identidad y aislamiento | Platform, Security A/B, Organizations, Audit inicial y outbox publisher |
-| `v0.3.0` | CRM core y sus catálogos requeridos | Customers, Contacts, Products, Price Lists, Pipelines y Leads A |
-| `v0.4.0` | Pipeline y oportunidades | Deals, Leads B, Activities, Calendar/Tasks y Notifications |
-| `v0.5.0` | Ventas base | Quotes, Inventory A y Orders; la integración de reserva se completa en el siguiente hito |
-| `v0.6.0` | Inventario funcional | Inventory B, reservas, surtidos, devoluciones y alertas |
-| `v0.7.0` | Postventa | Knowledge Base y Support Tickets |
-| `v0.8.0` | Orquestación | Automations y dispatcher/reintentos del outbox existente |
-| `v0.9.0` | Visibilidad y operación completa | Reports, Import/Export, Audit final y System Administration |
-| `v1.0.0` | CRM estable end-to-end | Hardening, seguridad, rendimiento y aceptación integral |
+| Hito     | Resultado                           | Módulos principales                                                                              |
+| -------- | ----------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `v0.1.0` | Foundation ejecutable               | Scaffold, config Joi, Compose, PostgreSQL, TypeORM, migraciones, Swagger, health, seed/test base |
+| `v0.2.0` | Identidad y aislamiento             | Platform, Security A/B, Organizations, Audit inicial y outbox publisher                          |
+| `v0.3.0` | CRM core y sus catálogos requeridos | Customers, Contacts, Products, Price Lists, Pipelines y Leads A                                  |
+| `v0.4.0` | Pipeline y oportunidades            | Deals, Leads B, Activities, Calendar/Tasks y Notifications                                       |
+| `v0.5.0` | Ventas base                         | Quotes, Inventory A y Orders; la integración de reserva se completa en el siguiente hito         |
+| `v0.6.0` | Inventario funcional                | Inventory B, reservas, surtidos, devoluciones y alertas                                          |
+| `v0.7.0` | Postventa                           | Knowledge Base y Support Tickets                                                                 |
+| `v0.8.0` | Orquestación                        | Automations y dispatcher/reintentos del outbox existente                                         |
+| `v0.9.0` | Visibilidad y operación completa    | Reports, Import/Export, Audit final y System Administration                                      |
+| `v1.0.0` | CRM estable end-to-end              | Hardening, seguridad, rendimiento y aceptación integral                                          |
 
 ## Criterios de release
 

@@ -67,15 +67,15 @@ comportamiento de Internet.
 
 Todos usan `X-Organization-Id` y membership activa.
 
-| Método y path | Permission | Acción |
-| --- | --- | --- |
-| `GET /api/v1/notifications` | `notifications:read` | Lista del recipient actual con filtros/paginación |
-| `GET /api/v1/notifications/unread-count` | `notifications:read` | Conteo unread |
-| `POST /api/v1/notifications/:id/read` | `notifications:read` | Marca propia como leída |
-| `POST /api/v1/notifications/read-all` | `notifications:read` | Marca propias del tenant en transacción |
-| `GET /api/v1/notification-preferences` | `notifications:read` | Preferencias propias |
-| `PUT /api/v1/notification-preferences` | `notifications:update-preferences` | Upsert allowlisted |
-| CRUD `/api/v1/notification-templates` | `notification-templates:manage` | Gestión y versionado |
+| Método y path                            | Permission                         | Acción                                            |
+| ---------------------------------------- | ---------------------------------- | ------------------------------------------------- |
+| `GET /api/v1/notifications`              | `notifications:read`               | Lista del recipient actual con filtros/paginación |
+| `GET /api/v1/notifications/unread-count` | `notifications:read`               | Conteo unread                                     |
+| `POST /api/v1/notifications/:id/read`    | `notifications:read`               | Marca propia como leída                           |
+| `POST /api/v1/notifications/read-all`    | `notifications:read`               | Marca propias del tenant en transacción           |
+| `GET /api/v1/notification-preferences`   | `notifications:read`               | Preferencias propias                              |
+| `PUT /api/v1/notification-preferences`   | `notifications:update-preferences` | Upsert allowlisted                                |
+| CRUD `/api/v1/notification-templates`    | `notification-templates:manage`    | Gestión y versionado                              |
 
 DTOs: `NotificationQueryDto`, `UpdateNotificationPreferencesDto`,
 `CreateNotificationTemplateDto`, `CreateNotificationTemplateVersionDto` y

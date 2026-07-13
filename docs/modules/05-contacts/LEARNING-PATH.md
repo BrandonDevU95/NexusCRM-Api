@@ -14,13 +14,13 @@ Modelar personas relacionadas con un cliente, su contacto principal y preferenci
 Marca `[x]` solo con evidencia real y conserva el commit o resultado que permite
 retomar esta ruta sin adivinar qué quedó pendiente.
 
-| Checkpoint | Estado | Evidencia / commit | Fecha |
-|---|---|---|---|
-| DB-CONT-001 schema y `up/down/up` | [ ] | — | — |
-| DEV-CONT-001 lifecycle y principal transaccional | [ ] | — | — |
-| SEED-CONT-001 dos ejecuciones idempotentes | [ ] | — | — |
-| TEST-CONT-001 unit/integration/E2E | [ ] | — | — |
-| PR revisado, merge y limpieza de rama | [ ] | — | — |
+| Checkpoint                                       | Estado | Evidencia / commit | Fecha |
+| ------------------------------------------------ | ------ | ------------------ | ----- |
+| DB-CONT-001 schema y `up/down/up`                | [ ]    | —                  | —     |
+| DEV-CONT-001 lifecycle y principal transaccional | [ ]    | —                  | —     |
+| SEED-CONT-001 dos ejecuciones idempotentes       | [ ]    | —                  | —     |
+| TEST-CONT-001 unit/integration/E2E               | [ ]    | —                  | —     |
+| PR revisado, merge y limpieza de rama            | [ ]    | —                  | —     |
 
 ## Rama exacta
 
