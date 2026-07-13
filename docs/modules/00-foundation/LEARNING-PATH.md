@@ -42,14 +42,14 @@ No necesitas leerlos completos ahora: cada tarea te envía a la sección que usa
 
 ## Prerrequisitos
 
-- [ ] El repositorio contiene `README.md`, `AGENTS.md`, `.gitignore` y `docs/`.
-- [ ] No existen todavía `src/`, `test/`, `package.json` o `pnpm-lock.yaml` en
+- [x] El repositorio contiene `README.md`, `AGENTS.md`, `.gitignore` y `docs/`.
+- [x] No existen todavía `src/`, `test/`, `package.json` o `pnpm-lock.yaml` en
       la raíz.
-- [ ] `git status --short --branch` no muestra cambios ajenos.
-- [ ] Node informa `v24.17.0`.
-- [ ] pnpm informa `11.12.0`.
-- [ ] Docker Desktop está disponible y `docker version` responde.
-- [ ] `gh --version` responde y `gh auth status` confirma la cuenta correcta, o
+- [x] `git status --short --branch` no muestra cambios ajenos.
+- [x] Node informa `v24.17.0`.
+- [x] pnpm informa `11.12.0`.
+- [x] Docker Desktop está disponible y `docker version` responde.
+- [x] `gh --version` responde y `gh auth status` confirma la cuenta correcta, o
       se decidió usar la interfaz web para PRs/releases.
 
 Si ya existe alguno de los archivos de aplicación, no lo sobrescribas. Revisa
