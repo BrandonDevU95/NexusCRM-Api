@@ -32,7 +32,9 @@ diagnosticar; no deben implementar módulos completos salvo petición explícita
 ## Flujo de trabajo
 
 - No implementar cambios grandes directamente en `main`.
-- Usar ramas `feature/<description>`, `fix/<description>` o `docs/<description>`.
+- Usar ramas `sdd/<description>` para tareas funcionales, `fix/<description>`
+  para defectos, `docs/<description>` para documentación o
+  `chore/<description>` para mantenimiento/tooling.
 - Usar Conventional Commits sin atribución de IA.
 - No ejecutar `build` salvo que el usuario lo solicite o se cierre un hito.
 - Antes de cerrar una tarea, ejecutar las verificaciones indicadas por su guía.
