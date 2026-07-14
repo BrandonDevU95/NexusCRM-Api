@@ -1,17 +1,15 @@
-import { Module } from '@nestjs/common';
+import { getEnvironmentFile, loadEnvironment } from './env.loader';
+
 import { ConfigModule } from '@nestjs/config';
-
-import { loadEnvironment } from './env.loader';
+import { Module } from '@nestjs/common';
 import { validateEnvironment } from './env.validation';
-
-const environmentFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       cache: true,
-      envFilePath: environmentFile,
+      envFilePath: getEnvironmentFile(),
       validate: validateEnvironment,
       load: [loadEnvironment],
     }),

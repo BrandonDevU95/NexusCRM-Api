@@ -22,6 +22,10 @@ function toBoolean(environment: EnvironmentValues, key: string): boolean {
   return value === 'true' || value === '1';
 }
 
+export function getEnvironmentFile(): string {
+  return process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+}
+
 export function loadEnvironment(
   environment: EnvironmentValues = process.env,
 ): AppConfig {
