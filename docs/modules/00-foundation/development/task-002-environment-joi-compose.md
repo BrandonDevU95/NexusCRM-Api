@@ -283,15 +283,15 @@ el puerto. Restaura `.env` después de cada caso.
 
 ## Definition of Done
 
-- [ ] Dependencias instaladas con versiones exactas.
-- [ ] `.env` y `.env.test` están ignorados.
-- [ ] Ambos example files documentan todas las variables.
-- [ ] Joi valida tipos, rangos y reglas por entorno.
-- [ ] `synchronize` y `migrationsRun` no pueden activarse accidentalmente.
-- [ ] Compose obtiene imágenes, credenciales, puertos y nombres desde env.
-- [ ] PostgreSQL development y test usan volumes distintos y llegan a healthy.
-- [ ] pgAdmin es opcional.
-- [ ] Cuatro fallos deliberados detienen el arranque sin filtrar secretos.
+- [x] Dependencias instaladas con versiones exactas.
+- [x] `.env` y `.env.test` están ignorados.
+- [x] Ambos example files documentan todas las variables.
+- [x] Joi valida tipos, rangos y reglas por entorno.
+- [x] `synchronize` y `migrationsRun` no pueden activarse accidentalmente.
+- [x] Compose obtiene imágenes, credenciales, puertos y nombres desde env.
+- [x] PostgreSQL development y test usan volumes distintos y llegan a healthy.
+- [x] pgAdmin es opcional.
+- [x] Cuatro fallos deliberados detienen el arranque sin filtrar secretos.
 
 ## Regreso
 
