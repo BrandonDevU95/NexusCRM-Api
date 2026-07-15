@@ -3,7 +3,10 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { CorrelationIdInterceptor } from './common/interceptors/correlation-id.interceptor';
+import {
+  correlationIdMiddleware,
+  CorrelationIdInterceptor,
+} from './common/interceptors/correlation-id.interceptor';
 import { API_PREFIX } from './common/constants/api.constants';
 import helmet from 'helmet';
 import compression from 'compression';
@@ -42,6 +45,7 @@ async function bootstrap() {
   }
 
   app.setGlobalPrefix(API_PREFIX);
+  app.use(correlationIdMiddleware);
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

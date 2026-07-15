@@ -3,6 +3,7 @@ import {
   BadRequestException,
   HttpException,
   Logger,
+  NotFoundException,
 } from '@nestjs/common';
 import type { Request, Response } from 'express';
 
@@ -10,13 +11,14 @@ import { GlobalExceptionFilter } from './global-exception.filter';
 
 interface HttpMocks {
   host: ArgumentsHost;
-  response: Pick<Response, 'status' | 'json'>;
+  response: Pick<Response, 'status' | 'json' | 'setHeader'>;
 }
 
 function createHttpMocks(request: Partial<Request>): HttpMocks {
   const response = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
+    setHeader: jest.fn(),
   };
 
   const host = {
@@ -62,11 +64,12 @@ describe('GlobalExceptionFilter', () => {
     expect(response.json).toHaveBeenCalledWith(
       expect.objectContaining({
         statusCode: 400,
+        code: 'VALIDATION_ERROR',
+        message: 'La solicitud contiene datos inválidos',
+        details: ['name must not be empty'],
         path: '/api/customers',
         method: 'POST',
         correlationId: 'request-123',
-        message: ['name must not be empty'],
-        error: 'Bad Request',
         timestamp: timestampMatcher,
       }),
     );
@@ -82,9 +85,10 @@ describe('GlobalExceptionFilter', () => {
     expect(error).not.toHaveBeenCalled();
   });
 
-  it('preserves string HTTP exception responses', () => {
+  it('preserves safe messages from string HTTP exception responses', () => {
     const stackMatcher: unknown = expect.any(String);
     const { host, response } = createHttpMocks({
+      correlationId: 'request-503',
       originalUrl: '/api/reports',
       method: 'GET',
       get: jest.fn(),
@@ -97,8 +101,9 @@ describe('GlobalExceptionFilter', () => {
     expect(response.json).toHaveBeenCalledWith(
       expect.objectContaining({
         message: 'Report unavailable',
-        error: 'HttpException',
-        correlationId: 'correlation-id-unavailable',
+        code: 'SERVICE_UNAVAILABLE',
+        details: [],
+        correlationId: 'request-503',
       }),
     );
     expect(error).toHaveBeenCalledWith(
@@ -126,8 +131,9 @@ describe('GlobalExceptionFilter', () => {
     expect(response.json).toHaveBeenCalledWith(
       expect.objectContaining({
         statusCode: 500,
+        code: 'INTERNAL_SERVER_ERROR',
         message: 'Internal server error',
-        error: 'Internal Server Error',
+        details: [],
       }),
     );
     expect(error).toHaveBeenCalledWith(
@@ -138,5 +144,59 @@ describe('GlobalExceptionFilter', () => {
       }),
     );
     expect(warn).not.toHaveBeenCalled();
+  });
+
+  it('generates a correlation ID when an unmatched route reaches the filter', () => {
+    const { host, response } = createHttpMocks({
+      originalUrl: '/api/v1/missing',
+      method: 'GET',
+      get: jest.fn(),
+      ip: '127.0.0.1',
+    });
+
+    filter.catch(new NotFoundException(), host);
+
+    expect(response.status).toHaveBeenCalledWith(404);
+    expect(response.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'NOT_FOUND',
+        details: [],
+        correlationId: expect.stringMatching(
+          /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+        ),
+      }),
+    );
+    expect(response.setHeader).toHaveBeenCalledWith(
+      'x-correlation-id',
+      expect.any(String),
+    );
+  });
+
+  it('does not serialize Terminus diagnostic objects into a 503 response', () => {
+    const { host, response } = createHttpMocks({
+      correlationId: 'request-503',
+      originalUrl: '/api/v1/health',
+      method: 'GET',
+      get: jest.fn(),
+      ip: '127.0.0.1',
+    });
+    const exception = new HttpException(
+      {
+        status: 'error',
+        error: { database: { status: 'down' } },
+        details: { database: { status: 'down' } },
+      },
+      503,
+    );
+
+    filter.catch(exception, host);
+
+    expect(response.json).toHaveBeenCalledWith(
+      expect.objectContaining({
+        code: 'SERVICE_UNAVAILABLE',
+        details: [],
+        message: 'Service unavailable',
+      }),
+    );
   });
 });

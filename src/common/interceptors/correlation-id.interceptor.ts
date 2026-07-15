@@ -8,15 +8,56 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
-import type { Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 import { randomUUID } from 'node:crypto';
+
+export const CORRELATION_ID_HEADER = 'x-correlation-id';
+export const MAX_CORRELATION_ID_LENGTH = 128;
+
+/**
+ * Allows one to 128 ASCII letters, numbers, dots, underscores, or hyphens.
+ * The restriction prevents an untrusted request header from becoming an
+ * unbounded response header or log field.
+ */
+export const CORRELATION_ID_PATTERN = new RegExp(
+  `^[a-zA-Z0-9._-]{1,${MAX_CORRELATION_ID_LENGTH}}$`,
+);
+
+export function assignCorrelationId(
+  request: Request,
+  response: Response,
+): string {
+  const correlationId =
+    request.correlationId ??
+    createCorrelationId(request.get(CORRELATION_ID_HEADER));
+
+  request.correlationId = correlationId;
+  response.setHeader(CORRELATION_ID_HEADER, correlationId);
+
+  return correlationId;
+}
+
+export function correlationIdMiddleware(
+  request: Request,
+  response: Response,
+  next: NextFunction,
+): void {
+  assignCorrelationId(request, response);
+  next();
+}
+
+function createCorrelationId(value: string | undefined): string {
+  return isValidCorrelationId(value) ? value : randomUUID();
+}
+
+function isValidCorrelationId(value: string | undefined): value is string {
+  return typeof value === 'string' && CORRELATION_ID_PATTERN.test(value);
+}
 
 @Injectable()
 export class CorrelationIdInterceptor implements NestInterceptor {
   private readonly logger = new Logger(CorrelationIdInterceptor.name);
-
-  private readonly correlationIdPattern = /^[a-zA-Z0-9._-]{1,100}$/;
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     if (context.getType() !== 'http') {
@@ -29,15 +70,7 @@ export class CorrelationIdInterceptor implements NestInterceptor {
 
     const response = httpContext.getResponse<Response>();
 
-    const providedCorrelationId = request.get('x-correlation-id');
-
-    const correlationId = this.isValidCorrelationId(providedCorrelationId)
-      ? providedCorrelationId
-      : randomUUID();
-
-    request.correlationId = correlationId;
-
-    response.setHeader('x-correlation-id', correlationId);
+    const correlationId = assignCorrelationId(request, response);
 
     const startedAt = process.hrtime.bigint();
 
@@ -61,10 +94,6 @@ export class CorrelationIdInterceptor implements NestInterceptor {
         },
       }),
     );
-  }
-
-  private isValidCorrelationId(value: string | undefined): value is string {
-    return typeof value === 'string' && this.correlationIdPattern.test(value);
   }
 
   private logRequest(

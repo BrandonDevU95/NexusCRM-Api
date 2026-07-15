@@ -8,20 +8,21 @@ import {
 } from '@nestjs/common';
 import type { Request, Response } from 'express';
 
+import { assignCorrelationId } from '../interceptors/correlation-id.interceptor';
+
 interface ErrorResponse {
   statusCode: number;
+  code: string;
+  message: string;
+  details: string[];
   timestamp: string;
   path: string;
   method: string;
   correlationId: string;
-  message: string | string[];
-  error?: string;
 }
 
 interface HttpExceptionResponse {
-  statusCode?: number;
-  message?: string | string[];
-  error?: string;
+  message?: unknown;
 }
 
 @Catch()
@@ -35,18 +36,16 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const response = context.getResponse<Response>();
 
     const statusCode = this.getStatusCode(exception);
-    const exceptionResponse = this.getExceptionResponse(exception);
 
-    const correlationId = request.correlationId ?? 'correlation-id-unavailable';
+    const correlationId = assignCorrelationId(request, response);
 
     const responseBody: ErrorResponse = {
       statusCode,
+      ...this.getErrorContract(exception, statusCode),
       timestamp: new Date().toISOString(),
       path: request.originalUrl,
       method: request.method,
       correlationId,
-      message: exceptionResponse.message,
-      ...(exceptionResponse.error ? { error: exceptionResponse.error } : {}),
     };
 
     this.logException({
@@ -67,33 +66,117 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     return HttpStatus.INTERNAL_SERVER_ERROR;
   }
 
-  private getExceptionResponse(
+  private getErrorContract(
     exception: unknown,
-  ): Required<Pick<HttpExceptionResponse, 'message'>> &
-    Pick<HttpExceptionResponse, 'error'> {
+    statusCode: number,
+  ): Pick<ErrorResponse, 'code' | 'message' | 'details'> {
     if (!(exception instanceof HttpException)) {
       return {
+        code: 'INTERNAL_SERVER_ERROR',
         message: 'Internal server error',
-        error: 'Internal Server Error',
+        details: [],
       };
     }
 
     const response = exception.getResponse();
+    const details = this.getValidationDetails(response);
 
-    if (typeof response === 'string') {
+    if (details.length > 0) {
       return {
-        message: response,
-        error: exception.name,
+        code: 'VALIDATION_ERROR',
+        message: 'La solicitud contiene datos inválidos',
+        details,
       };
     }
 
-    const responseObject = response as HttpExceptionResponse;
-
     return {
-      message:
-        responseObject.message ?? exception.message ?? 'Unexpected error',
-      error: responseObject.error ?? exception.name,
+      code: this.getErrorCode(statusCode),
+      message: this.getSafeHttpMessage(response, statusCode),
+      details: [],
     };
+  }
+
+  private getValidationDetails(response: unknown): string[] {
+    if (!this.isHttpExceptionResponse(response)) {
+      return [];
+    }
+
+    return Array.isArray(response.message)
+      ? response.message.filter(
+          (detail): detail is string => typeof detail === 'string',
+        )
+      : [];
+  }
+
+  private getSafeHttpMessage(response: unknown, statusCode: number): string {
+    if (typeof response === 'string') {
+      return response;
+    }
+
+    if (
+      this.isHttpExceptionResponse(response) &&
+      typeof response.message === 'string'
+    ) {
+      return response.message;
+    }
+
+    return this.getDefaultHttpMessage(statusCode);
+  }
+
+  private isHttpExceptionResponse(
+    response: unknown,
+  ): response is HttpExceptionResponse {
+    return typeof response === 'object' && response !== null;
+  }
+
+  private getErrorCode(statusCode: number): string {
+    switch (statusCode) {
+      case HttpStatus.BAD_REQUEST:
+        return 'BAD_REQUEST';
+      case HttpStatus.UNAUTHORIZED:
+        return 'UNAUTHORIZED';
+      case HttpStatus.FORBIDDEN:
+        return 'FORBIDDEN';
+      case HttpStatus.NOT_FOUND:
+        return 'NOT_FOUND';
+      case HttpStatus.METHOD_NOT_ALLOWED:
+        return 'METHOD_NOT_ALLOWED';
+      case HttpStatus.CONFLICT:
+        return 'CONFLICT';
+      case HttpStatus.UNPROCESSABLE_ENTITY:
+        return 'UNPROCESSABLE_ENTITY';
+      case HttpStatus.TOO_MANY_REQUESTS:
+        return 'TOO_MANY_REQUESTS';
+      case HttpStatus.SERVICE_UNAVAILABLE:
+        return 'SERVICE_UNAVAILABLE';
+      default:
+        return 'HTTP_ERROR';
+    }
+  }
+
+  private getDefaultHttpMessage(statusCode: number): string {
+    switch (statusCode) {
+      case HttpStatus.BAD_REQUEST:
+        return 'Bad request';
+      case HttpStatus.UNAUTHORIZED:
+        return 'Unauthorized';
+      case HttpStatus.FORBIDDEN:
+        return 'Forbidden';
+      case HttpStatus.NOT_FOUND:
+        return 'Resource not found';
+      case HttpStatus.METHOD_NOT_ALLOWED:
+        return 'Method not allowed';
+      case HttpStatus.CONFLICT:
+        return 'Conflict';
+      case HttpStatus.UNPROCESSABLE_ENTITY:
+        return 'Unprocessable entity';
+      case HttpStatus.TOO_MANY_REQUESTS:
+        return 'Too many requests';
+      case HttpStatus.SERVICE_UNAVAILABLE:
+        return 'Service unavailable';
+      default:
+        return 'Request failed';
+    }
   }
 
   private logException(params: {

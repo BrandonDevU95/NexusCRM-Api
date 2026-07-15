@@ -7,7 +7,11 @@ import {
 import type { Request, Response } from 'express';
 import { firstValueFrom, of, throwError } from 'rxjs';
 
-import { CorrelationIdInterceptor } from './correlation-id.interceptor';
+import {
+  correlationIdMiddleware,
+  CorrelationIdInterceptor,
+  MAX_CORRELATION_ID_LENGTH,
+} from './correlation-id.interceptor';
 
 function createHttpContext(correlationId?: string): {
   context: ExecutionContext;
@@ -51,10 +55,24 @@ describe('CorrelationIdInterceptor', () => {
     );
   });
 
+  it('accepts correlation IDs up to the documented maximum length', async () => {
+    const correlationId = 'a'.repeat(MAX_CORRELATION_ID_LENGTH);
+    const { context, request, response } = createHttpContext(correlationId);
+    const handler: CallHandler = { handle: () => of(undefined) };
+
+    await firstValueFrom(interceptor.intercept(context, handler));
+
+    expect(request.correlationId).toBe(correlationId);
+    expect(response.setHeader).toHaveBeenCalledWith(
+      'x-correlation-id',
+      correlationId,
+    );
+  });
+
   it.each([
     ['a missing value', undefined],
     ['characters outside the allowed set', 'trace id!'],
-    ['a value longer than 100 characters', 'a'.repeat(101)],
+    ['a value longer than 128 characters', 'a'.repeat(129)],
   ])('generates an ID for %s', async (_description, providedCorrelationId) => {
     const { context, request, response } = createHttpContext(
       providedCorrelationId,
@@ -87,6 +105,25 @@ describe('CorrelationIdInterceptor', () => {
 
     expect(switchToHttp).not.toHaveBeenCalled();
     expect(handle).toHaveBeenCalledTimes(1);
+  });
+
+  it('assigns the correlation ID before routing middleware', () => {
+    const request = {
+      get: jest.fn().mockReturnValue('before-router-001'),
+    } as unknown as Request;
+    const response = {
+      setHeader: jest.fn(),
+    } as unknown as Response;
+    const next = jest.fn();
+
+    correlationIdMiddleware(request, response, next);
+
+    expect(request.correlationId).toBe('before-router-001');
+    expect(response.setHeader).toHaveBeenCalledWith(
+      'x-correlation-id',
+      'before-router-001',
+    );
+    expect(next).toHaveBeenCalledTimes(1);
   });
 
   it('logs failed HTTP requests with the exception status code', async () => {
