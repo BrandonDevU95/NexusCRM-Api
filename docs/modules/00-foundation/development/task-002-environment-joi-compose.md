@@ -84,7 +84,7 @@ migraciones.
 | `NODE_ENV`                    | `dev`, `test` o `prod`; requerida                                     |
 | `APP_HOST`                    | hostname válido; requerida                                            |
 | `APP_PORT`                    | integer entre 1 y 65535; requerida                                    |
-| `API_PREFIX`                  | segmento sin URL completa; requerido                                  |
+| `APP_VERSION`                 | versión SemVer; requerida y expuesta por el health endpoint           |
 | `CORS_ORIGINS`                | lista explícita; wildcard rechazado en `prod`                         |
 | `COMPRESSION_ENABLED`         | boolean; `false` cuando un proxy o CDN comprime la respuesta          |
 | `COMPRESSION_THRESHOLD_BYTES` | entero entre 1024 y 1048576; tamaño mínimo para considerar compresión |

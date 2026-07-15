@@ -5,7 +5,6 @@ export interface AppConfig {
     environment: NodeEnvironment;
     host: string;
     port: number;
-    apiPrefix: string;
     corsOrigins: string[];
     compressionEnabled: boolean;
     compressionThresholdBytes: number;

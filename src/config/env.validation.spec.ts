@@ -5,7 +5,6 @@ function validEnvironment(): Record<string, string> {
     NODE_ENV: 'dev',
     APP_HOST: 'localhost',
     APP_PORT: '3000',
-    API_PREFIX: 'api/v1',
     CORS_ORIGINS: 'http://localhost:3000',
     COMPRESSION_ENABLED: 'true',
     COMPRESSION_THRESHOLD_BYTES: '2048',

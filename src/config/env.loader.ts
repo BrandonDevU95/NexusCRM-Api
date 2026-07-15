@@ -34,7 +34,6 @@ export function loadEnvironment(
       environment: requiredString(environment, 'NODE_ENV') as NodeEnvironment,
       host: requiredString(environment, 'APP_HOST'),
       port: toInteger(environment, 'APP_PORT'),
-      apiPrefix: requiredString(environment, 'API_PREFIX'),
       corsOrigins: requiredString(environment, 'CORS_ORIGINS')
         .split(',')
         .map((origin) => origin.trim()),

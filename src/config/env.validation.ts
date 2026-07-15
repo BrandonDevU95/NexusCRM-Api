@@ -1,9 +1,6 @@
 import * as Joi from 'joi';
 
-import {
-  API_PREFIX,
-  SWAGGER_DEFAULT_PATH,
-} from '../common/constants/api.constants';
+import { SWAGGER_DEFAULT_PATH } from '../common/constants/api.constants';
 import type { NodeEnvironment } from './env.types';
 
 type EnvironmentValues = Record<string, unknown>;
@@ -90,7 +87,6 @@ const environmentSchema = Joi.object({
     .try(Joi.string().valid('localhost'), Joi.string().hostname())
     .required(),
   APP_PORT: integerString(1, 65535).required(),
-  API_PREFIX: Joi.string().trim().valid(API_PREFIX).required(),
   APP_VERSION: Joi.string()
     .trim()
     .pattern(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/)
