@@ -7,6 +7,7 @@ import { CorrelationIdInterceptor } from './common/interceptors/correlation-id.i
 import { API_PREFIX } from './common/constants/api.constants';
 import helmet from 'helmet';
 import compression from 'compression';
+import type { NextFunction, Request, Response } from 'express';
 
 import type { AppConfig } from './config/env.types';
 import { GlobalExceptionFilter } from './common/filters/global-exception.filter';
@@ -19,7 +20,7 @@ import {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService<AppConfig, true>);
-  const appConfig = config.getOrThrow('app', { infer: true });
+  const appConfig = config.getOrThrow<AppConfig['app']>('app');
 
   const apiHelmet = helmet(createHelmetOptions(appConfig.environment));
   const swaggerHelmet = helmet(
@@ -27,17 +28,13 @@ async function bootstrap() {
   );
   const swaggerPath = `/${appConfig.swaggerPath}`;
 
-  app.use((request, response, next) => {
+  app.use((request: Request, response: Response, next: NextFunction): void => {
     const isSwaggerRequest =
       appConfig.swaggerEnabled &&
       (request.path === swaggerPath ||
         request.path.startsWith(`${swaggerPath}/`));
 
-    return (isSwaggerRequest ? swaggerHelmet : apiHelmet)(
-      request,
-      response,
-      next,
-    );
+    (isSwaggerRequest ? swaggerHelmet : apiHelmet)(request, response, next);
   });
 
   if (appConfig.compressionEnabled) {
