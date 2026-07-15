@@ -79,13 +79,16 @@ migraciones.
 
 ### Aplicación
 
-| Variable       | Regla                                         |
-| -------------- | --------------------------------------------- |
-| `NODE_ENV`     | `dev`, `test` o `prod`; requerida             |
-| `APP_HOST`     | hostname válido; requerida                    |
-| `APP_PORT`     | integer entre 1 y 65535; requerida            |
-| `API_PREFIX`   | segmento sin URL completa; requerido          |
-| `CORS_ORIGINS` | lista explícita; wildcard rechazado en `prod` |
+| Variable                      | Regla                                                                 |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `NODE_ENV`                    | `dev`, `test` o `prod`; requerida                                     |
+| `APP_HOST`                    | hostname válido; requerida                                            |
+| `APP_PORT`                    | integer entre 1 y 65535; requerida                                    |
+| `API_PREFIX`                  | segmento sin URL completa; requerido                                  |
+| `CORS_ORIGINS`                | lista explícita; wildcard rechazado en `prod`                         |
+| `COMPRESSION_ENABLED`         | boolean; `false` cuando un proxy o CDN comprime la respuesta          |
+| `COMPRESSION_THRESHOLD_BYTES` | entero entre 1024 y 1048576; tamaño mínimo para considerar compresión |
+| `COMPRESSION_LEVEL`           | entero entre 1 y 6; balance entre CPU y tamaño de respuesta           |
 
 ### PostgreSQL runtime
 

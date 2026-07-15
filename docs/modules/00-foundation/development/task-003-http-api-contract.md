@@ -38,6 +38,11 @@ Helmet agrega headers defensivos. Compression se habilita mediante configuració
 y debe omitirse para respuestas ya comprimidas como PDF/XLSX o cuando el proxy
 sea el responsable.
 
+En `dev` y `test`, Helmet no debe forzar HTTPS local. En `prod`, conserva HSTS
+y la directiva CSP `upgrade-insecure-requests`. La CSP debe mantenerse estricta;
+si Swagger requiere ajustes, limita cualquier excepción a Swagger en vez de
+debilitar la política global.
+
 ## Estructura de archivos
 
 ```text
