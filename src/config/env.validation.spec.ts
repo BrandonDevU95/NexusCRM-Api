@@ -56,6 +56,20 @@ describe('validateEnvironment', () => {
     expect(() => validateEnvironment(validEnvironment())).not.toThrow();
   });
 
+  it('allows reference mode configuration without a random seed', () => {
+    const environment = validEnvironment();
+    delete environment.SEED_RANDOM_SEED;
+
+    expect(() => validateEnvironment(environment)).not.toThrow();
+  });
+
+  it('defaults demo data authorization to false', () => {
+    const environment = validEnvironment();
+    delete environment.SEED_ALLOW_DEMO_DATA;
+
+    expect(validateEnvironment(environment).SEED_ALLOW_DEMO_DATA).toBe('false');
+  });
+
   it.each([
     [
       'a missing database password',
@@ -98,6 +112,22 @@ describe('validateEnvironment', () => {
         environment.DATABASE_SSL = 'false';
       },
       'DATABASE_SSL',
+    ],
+    [
+      'demo data enabled in production',
+      (environment: Record<string, string>) => {
+        environment.NODE_ENV = 'prod';
+        environment.DATABASE_SSL = 'true';
+        environment.SEED_ALLOW_DEMO_DATA = 'true';
+      },
+      'SEED_ALLOW_DEMO_DATA',
+    ],
+    [
+      'a zero random seed',
+      (environment: Record<string, string>) => {
+        environment.SEED_RANDOM_SEED = '0';
+      },
+      'SEED_RANDOM_SEED',
     ],
   ])('rejects %s', (_description, changeEnvironment, expectedVariable) => {
     const environment = validEnvironment();

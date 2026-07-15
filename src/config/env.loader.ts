@@ -2,6 +2,9 @@ import type { AppConfig, NodeEnvironment } from './env.types';
 
 type EnvironmentValues = Record<string, unknown>;
 
+export const SEED_ENVIRONMENT_FILE_VARIABLE = 'NEXUSCRM_SEED_ENV_FILE';
+const ALLOWED_ENVIRONMENT_FILES = new Set(['.env', '.env.test']);
+
 function requiredString(environment: EnvironmentValues, key: string): string {
   const value = environment[key];
 
@@ -16,14 +19,36 @@ function toInteger(environment: EnvironmentValues, key: string): number {
   return Number(requiredString(environment, key));
 }
 
+function toOptionalInteger(
+  environment: EnvironmentValues,
+  key: string,
+): number | undefined {
+  return environment[key] === undefined
+    ? undefined
+    : toInteger(environment, key);
+}
+
 function toBoolean(environment: EnvironmentValues, key: string): boolean {
   const value = requiredString(environment, key).toLowerCase();
 
   return value === 'true' || value === '1';
 }
 
-export function getEnvironmentFile(): string {
-  return process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
+export function getEnvironmentFile(
+  environment: EnvironmentValues = process.env,
+): string {
+  const seedEnvironmentFile = environment[SEED_ENVIRONMENT_FILE_VARIABLE];
+  if (seedEnvironmentFile !== undefined) {
+    if (
+      typeof seedEnvironmentFile !== 'string' ||
+      !ALLOWED_ENVIRONMENT_FILES.has(seedEnvironmentFile)
+    ) {
+      throw new Error('Invalid seed environment file override.');
+    }
+    return seedEnvironmentFile;
+  }
+
+  return environment.NODE_ENV === 'test' ? '.env.test' : '.env';
 }
 
 export function loadEnvironment(
@@ -95,7 +120,7 @@ export function loadEnvironment(
       },
     },
     seed: {
-      randomSeed: toInteger(environment, 'SEED_RANDOM_SEED'),
+      randomSeed: toOptionalInteger(environment, 'SEED_RANDOM_SEED'),
       batchSize: toInteger(environment, 'SEED_BATCH_SIZE'),
       allowDemoData: toBoolean(environment, 'SEED_ALLOW_DEMO_DATA'),
     },

@@ -55,7 +55,7 @@ export interface AppConfig {
     };
   };
   seed: {
-    randomSeed: number;
+    randomSeed?: number;
     batchSize: number;
     allowDemoData: boolean;
   };

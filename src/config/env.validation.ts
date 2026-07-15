@@ -136,9 +136,9 @@ const environmentSchema = Joi.object({
   PGADMIN_DEFAULT_PASSWORD: safePassword,
   PGADMIN_VOLUME_NAME: Joi.string().trim().min(1).required(),
 
-  SEED_RANDOM_SEED: integerString(1, Number.MAX_SAFE_INTEGER).required(),
+  SEED_RANDOM_SEED: integerString(1, Number.MAX_SAFE_INTEGER).optional(),
   SEED_BATCH_SIZE: integerString(1, 1000).required(),
-  SEED_ALLOW_DEMO_DATA: booleanString.required(),
+  SEED_ALLOW_DEMO_DATA: booleanString.default('false'),
 });
 
 export function validateEnvironment(
