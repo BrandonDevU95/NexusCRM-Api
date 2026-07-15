@@ -88,9 +88,16 @@ const environmentSchema = Joi.object({
   APP_PORT: integerString(1, 65535).required(),
   API_PREFIX: Joi.string()
     .trim()
-    .pattern(/^[a-z0-9][a-z0-9-]*$/i)
+    .pattern(/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/i)
+    .required(),
+  APP_VERSION: Joi.string()
+    .trim()
+    .pattern(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/)
     .required(),
   CORS_ORIGINS: corsOrigins.required(),
+  COMPRESSION_ENABLED: booleanString.required(),
+  COMPRESSION_THRESHOLD_BYTES: integerString(1024, 1_048_576).required(),
+  COMPRESSION_LEVEL: integerString(1, 6).required(),
 
   DATABASE_HOST: Joi.string().trim().min(1).required(),
   DATABASE_PORT: integerString(1, 65535).required(),

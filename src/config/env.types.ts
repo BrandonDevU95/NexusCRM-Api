@@ -7,6 +7,10 @@ export interface AppConfig {
     port: number;
     apiPrefix: string;
     corsOrigins: string[];
+    compressionEnabled: boolean;
+    compressionThresholdBytes: number;
+    compressionLevel: number;
+    version: string;
   };
   database: {
     host: string;

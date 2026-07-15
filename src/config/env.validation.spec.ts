@@ -7,6 +7,10 @@ function validEnvironment(): Record<string, string> {
     APP_PORT: '3000',
     API_PREFIX: 'api',
     CORS_ORIGINS: 'http://localhost:3000',
+    COMPRESSION_ENABLED: 'true',
+    COMPRESSION_THRESHOLD_BYTES: '2048',
+    COMPRESSION_LEVEL: '4',
+    APP_VERSION: '1.0.0',
     DATABASE_HOST: 'localhost',
     DATABASE_PORT: '5432',
     DATABASE_NAME: 'nexuscrm',
@@ -64,6 +68,20 @@ describe('validateEnvironment', () => {
         environment.APP_PORT = '70000';
       },
       'APP_PORT',
+    ],
+    [
+      'an invalid application version',
+      (environment: Record<string, string>) => {
+        environment.APP_VERSION = '1.0';
+      },
+      'APP_VERSION',
+    ],
+    [
+      'an unsafe compression level',
+      (environment: Record<string, string>) => {
+        environment.COMPRESSION_LEVEL = '9';
+      },
+      'COMPRESSION_LEVEL',
     ],
     [
       'database synchronize enabled',

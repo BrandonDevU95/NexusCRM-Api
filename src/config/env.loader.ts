@@ -38,6 +38,13 @@ export function loadEnvironment(
       corsOrigins: requiredString(environment, 'CORS_ORIGINS')
         .split(',')
         .map((origin) => origin.trim()),
+      compressionEnabled: toBoolean(environment, 'COMPRESSION_ENABLED'),
+      compressionThresholdBytes: toInteger(
+        environment,
+        'COMPRESSION_THRESHOLD_BYTES',
+      ),
+      compressionLevel: toInteger(environment, 'COMPRESSION_LEVEL'),
+      version: requiredString(environment, 'APP_VERSION'),
     },
     database: {
       host: requiredString(environment, 'DATABASE_HOST'),
