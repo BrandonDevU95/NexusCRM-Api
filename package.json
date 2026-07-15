@@ -31,6 +31,8 @@
     "migration:show": "pnpm typeorm migration:show",
     "migration:run": "pnpm typeorm migration:run",
     "migration:revert": "pnpm typeorm migration:revert",
+    "seed:list": "ts-node -r tsconfig-paths/register src/seed/main.seed.ts list",
+    "seed:run": "ts-node -r tsconfig-paths/register src/seed/main.seed.ts run",
     "infra:dev": "docker compose --env-file .env --profile devtools up -d database pgadmin",
     "infra:test": "docker compose --env-file .env.test --profile test up -d database_test",
     "infra:status": "docker compose --env-file .env --profile devtools --profile test ps",
