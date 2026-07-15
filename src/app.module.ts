@@ -1,8 +1,7 @@
 import type { AppConfig } from './config/env.types';
 import { AppConfigModule } from './config/config.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigService } from '@nestjs/config';
+import { HealthModule } from './health/health.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { createTypeOrmOptions } from './database/typeorm-options';
@@ -20,8 +19,9 @@ import { createTypeOrmOptions } from './database/typeorm-options';
         return createTypeOrmOptions(database);
       },
     }),
+    HealthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
