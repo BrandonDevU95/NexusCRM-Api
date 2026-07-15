@@ -317,16 +317,16 @@ seguir funcionando.
 
 ## Definition of Done
 
-- [ ] Swagger `11.4.5` y Terminus `11.1.1` están fijados sin dependencias redundantes.
-- [ ] Helmet está activo y Compression no transforma PDF/XLSX ni duplica al proxy.
-- [ ] Todos los endpoints funcionales usan `/api/v1` una sola vez.
-- [ ] `ValidationPipe` global rechaza propiedades desconocidas.
-- [ ] Cada response contiene un correlation ID válido.
-- [ ] El error envelope es estable y no filtra detalles internos.
-- [ ] Health devuelve 200 con database disponible y 503 sin ella.
-- [ ] Swagger documenta health y puede deshabilitarse por environment.
-- [ ] El contrato temporal del starter fue retirado.
-- [ ] Typecheck y verificaciones manuales pasan.
+- [x] Swagger `11.4.5` y Terminus `11.1.1` están fijados sin dependencias redundantes.
+- [x] Helmet está activo y Compression no transforma PDF/XLSX ni duplica al proxy.
+- [x] Todos los endpoints funcionales usan `/api/v1` una sola vez.
+- [x] `ValidationPipe` global rechaza propiedades desconocidas.
+- [x] Cada response contiene un correlation ID válido.
+- [x] El error envelope es estable y no filtra detalles internos.
+- [x] Health devuelve 200 con database disponible y 503 sin ella.
+- [x] Swagger documenta health y puede deshabilitarse por environment.
+- [x] El contrato temporal del starter fue retirado.
+- [x] Typecheck y verificaciones manuales pasan.
 
 ## Regreso
 
