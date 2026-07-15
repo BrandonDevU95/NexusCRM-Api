@@ -19,6 +19,8 @@ describe('HTTP API foundation (e2e)', () => {
   });
 
   it('returns the readiness contract under the versioned API prefix', () => {
+    const timestampMatcher: unknown = expect.any(String);
+
     return request(app.getHttpServer())
       .get('/api/v1/health')
       .expect(200)
@@ -30,7 +32,7 @@ describe('HTTP API foundation (e2e)', () => {
           status: 'ok',
           service: 'nexuscrm-api',
           version: '0.0.1',
-          timestamp: expect.any(String),
+          timestamp: timestampMatcher,
           database: 'up',
         });
       });
@@ -48,6 +50,7 @@ describe('HTTP API foundation (e2e)', () => {
 
   it('returns the stable error envelope for an unknown API route', () => {
     const correlationId = 'foundation-e2e-404';
+    const timestampMatcher: unknown = expect.any(String);
 
     return request(app.getHttpServer())
       .get('/api/v1/not-found')
@@ -60,7 +63,7 @@ describe('HTTP API foundation (e2e)', () => {
           code: 'NOT_FOUND',
           message: 'Cannot GET /api/v1/not-found',
           details: [],
-          timestamp: expect.any(String),
+          timestamp: timestampMatcher,
           path: '/api/v1/not-found',
           method: 'GET',
           correlationId,

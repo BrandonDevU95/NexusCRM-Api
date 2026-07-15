@@ -147,6 +147,9 @@ describe('GlobalExceptionFilter', () => {
   });
 
   it('generates a correlation ID when an unmatched route reaches the filter', () => {
+    const correlationIdMatcher: unknown = expect.stringMatching(
+      /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+    );
     const { host, response } = createHttpMocks({
       originalUrl: '/api/v1/missing',
       method: 'GET',
@@ -161,9 +164,7 @@ describe('GlobalExceptionFilter', () => {
       expect.objectContaining({
         code: 'NOT_FOUND',
         details: [],
-        correlationId: expect.stringMatching(
-          /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
-        ),
+        correlationId: correlationIdMatcher,
       }),
     );
     expect(response.setHeader).toHaveBeenCalledWith(

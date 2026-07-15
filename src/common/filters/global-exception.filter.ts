@@ -25,6 +25,52 @@ interface HttpExceptionResponse {
   message?: unknown;
 }
 
+interface HttpErrorDescriptor {
+  code: string;
+  message: string;
+}
+
+const HTTP_ERROR_DESCRIPTORS: Readonly<
+  Partial<Record<number, HttpErrorDescriptor>>
+> = {
+  [HttpStatus.BAD_REQUEST]: {
+    code: 'BAD_REQUEST',
+    message: 'Bad request',
+  },
+  [HttpStatus.UNAUTHORIZED]: {
+    code: 'UNAUTHORIZED',
+    message: 'Unauthorized',
+  },
+  [HttpStatus.FORBIDDEN]: {
+    code: 'FORBIDDEN',
+    message: 'Forbidden',
+  },
+  [HttpStatus.NOT_FOUND]: {
+    code: 'NOT_FOUND',
+    message: 'Resource not found',
+  },
+  [HttpStatus.METHOD_NOT_ALLOWED]: {
+    code: 'METHOD_NOT_ALLOWED',
+    message: 'Method not allowed',
+  },
+  [HttpStatus.CONFLICT]: {
+    code: 'CONFLICT',
+    message: 'Conflict',
+  },
+  [HttpStatus.UNPROCESSABLE_ENTITY]: {
+    code: 'UNPROCESSABLE_ENTITY',
+    message: 'Unprocessable entity',
+  },
+  [HttpStatus.TOO_MANY_REQUESTS]: {
+    code: 'TOO_MANY_REQUESTS',
+    message: 'Too many requests',
+  },
+  [HttpStatus.SERVICE_UNAVAILABLE]: {
+    code: 'SERVICE_UNAVAILABLE',
+    message: 'Service unavailable',
+  },
+};
+
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   private readonly logger = new Logger(GlobalExceptionFilter.name);
@@ -130,53 +176,11 @@ export class GlobalExceptionFilter implements ExceptionFilter {
   }
 
   private getErrorCode(statusCode: number): string {
-    switch (statusCode) {
-      case HttpStatus.BAD_REQUEST:
-        return 'BAD_REQUEST';
-      case HttpStatus.UNAUTHORIZED:
-        return 'UNAUTHORIZED';
-      case HttpStatus.FORBIDDEN:
-        return 'FORBIDDEN';
-      case HttpStatus.NOT_FOUND:
-        return 'NOT_FOUND';
-      case HttpStatus.METHOD_NOT_ALLOWED:
-        return 'METHOD_NOT_ALLOWED';
-      case HttpStatus.CONFLICT:
-        return 'CONFLICT';
-      case HttpStatus.UNPROCESSABLE_ENTITY:
-        return 'UNPROCESSABLE_ENTITY';
-      case HttpStatus.TOO_MANY_REQUESTS:
-        return 'TOO_MANY_REQUESTS';
-      case HttpStatus.SERVICE_UNAVAILABLE:
-        return 'SERVICE_UNAVAILABLE';
-      default:
-        return 'HTTP_ERROR';
-    }
+    return HTTP_ERROR_DESCRIPTORS[statusCode]?.code ?? 'HTTP_ERROR';
   }
 
   private getDefaultHttpMessage(statusCode: number): string {
-    switch (statusCode) {
-      case HttpStatus.BAD_REQUEST:
-        return 'Bad request';
-      case HttpStatus.UNAUTHORIZED:
-        return 'Unauthorized';
-      case HttpStatus.FORBIDDEN:
-        return 'Forbidden';
-      case HttpStatus.NOT_FOUND:
-        return 'Resource not found';
-      case HttpStatus.METHOD_NOT_ALLOWED:
-        return 'Method not allowed';
-      case HttpStatus.CONFLICT:
-        return 'Conflict';
-      case HttpStatus.UNPROCESSABLE_ENTITY:
-        return 'Unprocessable entity';
-      case HttpStatus.TOO_MANY_REQUESTS:
-        return 'Too many requests';
-      case HttpStatus.SERVICE_UNAVAILABLE:
-        return 'Service unavailable';
-      default:
-        return 'Request failed';
-    }
+    return HTTP_ERROR_DESCRIPTORS[statusCode]?.message ?? 'Request failed';
   }
 
   private logException(params: {

@@ -108,18 +108,19 @@ describe('CorrelationIdInterceptor', () => {
   });
 
   it('assigns the correlation ID before routing middleware', () => {
+    const setHeader = jest.fn();
     const request = {
       get: jest.fn().mockReturnValue('before-router-001'),
     } as unknown as Request;
     const response = {
-      setHeader: jest.fn(),
+      setHeader,
     } as unknown as Response;
     const next = jest.fn();
 
     correlationIdMiddleware(request, response, next);
 
     expect(request.correlationId).toBe('before-router-001');
-    expect(response.setHeader).toHaveBeenCalledWith(
+    expect(setHeader).toHaveBeenCalledWith(
       'x-correlation-id',
       'before-router-001',
     );
