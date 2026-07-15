@@ -22,7 +22,7 @@ export class HealthService {
 
     return {
       status: 'ok',
-      service: 'NexusCRM API',
+      service: 'nexuscrm-api',
       version: app.version,
       timestamp: new Date().toISOString(),
       database: result.details.database.status,

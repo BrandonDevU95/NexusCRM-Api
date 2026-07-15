@@ -1,5 +1,9 @@
 import * as Joi from 'joi';
 
+import {
+  API_PREFIX,
+  SWAGGER_DEFAULT_PATH,
+} from '../common/constants/api.constants';
 import type { NodeEnvironment } from './env.types';
 
 type EnvironmentValues = Record<string, unknown>;
@@ -86,10 +90,7 @@ const environmentSchema = Joi.object({
     .try(Joi.string().valid('localhost'), Joi.string().hostname())
     .required(),
   APP_PORT: integerString(1, 65535).required(),
-  API_PREFIX: Joi.string()
-    .trim()
-    .pattern(/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/i)
-    .required(),
+  API_PREFIX: Joi.string().trim().valid(API_PREFIX).required(),
   APP_VERSION: Joi.string()
     .trim()
     .pattern(/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/)
@@ -98,6 +99,11 @@ const environmentSchema = Joi.object({
   COMPRESSION_ENABLED: booleanString.required(),
   COMPRESSION_THRESHOLD_BYTES: integerString(1024, 1_048_576).required(),
   COMPRESSION_LEVEL: integerString(1, 6).required(),
+  SWAGGER_ENABLED: booleanString.default('false'),
+  SWAGGER_PATH: Joi.string()
+    .trim()
+    .pattern(/^[a-z0-9][a-z0-9-]*(?:\/[a-z0-9][a-z0-9-]*)*$/i)
+    .default(SWAGGER_DEFAULT_PATH),
 
   DATABASE_HOST: Joi.string().trim().min(1).required(),
   DATABASE_PORT: integerString(1, 65535).required(),

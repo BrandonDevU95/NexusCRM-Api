@@ -45,6 +45,8 @@ export function loadEnvironment(
       ),
       compressionLevel: toInteger(environment, 'COMPRESSION_LEVEL'),
       version: requiredString(environment, 'APP_VERSION'),
+      swaggerEnabled: toBoolean(environment, 'SWAGGER_ENABLED'),
+      swaggerPath: requiredString(environment, 'SWAGGER_PATH'),
     },
     database: {
       host: requiredString(environment, 'DATABASE_HOST'),

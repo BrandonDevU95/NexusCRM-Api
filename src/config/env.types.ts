@@ -11,6 +11,8 @@ export interface AppConfig {
     compressionThresholdBytes: number;
     compressionLevel: number;
     version: string;
+    swaggerEnabled: boolean;
+    swaggerPath: string;
   };
   database: {
     host: string;
