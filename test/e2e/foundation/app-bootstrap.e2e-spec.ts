@@ -5,8 +5,10 @@ import { DataSource } from 'typeorm';
 
 import { AppModule } from '../../../src/app.module';
 import { configureHttpApplication } from '../../../src/app.bootstrap';
+import { getTestConfig } from '../../helpers/test-database.helper';
 
 describe('HTTP API foundation (e2e)', () => {
+  const config = getTestConfig();
   let app: NestExpressApplication;
   let dataSource: DataSource;
   let appClosed = false;
@@ -39,7 +41,7 @@ describe('HTTP API foundation (e2e)', () => {
     expect(response.body).toEqual({
       status: 'ok',
       service: 'nexuscrm-api',
-      version: '0.0.1',
+      version: config.app.version,
       timestamp: timestampMatcher,
       database: 'up',
     });

@@ -243,23 +243,23 @@ en esta ruta. No se convierte en un comando para ejecutar después de cada tarea
 
 ## Revisión final
 
-- [ ] No se sobrescribió documentación existente.
-- [ ] `package.json` usa versiones exactas, sin `^` ni `~`.
-- [ ] `pnpm-lock.yaml` está versionado.
-- [ ] `.env` y `.env.test` están ignorados.
-- [ ] Compose no contiene imágenes, credenciales, puertos ni nombres operativos
+- [x] No se sobrescribió documentación existente.
+- [x] `package.json` usa versiones exactas, sin `^` ni `~`.
+- [x] `pnpm-lock.yaml` está versionado.
+- [x] `.env` y `.env.test` están ignorados.
+- [x] Compose no contiene imágenes, credenciales, puertos ni nombres operativos
       hardcodeados.
-- [ ] Joi detiene el arranque ante configuración inválida.
-- [ ] `synchronize` y `migrationsRun` son `false`.
-- [ ] Runtime y CLI usan el mismo contrato de conexión.
-- [ ] La migración se ejecutó, revirtió y reaplicó.
-- [ ] El contrato HTTP usa `/api/v1`, ValidationPipe global, error envelope,
+- [x] Joi detiene el arranque ante configuración inválida.
+- [x] `synchronize` y `migrationsRun` son `false`.
+- [x] Runtime y CLI usan el mismo contrato de conexión.
+- [x] La migración se ejecutó, revirtió y reaplicó.
+- [x] El contrato HTTP usa `/api/v1`, ValidationPipe global, error envelope,
       correlation ID y health endpoint.
-- [ ] Swagger usa la versión fijada y puede deshabilitarse por entorno.
-- [ ] El seed es manual, CLI, modular y seguro por entorno.
-- [ ] Pruebas usan PostgreSQL test, no la base de desarrollo.
-- [ ] `pnpm build` termina correctamente.
-- [ ] Puedes explicar cada commit de la rama.
+- [x] Swagger usa la versión fijada y puede deshabilitarse por entorno.
+- [x] El seed es manual, CLI, modular y seguro por entorno.
+- [x] Pruebas usan PostgreSQL test, no la base de desarrollo.
+- [x] `pnpm build` termina correctamente.
+- [x] Puedes explicar cada commit de la rama.
 
 ## Git: publicación y merge
 
