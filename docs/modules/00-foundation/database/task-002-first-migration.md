@@ -200,14 +200,14 @@ Este flujo se automatizará en `FND-007`; aquí debes comprender cada paso.
 
 ## Definition of Done
 
-- [ ] Existe una sola migración `EnableDatabaseExtensions` con timestamp.
-- [ ] `up` administra `pgcrypto` sin crear tablas ni datos.
-- [ ] `down` no usa un cascade indiscriminado.
-- [ ] Typecheck pasa.
-- [ ] Se completó `show -> run -> inspect -> revert -> inspect -> run`.
-- [ ] El estado final contiene `pgcrypto` y la migración aplicada.
-- [ ] El ciclo funciona contra PostgreSQL test limpio.
-- [ ] `synchronize` y `migrationsRun` siguen en false.
+- [x] Existe una sola migración `EnableDatabaseExtensions` con timestamp.
+- [x] `up` administra `pgcrypto` sin crear tablas ni datos.
+- [x] `down` no usa un cascade indiscriminado.
+- [x] Typecheck pasa.
+- [x] Se completó `show -> run -> inspect -> revert -> inspect -> run`.
+- [x] El estado final contiene `pgcrypto` y la migración aplicada.
+- [x] El ciclo funciona contra PostgreSQL test limpio.
+- [x] `synchronize` y `migrationsRun` siguen en false.
 
 ## Regreso
 

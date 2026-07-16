@@ -291,16 +291,16 @@ de producción real.
 
 ## Definition of Done
 
-- [ ] Faker no se instaló antes de que exista un dataset que lo utilice.
-- [ ] SeedModule se ejecuta sin servidor HTTP.
-- [ ] No existe endpoint de seed.
-- [ ] `seed:list` maneja registry vacío.
-- [ ] `seed:run` exige module explícito.
-- [ ] Nombre desconocido falla antes de la transacción.
-- [ ] Pending migrations impiden ejecución.
-- [ ] Demo data está bloqueado en prod.
-- [ ] Executor define una transacción y advisory lock compartidos.
-- [ ] Registry vacío produce métricas cero sin crear datos artificiales.
+- [x] Faker no se instaló antes de que exista un dataset que lo utilice.
+- [x] SeedModule se ejecuta sin servidor HTTP.
+- [x] No existe endpoint de seed.
+- [x] `seed:list` maneja registry vacío.
+- [x] `seed:run` exige module explícito.
+- [x] Nombre desconocido falla antes de la transacción.
+- [x] Pending migrations impiden ejecución.
+- [x] Demo data está bloqueado en prod.
+- [x] Executor define una transacción y advisory lock compartidos.
+- [x] Registry vacío produce métricas cero sin crear datos artificiales.
 
 ## Regreso
 

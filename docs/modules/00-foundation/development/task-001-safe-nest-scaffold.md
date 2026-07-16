@@ -215,15 +215,15 @@ No ejecutes build en esta tarea.
 
 ## Definition of Done
 
-- [ ] El starter se generó fuera de la raíz con CLI `11.0.24`.
-- [ ] Solo se integró la allowlist.
-- [ ] `README.md`, `AGENTS.md` y `docs/` permanecen intactos.
-- [ ] `.gitignore` protege archivos de entorno.
-- [ ] No existe un `.git` anidado.
-- [ ] Todas las versiones de `package.json` son exactas.
-- [ ] Solo existe `pnpm-lock.yaml`.
-- [ ] `pnpm start:dev`, lint, typecheck y unit test inicial funcionan.
-- [ ] La carpeta temporal no aparece en `git status`.
+- [x] El starter se generó fuera de la raíz con CLI `11.0.24`.
+- [x] Solo se integró la allowlist.
+- [x] `README.md`, `AGENTS.md` y `docs/` permanecen intactos.
+- [x] `.gitignore` protege archivos de entorno.
+- [x] No existe un `.git` anidado.
+- [x] Todas las versiones de `package.json` son exactas.
+- [x] Solo existe `pnpm-lock.yaml`.
+- [x] `pnpm start:dev`, lint, typecheck y unit test inicial funcionan.
+- [x] La carpeta temporal no aparece en `git status`.
 
 ## Regreso
 

@@ -187,15 +187,15 @@ ambigua.
 
 ## Definition of Done
 
-- [ ] Las tres dependencias tienen versión exacta.
-- [ ] Runtime y CLI derivan options del mismo loader validado.
-- [ ] No existen credentials ni paths operativos hardcodeados.
-- [ ] `synchronize` y `migrationsRun` son false y no activables por env.
-- [ ] Los paths distinguen source de compiled.
-- [ ] Los cinco scripts de migración están definidos.
-- [ ] `migration:show` conecta y no crea schema.
-- [ ] El archivo temporal de prueba fue eliminado.
-- [ ] Un password incorrecto falla sin revelar el secreto.
+- [x] Las tres dependencias tienen versión exacta.
+- [x] Runtime y CLI derivan options del mismo loader validado.
+- [x] No existen credentials ni paths operativos hardcodeados.
+- [x] `synchronize` y `migrationsRun` son false y no activables por env.
+- [x] Los paths distinguen source de compiled.
+- [x] Los cinco scripts de migración están definidos.
+- [x] `migration:show` conecta y no crea schema.
+- [x] El archivo temporal de prueba fue eliminado.
+- [x] Un password incorrecto falla sin revelar el secreto.
 
 ## Regreso
 

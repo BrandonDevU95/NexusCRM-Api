@@ -79,13 +79,16 @@ migraciones.
 
 ### Aplicación
 
-| Variable       | Regla                                         |
-| -------------- | --------------------------------------------- |
-| `NODE_ENV`     | `dev`, `test` o `prod`; requerida             |
-| `APP_HOST`     | hostname válido; requerida                    |
-| `APP_PORT`     | integer entre 1 y 65535; requerida            |
-| `API_PREFIX`   | segmento sin URL completa; requerido          |
-| `CORS_ORIGINS` | lista explícita; wildcard rechazado en `prod` |
+| Variable                      | Regla                                                                 |
+| ----------------------------- | --------------------------------------------------------------------- |
+| `NODE_ENV`                    | `dev`, `test` o `prod`; requerida                                     |
+| `APP_HOST`                    | hostname válido; requerida                                            |
+| `APP_PORT`                    | integer entre 1 y 65535; requerida                                    |
+| `APP_VERSION`                 | versión SemVer; requerida y expuesta por el health endpoint           |
+| `CORS_ORIGINS`                | lista explícita; wildcard rechazado en `prod`                         |
+| `COMPRESSION_ENABLED`         | boolean; `false` cuando un proxy o CDN comprime la respuesta          |
+| `COMPRESSION_THRESHOLD_BYTES` | entero entre 1024 y 1048576; tamaño mínimo para considerar compresión |
+| `COMPRESSION_LEVEL`           | entero entre 1 y 6; balance entre CPU y tamaño de respuesta           |
 
 ### PostgreSQL runtime
 
@@ -283,15 +286,15 @@ el puerto. Restaura `.env` después de cada caso.
 
 ## Definition of Done
 
-- [ ] Dependencias instaladas con versiones exactas.
-- [ ] `.env` y `.env.test` están ignorados.
-- [ ] Ambos example files documentan todas las variables.
-- [ ] Joi valida tipos, rangos y reglas por entorno.
-- [ ] `synchronize` y `migrationsRun` no pueden activarse accidentalmente.
-- [ ] Compose obtiene imágenes, credenciales, puertos y nombres desde env.
-- [ ] PostgreSQL development y test usan volumes distintos y llegan a healthy.
-- [ ] pgAdmin es opcional.
-- [ ] Cuatro fallos deliberados detienen el arranque sin filtrar secretos.
+- [x] Dependencias instaladas con versiones exactas.
+- [x] `.env` y `.env.test` están ignorados.
+- [x] Ambos example files documentan todas las variables.
+- [x] Joi valida tipos, rangos y reglas por entorno.
+- [x] `synchronize` y `migrationsRun` no pueden activarse accidentalmente.
+- [x] Compose obtiene imágenes, credenciales, puertos y nombres desde env.
+- [x] PostgreSQL development y test usan volumes distintos y llegan a healthy.
+- [x] pgAdmin es opcional.
+- [x] Cuatro fallos deliberados detienen el arranque sin filtrar secretos.
 
 ## Regreso
 
