@@ -52,8 +52,15 @@ function validEnvironment(): Record<string, string> {
 }
 
 describe('validateEnvironment', () => {
-  it('accepts the complete development contract', () => {
-    expect(() => validateEnvironment(validEnvironment())).not.toThrow();
+  it('FND-UT-001 normalizes a complete development environment', () => {
+    // Arrange
+    const environment = validEnvironment();
+
+    // Act
+    const result = validateEnvironment(environment);
+
+    // Assert
+    expect(result).toMatchObject(environment);
   });
 
   it('allows reference mode configuration without a random seed', () => {
@@ -72,13 +79,13 @@ describe('validateEnvironment', () => {
 
   it.each([
     [
-      'a missing database password',
+      'FND-UT-002 rejects a missing database password without exposing values',
       (environment: Record<string, string>) =>
         delete environment.DATABASE_PASSWORD,
       'DATABASE_PASSWORD',
     ],
     [
-      'an out-of-range application port',
+      'FND-UT-003 rejects an out-of-range application port',
       (environment: Record<string, string>) => {
         environment.APP_PORT = '70000';
       },
@@ -99,14 +106,14 @@ describe('validateEnvironment', () => {
       'COMPRESSION_LEVEL',
     ],
     [
-      'database synchronize enabled',
+      'FND-UT-004 rejects database synchronize enabled',
       (environment: Record<string, string>) => {
         environment.DATABASE_SYNCHRONIZE = 'true';
       },
       'DATABASE_SYNCHRONIZE',
     ],
     [
-      'SSL disabled in production',
+      'FND-UT-005 rejects SSL disabled in production',
       (environment: Record<string, string>) => {
         environment.NODE_ENV = 'prod';
         environment.DATABASE_SSL = 'false';
@@ -114,7 +121,7 @@ describe('validateEnvironment', () => {
       'DATABASE_SSL',
     ],
     [
-      'demo data enabled in production',
+      'FND-UT-006 rejects demo data enabled in production',
       (environment: Record<string, string>) => {
         environment.NODE_ENV = 'prod';
         environment.DATABASE_SSL = 'true';
@@ -129,10 +136,24 @@ describe('validateEnvironment', () => {
       },
       'SEED_RANDOM_SEED',
     ],
-  ])('rejects %s', (_description, changeEnvironment, expectedVariable) => {
+  ])('%s', (_description, changeEnvironment, expectedVariable) => {
+    // Arrange
     const environment = validEnvironment();
     changeEnvironment(environment);
 
-    expect(() => validateEnvironment(environment)).toThrow(expectedVariable);
+    // Act
+    let validationError: Error | undefined;
+    try {
+      validateEnvironment(environment);
+    } catch (error) {
+      if (!(error instanceof Error)) {
+        throw error;
+      }
+      validationError = error;
+    }
+
+    // Assert
+    expect(validationError?.message).toContain(expectedVariable);
+    expect(validationError?.message).not.toContain('development-password-123');
   });
 });
