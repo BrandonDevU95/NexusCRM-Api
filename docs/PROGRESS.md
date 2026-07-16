@@ -7,13 +7,13 @@ seed, tests, merge o tag.
 ## Último checkpoint
 
 ```text
-Fecha:
-Rama:
-Módulo/pasada:
-Checkpoint terminado:
-Siguiente archivo y sección:
-Último commit:
-Bloqueo o nota:
+Fecha: 2026-07-15
+Rama: main
+Módulo/pasada: 00 — Foundation
+Checkpoint terminado: Foundation integrada y publicada como v0.1.0
+Siguiente archivo y sección: modules/01-platform-configuration/LEARNING-PATH.md — Prerrequisitos y PLAT-001
+Último merge: PR #4 — 6b8d6d2
+Bloqueo o nota: Ninguno; Platform comienza desde main actualizado.
 ```
 
 Al retomar, primero ejecuta `git status --short --branch` y confirma que coincide
@@ -22,7 +22,7 @@ trabajo.
 
 ## Ruta completa
 
-- [ ] 00 — Foundation — `v0.1.0`
+- [x] 00 — Foundation — `v0.1.0`
 - [ ] 01 — Platform and configuration
 - [ ] 02A — Security: identity and sessions
 - [ ] 03 — Organizations
@@ -58,16 +58,15 @@ trabajo.
 Copia aquí los checkpoints del `LEARNING-PATH.md` activo y marca solo los que
 realmente terminaste:
 
-- [ ] Rama creada desde `main` actualizado.
-- [ ] Database: entity, migración, inspección y `run → revert → run`.
-- [ ] Commit de database con staging específico.
-- [ ] Development: caso de uso, HTTP, tenant, permisos y auditoría.
-- [ ] Commit de development con staging específico.
-- [ ] Seed: ejecución inicial, segunda ejecución y rollback deliberado.
-- [ ] Commit de seed con staging específico.
-- [ ] Tests: unit, integration y E2E indicados.
-- [ ] Commit de tests/documentación.
-- [ ] Quality gate completo.
-- [ ] Push y Pull Request.
-- [ ] Merge y limpieza de rama.
-- [ ] Tag/release, únicamente si cierra hito.
+- [x] Rama `sdd/add-api-foundation` creada desde `main` actualizado.
+- [x] FND-001: scaffold NestJS seguro.
+- [x] FND-002: entorno validado con Joi y Compose.
+- [x] FND-003/FND-004: DataSource compartido y migración `run → revert → run`.
+- [x] FND-005: contrato HTTP versionado, observable y documentado.
+- [x] FND-006: SeedModule CLI modular y seguro.
+- [x] FND-007: unit, integration, migrations y E2E.
+- [x] Commits con staging específico y Conventional Commits.
+- [x] Quality gate completo, incluido PostgreSQL test desechable y build.
+- [x] Push y Pull Request #4.
+- [x] Merge y limpieza de `sdd/add-api-foundation`.
+- [x] Tag y release `v0.1.0` por cierre de hito.

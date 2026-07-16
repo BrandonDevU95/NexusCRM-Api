@@ -5,14 +5,14 @@ modelo de datos, seeds y pruebas al mismo tiempo. Cada `LEARNING-PATH.md` te
 enviará a un archivo subordinado, te dirá qué apartado completar y te pedirá
 regresar al checkpoint exacto.
 
-## Estado inicial
+## Estado actual
 
 ```text
 Proyecto: NexusCRM-Api
-Estado: documentación de aprendizaje preparada; aplicación sin implementar
-Rama para comenzar a programar: sdd/add-api-foundation
-Siguiente ruta: modules/00-foundation/LEARNING-PATH.md
-Primer hito: v0.1.0
+Estado: Foundation ejecutable integrada y publicada como v0.1.0
+Rama para continuar: sdd/platform-configuration, creada desde main actualizado
+Siguiente ruta: modules/01-platform-configuration/LEARNING-PATH.md
+Siguiente checkpoint: PLAT-001
 ```
 
 Cuando retomes el proyecto después de varios días:
@@ -102,11 +102,13 @@ resolver sus dependencias, pero siguen siendo un solo módulo cada uno.
 |   28 | [Administration](modules/23-system-administration/LEARNING-PATH.md)              | Orquestación administrativa y hardening final                    |
 |   29 | [v1 acceptance](release/V1-ACCEPTANCE.md)                                        | Verificación integral, tag y primer release estable              |
 
-## Primer paso
+## Siguiente paso
 
-Abre [Foundation: LEARNING-PATH](modules/00-foundation/LEARNING-PATH.md) y sigue
-únicamente su checkpoint `FND-001`. No instales dependencias antes de que esa
-tarea te indique las versiones y comandos exactos.
+Abre
+[Platform and configuration: LEARNING-PATH](modules/01-platform-configuration/LEARNING-PATH.md),
+verifica sus prerrequisitos y completa únicamente `PLAT-001`. Platform reutiliza
+la infraestructura de Foundation; no reinstales dependencias ni reconstruyas
+Joi, Compose, TypeORM, SeedModule o las suites base.
 
 ## Documentos de consulta
 
