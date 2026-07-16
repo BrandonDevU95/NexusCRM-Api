@@ -272,16 +272,16 @@ y database antes de aceptar el resultado.
 
 ## Definition of Done
 
-- [ ] Unit cubre seis reglas Joi.
-- [ ] Integration conecta únicamente a PostgreSQL test.
-- [ ] Migration aplica, revierte y reaplica la historia real.
-- [ ] E2E inicia, consulta y cierra la app.
-- [ ] Seed registry tiene unit tests de orden y guards.
-- [ ] Ninguna suite usa SQLite, development database o demo seed.
-- [ ] Los scripts apuntan a patrones distintos.
-- [ ] No se usa `--passWithNoTests`.
-- [ ] Cada suite pequeña pasa por separado.
-- [ ] Puedes explicar qué bug detecta cada caso.
+- [x] Unit cubre seis reglas Joi.
+- [x] Integration conecta únicamente a PostgreSQL test.
+- [x] Migration aplica, revierte y reaplica la historia real.
+- [x] E2E inicia, consulta y cierra la app.
+- [x] Seed registry tiene unit tests de orden y guards.
+- [x] Ninguna suite usa SQLite, development database o demo seed.
+- [x] Los scripts apuntan a patrones distintos.
+- [x] No se usa `--passWithNoTests`.
+- [x] Cada suite pequeña pasa por separado.
+- [x] Puedes explicar qué bug detecta cada caso.
 
 ## Regreso
 
