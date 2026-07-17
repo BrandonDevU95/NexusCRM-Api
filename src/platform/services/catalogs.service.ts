@@ -1,6 +1,8 @@
+import { Injectable } from '@nestjs/common';
+
 import { Catalog } from '../entities/catalog.entity';
 import { CatalogRepository } from '../repositories/catalog.repository';
-import { Injectable } from '@nestjs/common';
+import { isValidCode, normalizeCode } from './platform-input.validator';
 
 @Injectable()
 export class CatalogsService {
@@ -10,7 +12,13 @@ export class CatalogsService {
     return this.catalogRepository.findAllGlobal();
   }
 
-  findGlobalByCode(code: string): Promise<Catalog | null> {
-    return this.catalogRepository.findGlobalByCode(code);
+  async findGlobalByCode(code: string): Promise<Catalog | null> {
+    const normalizedCode = normalizeCode(code);
+
+    if (!isValidCode(normalizedCode)) {
+      return null;
+    }
+
+    return this.catalogRepository.findGlobalByCode(normalizedCode);
   }
 }

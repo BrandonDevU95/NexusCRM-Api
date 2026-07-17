@@ -1,6 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { SystemSetting } from '../entities/system-setting.entity';
+
 import { SystemSettingRepository } from '../repositories/system-setting.repository';
+import type { SystemSettingKey } from './system-setting.definitions';
+import {
+  isPublicSystemSettingKey,
+  isValidSystemSettingValue,
+} from './platform-input.validator';
+
+export interface PublicSystemSetting {
+  key: SystemSettingKey;
+  value: string;
+  description: string | null;
+}
 
 @Injectable()
 export class PublicSettingsService {
@@ -8,7 +19,26 @@ export class PublicSettingsService {
     private readonly systemSettingRepository: SystemSettingRepository,
   ) {}
 
-  findPublicSettings(): Promise<SystemSetting[]> {
-    return this.systemSettingRepository.findPublic();
+  async findPublicSettings(): Promise<PublicSystemSetting[]> {
+    const settings = await this.systemSettingRepository.findPublic();
+
+    return settings.flatMap((setting) => {
+      if (
+        !setting.isPublic ||
+        !isPublicSystemSettingKey(setting.key) ||
+        !isValidSystemSettingValue(setting.key, setting.value) ||
+        typeof setting.value !== 'string'
+      ) {
+        return [];
+      }
+
+      return [
+        {
+          key: setting.key,
+          value: setting.value,
+          description: setting.description,
+        },
+      ];
+    });
   }
 }
