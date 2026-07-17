@@ -28,7 +28,9 @@ Registra y ejecuta `PlatformReferenceSeeder` después de que la migración de
 Platform esté aplicada. Inserta únicamente:
 
 1. Settings globales conocidos de idioma, moneda, zona horaria y formato de
-   fecha.
+   fecha, usando las cuatro keys y contratos definidos en
+   `../development/task-002-settings-catalogs-numbering.md`; las cuatro filas
+   se marcan como públicas.
 2. Catálogos técnicos globales.
 3. Opciones estables de esos catálogos.
 
