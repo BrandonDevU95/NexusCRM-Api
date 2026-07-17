@@ -3,6 +3,7 @@ import { AppConfigModule } from './config/config.module';
 import { ConfigService } from '@nestjs/config';
 import { HealthModule } from './health/health.module';
 import { Module } from '@nestjs/common';
+import { PlatformModule } from './platform/platform.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { createTypeOrmOptions } from './database/typeorm-options';
 
@@ -20,6 +21,7 @@ import { createTypeOrmOptions } from './database/typeorm-options';
       },
     }),
     HealthModule,
+    PlatformModule,
   ],
   controllers: [],
   providers: [],
