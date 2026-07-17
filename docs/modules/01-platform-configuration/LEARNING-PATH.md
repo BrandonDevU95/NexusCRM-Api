@@ -41,7 +41,7 @@ interrumpes el trabajo, este registro identifica el punto exacto de regreso.
       Definition of Done de `development/task-001-environment-and-config.md`.
 - [x] `PLAT-002` — Entities y constraints diseñados; evidencia: revisión de
       **Diseño de tablas** en `database/task-001-platform-schema.md`.
-- [ ] `PLAT-003` — Migración `up -> down -> up`; evidencia: schema final y
+- [x] `PLAT-003` — Migración `up -> down -> up`; evidencia: schema final y
       `migration:show` sin pendientes.
 - [ ] `PLAT-004` — Etapa A de services globales terminada; evidencia: no hay
       endpoints administrativos desprotegidos.
