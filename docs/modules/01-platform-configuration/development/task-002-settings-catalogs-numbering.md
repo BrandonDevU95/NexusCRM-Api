@@ -116,7 +116,7 @@ No escribas strings libres en controllers. Security B aplica
 
 ## Definition of Done
 
-- [ ] Etapa A no requiere organization ni publica administración insegura.
+- [x] Etapa A no requiere organization ni publica administración insegura.
 - [ ] Etapa B filtra todas las consultas por tenant.
 - [ ] El body no decide organization.
 - [ ] Numeración usa el manager/transacción del consumidor.

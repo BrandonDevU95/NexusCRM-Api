@@ -43,7 +43,7 @@ interrumpes el trabajo, este registro identifica el punto exacto de regreso.
       **Diseño de tablas** en `database/task-001-platform-schema.md`.
 - [x] `PLAT-003` — Migración `up -> down -> up`; evidencia: schema final y
       `migration:show` sin pendientes.
-- [ ] `PLAT-004` — Etapa A de services globales terminada; evidencia: no hay
+- [x] `PLAT-004` — Etapa A de services globales terminada; evidencia: no hay
       endpoints administrativos desprotegidos.
 - [ ] `PLAT-005` — `PlatformReferenceSeeder` y contrato de
       `PlatformOrganizationSeeder` implementados; evidencia: dos corridas de A con
