@@ -29,6 +29,11 @@ export interface SeedExecutionContext extends SeedPreparationContext {
   manager: EntityManager;
 }
 
+export interface OrganizationSeedExecutionContext {
+  manager: EntityManager;
+  organizationIds: readonly string[];
+}
+
 export interface SeederDefinition {
   name: string;
   dataKinds: readonly SeedDataKind[];

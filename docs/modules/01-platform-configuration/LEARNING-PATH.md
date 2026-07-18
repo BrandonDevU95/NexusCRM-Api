@@ -18,10 +18,10 @@ infraestructura de pruebas: los consume y verifica antes de avanzar.
 
 ## Prerrequisitos
 
-- [ ] `v0.1.0` está integrado en `main`.
-- [ ] `docs/START-HERE.md` dirige a este módulo.
-- [ ] `.env` local existe, está ignorado y no contiene valores compartidos.
-- [ ] No hay cambios ajenos en el working tree.
+- [x] `v0.1.0` está integrado en `main`.
+- [x] `docs/START-HERE.md` dirige a este módulo.
+- [x] `.env` local existe, está ignorado y no contiene valores compartidos.
+- [x] No hay cambios ajenos en el working tree.
 
 ## Git: inicio de etapa A
 
@@ -37,19 +37,20 @@ git switch -c sdd/platform-configuration
 Marca una casilla solo después de ejecutar la evidencia indicada. Si
 interrumpes el trabajo, este registro identifica el punto exacto de regreso.
 
-- [ ] `PLAT-001` — Preflight Foundation completado; evidencia: comandos y
+- [x] `PLAT-001` — Preflight Foundation completado; evidencia: comandos y
       Definition of Done de `development/task-001-environment-and-config.md`.
-- [ ] `PLAT-002` — Entities y constraints diseñados; evidencia: revisión de
+- [x] `PLAT-002` — Entities y constraints diseñados; evidencia: revisión de
       **Diseño de tablas** en `database/task-001-platform-schema.md`.
-- [ ] `PLAT-003` — Migración `up -> down -> up`; evidencia: schema final y
+- [x] `PLAT-003` — Migración `up -> down -> up`; evidencia: schema final y
       `migration:show` sin pendientes.
-- [ ] `PLAT-004` — Etapa A de services globales terminada; evidencia: no hay
+- [x] `PLAT-004` — Etapa A de services globales terminada; evidencia: no hay
       endpoints administrativos desprotegidos.
-- [ ] `PLAT-005` — `PlatformReferenceSeeder` y contrato de
+- [x] `PLAT-005` — `PlatformReferenceSeeder` y contrato de
       `PlatformOrganizationSeeder` implementados; evidencia: dos corridas de A con
       IDs estables.
-- [ ] `PLAT-006` — Suites de etapa A pasan; evidencia: nombres de comandos y
-      resultados registrados.
+- [x] `PLAT-006` — Suites de etapa A pasan contra `nexuscrm_test` healthy;
+      evidencia: `format:check`, `lint` y `typecheck` pasaron; unit 7/7,
+      integration 10/10, migration 1/1 y E2E 2/2; `git diff --check` limpio.
 - [ ] `PLAT-007` — Rama A revisada, publicada y mergeada sin tag.
 - [ ] `PLAT-008` — Retorno desde Organizations: FKs, seed B, numeración, tasas
       y aislamiento probados con dos tenants.

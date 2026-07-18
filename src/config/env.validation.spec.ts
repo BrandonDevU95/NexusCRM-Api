@@ -1,4 +1,5 @@
 import { validateEnvironment } from './env.validation';
+import { loadEnvironment } from './env.loader';
 
 function validEnvironment(): Record<string, string> {
   return {
@@ -75,6 +76,26 @@ describe('validateEnvironment', () => {
     delete environment.SEED_ALLOW_DEMO_DATA;
 
     expect(validateEnvironment(environment).SEED_ALLOW_DEMO_DATA).toBe('false');
+  });
+
+  it('accepts unknown process variables without exposing them through AppConfig', () => {
+    const environment = validEnvironment();
+    environment.CI_JOB_ID = 'platform-gate-a-12345';
+
+    const validatedEnvironment = validateEnvironment(environment);
+    const config = loadEnvironment(validatedEnvironment);
+
+    expect(validatedEnvironment.CI_JOB_ID).toBe('platform-gate-a-12345');
+    expect(config).not.toHaveProperty('CI_JOB_ID');
+    expect(JSON.stringify(config)).not.toContain('platform-gate-a-12345');
+  });
+
+  it('rejects a database host typo when the required key is missing', () => {
+    const environment = validEnvironment();
+    delete environment.DATABASE_HOST;
+    environment.DATABSE_HOST = 'localhost';
+
+    expect(() => validateEnvironment(environment)).toThrow('DATABASE_HOST');
   });
 
   it.each([

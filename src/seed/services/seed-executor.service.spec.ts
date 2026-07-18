@@ -166,7 +166,7 @@ function executor(
 describe('SeedExecutorService', () => {
   it('commits an empty registry with a shared transaction, lock, and zero metrics', async () => {
     const source = dataSourceDouble();
-    const service = executor(new SeedRegistry(), source);
+    const service = executor(new SeedRegistry([]), source);
 
     const result = await service.execute({
       moduleName: 'all',
@@ -268,7 +268,7 @@ describe('SeedExecutorService', () => {
 
   it('rejects an unknown name before connecting or opening a transaction', async () => {
     const source = dataSourceDouble();
-    const service = executor(new SeedRegistry(), source);
+    const service = executor(new SeedRegistry([]), source);
 
     await expect(
       service.execute({ moduleName: 'users', dataKind: 'demo' }),
@@ -308,7 +308,7 @@ describe('SeedExecutorService', () => {
     const source = dataSourceDouble(true);
 
     await expect(
-      executor(new SeedRegistry(), source).execute({
+      executor(new SeedRegistry([]), source).execute({
         moduleName: 'all',
         dataKind: 'reference',
       }),
@@ -328,7 +328,7 @@ describe('SeedExecutorService', () => {
     });
 
     await expect(
-      executor(new SeedRegistry(), source, prodConfig).execute({
+      executor(new SeedRegistry([]), source, prodConfig).execute({
         moduleName: 'all',
         dataKind: 'demo',
       }),
@@ -343,7 +343,7 @@ describe('SeedExecutorService', () => {
     const unauthorizedSource = dataSourceDouble();
     await expect(
       executor(
-        new SeedRegistry(),
+        new SeedRegistry([]),
         unauthorizedSource,
         appConfig({
           seed: { randomSeed: 42, batchSize: 100, allowDemoData: false },
@@ -355,7 +355,7 @@ describe('SeedExecutorService', () => {
     const noRandomSeedSource = dataSourceDouble();
     await expect(
       executor(
-        new SeedRegistry(),
+        new SeedRegistry([]),
         noRandomSeedSource,
         appConfig({
           seed: {
@@ -393,7 +393,7 @@ describe('SeedExecutorService', () => {
 
   it('destroys an initialized DataSource when the context closes', async () => {
     const source = dataSourceDouble();
-    const service = executor(new SeedRegistry(), source);
+    const service = executor(new SeedRegistry([]), source);
     await service.execute({ moduleName: 'all', dataKind: 'reference' });
 
     await service.onModuleDestroy();

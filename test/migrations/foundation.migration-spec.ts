@@ -10,6 +10,10 @@ interface ExtensionRow {
   exists: boolean;
 }
 
+interface TableRow {
+  exists: boolean;
+}
+
 interface RelationRow {
   migrationTable: string | null;
 }
@@ -40,14 +44,25 @@ describe('Foundation migration history', () => {
     expect(appliedMigrations.map((migration) => migration.name)).toContain(
       'EnableDatabaseExtensions1784075887537',
     );
+    expect(appliedMigrations.map((migration) => migration.name)).toContain(
+      'CreatePlatformConfigurationTables1784182334025',
+    );
     await expect(pgcryptoExists()).resolves.toBe(true);
+    await expect(platformTablesExist()).resolves.toBe(true);
     await expect(dataSource.showMigrations()).resolves.toBe(false);
 
-    // Act: revert the latest real migration
+    // Act: revert the platform schema migration
     await dataSource.undoLastMigration({ transaction: 'all' });
 
-    // Assert: it is pending again and its extension disappeared
+    // Assert: platform tables disappear, while their prerequisite remains
     await expect(dataSource.showMigrations()).resolves.toBe(true);
+    await expect(platformTablesExist()).resolves.toBe(false);
+    await expect(pgcryptoExists()).resolves.toBe(true);
+
+    // Act: revert the extensions migration
+    await dataSource.undoLastMigration({ transaction: 'all' });
+
+    // Assert: its extension disappears too
     await expect(pgcryptoExists()).resolves.toBe(false);
 
     // Act: restore the final applied state
@@ -56,6 +71,7 @@ describe('Foundation migration history', () => {
     // Assert
     await expect(dataSource.showMigrations()).resolves.toBe(false);
     await expect(pgcryptoExists()).resolves.toBe(true);
+    await expect(platformTablesExist()).resolves.toBe(true);
   });
 
   afterAll(async () => {
@@ -76,6 +92,19 @@ describe('Foundation migration history', () => {
     const [row] = await dataSource.query<ExtensionRow[]>(
       `SELECT EXISTS (
         SELECT 1 FROM pg_extension WHERE extname = 'pgcrypto'
+      ) AS "exists"`,
+    );
+
+    return row?.exists === true;
+  }
+
+  async function platformTablesExist(): Promise<boolean> {
+    const [row] = await dataSource.query<TableRow[]>(
+      `SELECT EXISTS (
+        SELECT 1
+        FROM pg_class
+        WHERE relkind = 'r'
+          AND relname = 'catalog_options'
       ) AS "exists"`,
     );
 

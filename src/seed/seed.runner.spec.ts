@@ -38,7 +38,7 @@ describe('SeedRunner', () => {
     const output = outputDouble();
     const execute = jest.fn();
     const executor = { execute } as unknown as SeedExecutorService;
-    const runner = new SeedRunner(new SeedRegistry(), executor, output);
+    const runner = new SeedRunner(new SeedRegistry([]), executor, output);
 
     await expect(runner.run(['list'])).resolves.toBe(0);
     expect(output.info).toHaveBeenCalledWith(
@@ -51,7 +51,7 @@ describe('SeedRunner', () => {
     const output = outputDouble();
     const execute = jest.fn();
     const executor = { execute } as unknown as SeedExecutorService;
-    const runner = new SeedRunner(new SeedRegistry(), executor, output);
+    const runner = new SeedRunner(new SeedRegistry([]), executor, output);
 
     await expect(runner.run(['run', '--data-kind', 'reference'])).resolves.toBe(
       1,
@@ -80,7 +80,7 @@ describe('SeedRunner', () => {
     };
     const execute = jest.fn().mockResolvedValue(result);
     const executor = { execute } as unknown as SeedExecutorService;
-    const runner = new SeedRunner(new SeedRegistry(), executor, output);
+    const runner = new SeedRunner(new SeedRegistry([]), executor, output);
 
     await expect(
       runner.run(['run', '--module', 'all', '--data-kind', 'demo']),
@@ -108,7 +108,7 @@ describe('SeedRunner', () => {
           ),
         ),
     } as unknown as SeedExecutorService;
-    const runner = new SeedRunner(new SeedRegistry(), executor, output);
+    const runner = new SeedRunner(new SeedRegistry([]), executor, output);
 
     await expect(
       runner.run(['run', '--module', 'all', '--data-kind', 'reference']),

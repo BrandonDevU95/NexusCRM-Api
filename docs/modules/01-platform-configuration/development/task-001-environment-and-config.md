@@ -91,11 +91,11 @@ solo diagnostica si una regresión hace fallar un caso.
 
 ## Definition of Done
 
-- [ ] Las dependencias existentes conservan versiones exactas.
-- [ ] `compose.yaml` resuelve y PostgreSQL test llega a healthy.
-- [ ] Joi usa `allowUnknown: true`.
-- [ ] El loader usa una allowlist y no propaga unknown keys.
-- [ ] Un typo de clave requerida falla sin revelar secretos.
-- [ ] Runtime y CLI siguen compartiendo loader.
-- [ ] `synchronize` y `migrationsRun` siguen desactivados.
-- [ ] No se modificó ni staged ningún archivo durante el preflight.
+- [x] Las dependencias existentes conservan versiones exactas.
+- [x] `compose.yaml` resuelve y PostgreSQL test llega a healthy.
+- [x] Joi usa `allowUnknown: true`.
+- [x] El loader usa una allowlist y no propaga unknown keys.
+- [x] Un typo de clave requerida falla sin revelar secretos.
+- [x] Runtime y CLI siguen compartiendo loader.
+- [x] `synchronize` y `migrationsRun` siguen desactivados.
+- [x] No se modificó ni staged ningún archivo durante el preflight.
