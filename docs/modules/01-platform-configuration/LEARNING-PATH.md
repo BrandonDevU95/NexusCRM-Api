@@ -45,7 +45,7 @@ interrumpes el trabajo, este registro identifica el punto exacto de regreso.
       `migration:show` sin pendientes.
 - [x] `PLAT-004` — Etapa A de services globales terminada; evidencia: no hay
       endpoints administrativos desprotegidos.
-- [ ] `PLAT-005` — `PlatformReferenceSeeder` y contrato de
+- [x] `PLAT-005` — `PlatformReferenceSeeder` y contrato de
       `PlatformOrganizationSeeder` implementados; evidencia: dos corridas de A con
       IDs estables.
 - [ ] `PLAT-006` — Suites de etapa A pasan; evidencia: nombres de comandos y
