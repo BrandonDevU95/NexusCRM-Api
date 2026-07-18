@@ -20,11 +20,15 @@ const TEST_SETTING_KEYS = [
 
 describe('Platform public settings (e2e)', () => {
   const config = getTestConfig();
+  const unknownEnvironmentValue = 'platform-ci-job-sentinel-7843';
+  const previousCiJobId = process.env.CI_JOB_ID;
   let app: NestExpressApplication;
   let dataSource: DataSource;
   let settingsRepository: Repository<SystemSetting>;
 
   beforeAll(async () => {
+    process.env.CI_JOB_ID = unknownEnvironmentValue;
+
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
@@ -85,6 +89,10 @@ describe('Platform public settings (e2e)', () => {
     expect(JSON.stringify(response.body)).not.toContain(
       process.env.DATABASE_PASSWORD,
     );
+    expect(JSON.stringify(response.body)).not.toContain('CI_JOB_ID');
+    expect(JSON.stringify(response.body)).not.toContain(
+      unknownEnvironmentValue,
+    );
   });
 
   it('PLAT-E2E-002 does not expose temporary administrative endpoints', async () => {
@@ -114,6 +122,11 @@ describe('Platform public settings (e2e)', () => {
     }
     if (app) {
       await app.close();
+    }
+    if (previousCiJobId === undefined) {
+      delete process.env.CI_JOB_ID;
+    } else {
+      process.env.CI_JOB_ID = previousCiJobId;
     }
   });
 });
