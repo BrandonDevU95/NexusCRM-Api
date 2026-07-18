@@ -16,8 +16,19 @@ function seeder(
 }
 
 describe('SeedRegistry', () => {
-  it('starts with a valid empty runtime registry', () => {
+  it('registers the platform reference seeder once at runtime', () => {
     const registry = new SeedRegistry();
+
+    expect(registry.names()).toEqual(['platform']);
+    expect(registry.get('platform')).toMatchObject({
+      name: 'platform',
+      dataKinds: ['reference'],
+      dependencies: [],
+    });
+  });
+
+  it('accepts an explicitly empty registry for isolated consumers', () => {
+    const registry = new SeedRegistry([]);
 
     expect(registry.list()).toEqual([]);
     expect(registry.names()).toEqual([]);

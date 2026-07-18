@@ -1,6 +1,7 @@
 import type { SeederDefinition } from './seed.types';
+import { platformReferenceSeeder } from './seeders/platform-reference.seeder';
 
-const RUNTIME_SEEDERS: readonly SeederDefinition[] = [];
+const RUNTIME_SEEDERS: readonly SeederDefinition[] = [platformReferenceSeeder];
 
 export class SeedRegistry {
   private readonly seedersByName: ReadonlyMap<string, SeederDefinition>;
