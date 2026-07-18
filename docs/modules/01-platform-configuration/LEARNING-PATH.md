@@ -48,8 +48,9 @@ interrumpes el trabajo, este registro identifica el punto exacto de regreso.
 - [x] `PLAT-005` — `PlatformReferenceSeeder` y contrato de
       `PlatformOrganizationSeeder` implementados; evidencia: dos corridas de A con
       IDs estables.
-- [ ] `PLAT-006` — Suites de etapa A pasan; evidencia: nombres de comandos y
-      resultados registrados.
+- [x] `PLAT-006` — Suites de etapa A pasan contra `nexuscrm_test` healthy;
+      evidencia: `format:check`, `lint` y `typecheck` pasaron; unit 7/7,
+      integration 10/10, migration 1/1 y E2E 2/2; `git diff --check` limpio.
 - [ ] `PLAT-007` — Rama A revisada, publicada y mergeada sin tag.
 - [ ] `PLAT-008` — Retorno desde Organizations: FKs, seed B, numeración, tasas
       y aislamiento probados con dos tenants.
