@@ -51,7 +51,8 @@ interrumpes el trabajo, este registro identifica el punto exacto de regreso.
 - [x] `PLAT-006` — Suites de etapa A pasan contra `nexuscrm_test` healthy;
       evidencia: `format:check`, `lint` y `typecheck` pasaron; unit 7/7,
       integration 10/10, migration 1/1 y E2E 2/2; `git diff --check` limpio.
-- [ ] `PLAT-007` — Rama A revisada, publicada y mergeada sin tag.
+- [x] `PLAT-007` — Rama A revisada, publicada y mergeada mediante PR `#6`;
+      issue `#5` cerrado, ramas local/remota eliminadas y sin tag.
 - [ ] `PLAT-008` — Retorno desde Organizations: FKs, seed B, numeración, tasas
       y aislamiento probados con dos tenants.
 - [ ] `PLAT-009` — Retorno desde Security B/Audit A: endpoints sensibles tienen
