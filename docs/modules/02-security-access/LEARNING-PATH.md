@@ -20,10 +20,18 @@ permissions, CASL y decorators tenant-scoped.
 
 ## Prerrequisitos
 
-- [ ] Platform etapa A está mergeada (`PLAT-007`).
-- [ ] Las migraciones y suites de Platform pasan.
-- [ ] No hay cambios ajenos en el working tree.
-- [ ] Para B, Organizations está mergeado y `ORG-006` está completo.
+### Para iniciar la Parte A
+
+- [x] Platform etapa A está mergeada (`PLAT-007`).
+- [x] Las migraciones y suites de Platform pasan.
+- [x] No hay cambios ajenos en el working tree.
+
+### Para regresar a la Parte B
+
+Este requisito se revisa después de completar `SEC-A06`; no bloquea el inicio
+de la Parte A.
+
+- [ ] Organizations está mergeado y `ORG-006` está completo.
 
 ## Registro real de avance
 
