@@ -37,7 +37,9 @@ de la Parte A.
 
 ### Parte A — authentication global
 
-- [ ] `SEC-A01` — Schema users/sessions/tokens aplicado, revertido y reaplicado.
+- [x] `SEC-A01` — Schema users/sessions/tokens aplicado, revertido y reaplicado;
+      evidencia: cinco tablas presentes, migraciones sin pendientes, metadata
+      sin drift y constraints críticos comprobados en PostgreSQL.
 - [ ] `SEC-A02` — Auth flows implementados con rotación atómica y replay.
 - [ ] `SEC-A03` — Usuario bootstrap constante creado sin organization ni role.
 - [ ] `SEC-A04` — Unit, integration y E2E de Authentication pasan.

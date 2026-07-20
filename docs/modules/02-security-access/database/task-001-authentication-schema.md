@@ -31,6 +31,10 @@
 
 `users` no tiene `organization_id`: la identidad es global y la membresía define acceso a tenants.
 
+Estados permitidos: `PENDING_VERIFICATION`, `ACTIVE` y `SUSPENDED`. El bloqueo
+temporal usa `locked_until` y el retiro histórico usa `archived_at`; no se
+duplican esos conceptos dentro de `status`.
+
 ### user_sessions
 
 | Campo         | Tipo         | Null | Default  | Regla                | Motivo                          |
