@@ -1,10 +1,12 @@
 import type { AppConfig } from './config/env.types';
 import { AppConfigModule } from './config/config.module';
+import { AuthModule } from './auth/auth.module';
 import { ConfigService } from '@nestjs/config';
 import { HealthModule } from './health/health.module';
 import { Module } from '@nestjs/common';
 import { PlatformModule } from './platform/platform.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
 import { createTypeOrmOptions } from './database/typeorm-options';
 
 @Module({
@@ -22,6 +24,8 @@ import { createTypeOrmOptions } from './database/typeorm-options';
     }),
     HealthModule,
     PlatformModule,
+    UsersModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [],
