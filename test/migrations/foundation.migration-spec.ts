@@ -47,15 +47,27 @@ describe('Foundation migration history', () => {
     expect(appliedMigrations.map((migration) => migration.name)).toContain(
       'CreatePlatformConfigurationTables1784182334025',
     );
+    expect(appliedMigrations.map((migration) => migration.name)).toContain(
+      'CreateAuthenticationSchema1784519690916',
+    );
     await expect(pgcryptoExists()).resolves.toBe(true);
     await expect(platformTablesExist()).resolves.toBe(true);
+    await expect(authenticationTablesExist()).resolves.toBe(true);
     await expect(dataSource.showMigrations()).resolves.toBe(false);
+
+    // Act: revert the authentication schema migration
+    await dataSource.undoLastMigration({ transaction: 'all' });
+
+    // Assert: authentication disappears while Platform remains intact
+    await expect(dataSource.showMigrations()).resolves.toBe(true);
+    await expect(authenticationTablesExist()).resolves.toBe(false);
+    await expect(platformTablesExist()).resolves.toBe(true);
+    await expect(pgcryptoExists()).resolves.toBe(true);
 
     // Act: revert the platform schema migration
     await dataSource.undoLastMigration({ transaction: 'all' });
 
     // Assert: platform tables disappear, while their prerequisite remains
-    await expect(dataSource.showMigrations()).resolves.toBe(true);
     await expect(platformTablesExist()).resolves.toBe(false);
     await expect(pgcryptoExists()).resolves.toBe(true);
 
@@ -72,6 +84,7 @@ describe('Foundation migration history', () => {
     await expect(dataSource.showMigrations()).resolves.toBe(false);
     await expect(pgcryptoExists()).resolves.toBe(true);
     await expect(platformTablesExist()).resolves.toBe(true);
+    await expect(authenticationTablesExist()).resolves.toBe(true);
   });
 
   afterAll(async () => {
@@ -105,6 +118,19 @@ describe('Foundation migration history', () => {
         FROM pg_class
         WHERE relkind = 'r'
           AND relname = 'catalog_options'
+      ) AS "exists"`,
+    );
+
+    return row?.exists === true;
+  }
+
+  async function authenticationTablesExist(): Promise<boolean> {
+    const [row] = await dataSource.query<TableRow[]>(
+      `SELECT EXISTS (
+        SELECT 1
+        FROM pg_class
+        WHERE relkind = 'r'
+          AND relname = 'refresh_tokens'
       ) AS "exists"`,
     );
 

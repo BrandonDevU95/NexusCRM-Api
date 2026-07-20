@@ -1,5 +1,7 @@
 import { DataSource } from 'typeorm';
 
+import { CreatePlatformConfigurationTables1784182334025 } from '../../src/database/migrations/1784182334025-CreatePlatformConfigurationTables';
+import { EnableDatabaseExtensions1784075887537 } from '../../src/database/migrations/1784075887537-EnableDatabaseExtensions';
 import {
   createTestDataSource,
   getTestConfig,
@@ -24,6 +26,12 @@ describe('Platform migration history', () => {
 
   beforeAll(async () => {
     dataSource = createTestDataSource(config);
+    dataSource.setOptions({
+      migrations: [
+        EnableDatabaseExtensions1784075887537,
+        CreatePlatformConfigurationTables1784182334025,
+      ],
+    });
     await dataSource.initialize();
     await resetTestSchema(dataSource, config);
   });
