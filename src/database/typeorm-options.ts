@@ -9,6 +9,7 @@ export function createTypeOrmOptions(
 
   return {
     type: 'postgres',
+    uuidExtension: 'pgcrypto',
     host: database.host,
     port: database.port,
     database: database.name,
